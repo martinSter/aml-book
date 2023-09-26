@@ -15,18 +15,30 @@ biblio-style: apalike
 csl: chicago-fullnote-bibliography.csl
 ---
 
-# About
+# Über das Buch
+
+Link zu Kaggle und UC Irvine
+
+ML Beispiele
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
-
-::: {.rmdnote}
-The `bs4_book` style also includes an `.rmdnote` callout block
-like this one.
-
-```{r collapse=TRUE}`
-head(beaver1, n = 5)
-```
-:::
 
 ## Usage 
 

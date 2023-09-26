@@ -1,7 +1,16 @@
-book_filename: "book1"
+book_filename: "book"
 new_session: true
 before_chapter_script: _common.R
 delete_merged_file: true
 language:
+  label:
+    fig: 'Abbildung '
+    tab: 'Tabelle '
+    eq: 'Gleichung '
+    def: 'Definition '
+    exm: 'Beispiel '
+    exr: 'Übung '
+    solution: 'Lösung '
   ui:
-    chapter_name: "Chapter "
+    chapter_name: ""
+

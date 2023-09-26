@@ -2,7 +2,9 @@ bookdown::bs4_book:
   css: style.css
   theme:
     primary: "#0028a5"
-  repo: https://github.com/rstudio/bookdown-demo
+  repo:
+    base: https://github.com/martinSter/aml-book
+    branch: main
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
