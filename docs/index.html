@@ -48,7 +48,23 @@ set in the _output.yml file.&lt;/p&gt;">
 </form>
 
       <nav aria-label="Table of contents"><h2>Inhaltsverzeichnis</h2>
-        <ul class="book-toc list-unstyled"><li><a class="active" href="index.html">Über das Buch</a></li></ul>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html">Über das Buch</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Einführung</a></li>
+<li><a class="" href="basics.html"><span class="header-section-number">2</span> Mathematik- und Statistik-Grundlagen</a></li>
+<li><a class="" href="intro-R.html"><span class="header-section-number">3</span> Einführung in das Programmieren mit R</a></li>
+<li><a class="" href="lin-reg.html"><span class="header-section-number">4</span> Lineare Regression</a></li>
+<li><a class="" href="lin-class.html"><span class="header-section-number">5</span> Lineare Klassifikation</a></li>
+<li><a class="" href="ml-pipeline.html"><span class="header-section-number">6</span> Machine Learning Pipeline</a></li>
+<li><a class="" href="trees.html"><span class="header-section-number">7</span> Decision Trees</a></li>
+<li><a class="" href="ensembles.html"><span class="header-section-number">8</span> Ensembles</a></li>
+<li><a class="" href="svm.html"><span class="header-section-number">9</span> Support Vector Machines</a></li>
+<li><a class="" href="ann.html"><span class="header-section-number">10</span> Artificial Neural Networks</a></li>
+<li><a class="" href="cnn.html"><span class="header-section-number">11</span> Convolutional Neural Networks</a></li>
+<li><a class="" href="rnn.html"><span class="header-section-number">12</span> Recurrent Neural Networks</a></li>
+<li><a class="" href="gen-AI.html"><span class="header-section-number">13</span> Generative AI</a></li>
+<li><a class="" href="bibliographie.html">Bibliographie</a></li>
+</ul>
 
         <div class="book-extra">
           <p><a id="book-repo" href="https://github.com/martinSter/aml-book">Zum Quellcode des Buchs <i class="fab fa-github"></i></a></p>
@@ -92,11 +108,13 @@ set in the _output.yml file.&lt;/p&gt;">
 <li>Christopher M. Bishop. (2006). <a href="https://link.springer.com/book/9780387310732">Pattern Recognition and Machine Learning.</a> Berlin, Heidelberg: Springer.</li>
 <li>Kevin P. Murphy. (2012). <a href="https://mitpress.mit.edu/9780262018029/machine-learning/">Machine Learning A Probabilistic Perspective.</a> The MIT Press.</li>
 </ul>
+<p>Die ersten beiden Referenzen sind einführende Texte und können problemlos parallel zum vorliegenden Buch gelesen werden. Die letzten zwei Referenzen sind fortgeschrittene Texte und ich empfehle, sie erst nach dem vollständigen Verständnis des vorliegenden Buchs oder der ersten beiden Referenzen zu lesen.</p>
+
 </div>
 </div>
   <div class="chapter-nav">
 <div class="empty"></div>
-<div class="empty"></div>
+<div class="next"><a href="intro.html"><span class="header-section-number">1</span> Einführung</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="In diesem Kapitel"><h2>In diesem Kapitel</h2>
       <ul class="nav navbar-nav">
@@ -109,7 +127,8 @@ set in the _output.yml file.&lt;/p&gt;">
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          
+<li><a id="book-source" href="https://github.com/martinSter/aml-book/blob/main/index.Rmd">Quellcode anschauen <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/martinSter/aml-book/edit/main/index.Rmd">Diese Seite bearbeiten <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -129,6 +148,34 @@ set in the _output.yml file.&lt;/p&gt;">
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

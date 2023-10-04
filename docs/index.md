@@ -48,3 +48,5 @@ Ein grosser Teil des vorliegenden Buchs baut auf bestehenden Büchern zum Thema 
 * Aurélien Géron. (2019). [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems.](https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/) Sebastopol: O’Reilly Media Inc. 3rd Edition.
 * Christopher M. Bishop. (2006). [Pattern Recognition and Machine Learning.](https://link.springer.com/book/9780387310732) Berlin, Heidelberg: Springer.
 * Kevin P. Murphy. (2012). [Machine Learning A Probabilistic Perspective.](https://mitpress.mit.edu/9780262018029/machine-learning/) The MIT Press.
+
+Die ersten beiden Referenzen sind einführende Texte und können problemlos parallel zum vorliegenden Buch gelesen werden. Die letzten zwei Referenzen sind fortgeschrittene Texte und ich empfehle, sie erst nach dem vollständigen Verständnis des vorliegenden Buchs oder der ersten beiden Referenzen zu lesen.

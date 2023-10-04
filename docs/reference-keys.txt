@@ -26,6 +26,3 @@ ann
 cnn
 rnn
 gen-AI
-struktur-des-buchs
-lizenz
-weiterführende-literatur
