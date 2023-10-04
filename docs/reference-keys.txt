@@ -3,10 +3,7 @@ fig:lin-func
 fig:quad-func
 fig:poly-func
 fig:plane
-über-das-buch
-usage
-render-book
-preview-book
+intro
 basics
 funktionen
 lineare-funktionen
@@ -29,3 +26,6 @@ ann
 cnn
 rnn
 gen-AI
+struktur-des-buchs
+lizenz
+weiterführende-literatur

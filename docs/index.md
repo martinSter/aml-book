@@ -1,7 +1,7 @@
 --- 
 title: "Angewandtes Machine Learning"
 author: "Martin Sterchi"
-date: "2023-10-03"
+date: "2023-10-04"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -15,64 +15,36 @@ biblio-style: apalike
 csl: chicago-fullnote-bibliography.csl
 ---
 
-# Über das Buch
+# Über das Buch {-}
 
-Link zu Kaggle und UC Irvine
+Die Motivation für dieses Buch kam aus der Erkenntnis, dass viele kleine und mittelgrosse Unternehmen in der Schweiz zwar über Unmengen an Daten verfügen, aber nicht das nötige Know-How haben, um die Daten zu analysieren und für die Optimierung von Entscheidungsprozessen zu nutzen. Mit diesem Buch möchte ich einen kleinen Beitrag leisten, den Know-How Transfer in die Unternehmen zu katalysieren. Das Buch versucht, sowohl die klassischen Machine Learning Methoden als auch neueste Entwicklungen im Deep Learning mit einem Fokus auf die Anwendung zu vermitteln. Obwohl das Buch einen anwendungsorientierten Ansatz verfolgt, soll die mathematisch-statistische Intuition hinter den beschriebenen Modellen und Methoden nicht zu kurz kommen. Diese Intuition ist aus meiner Sicht zwingend, um beurteilen zu können, ob sich ein Modell überhaupt für ein gegebenes Problem eignet. Am Schluss geht es nämlich darum, dass wir mit dem Einsatz von Machine Learning einen Mehrwert für ein Unternehmen oder für die Gesellschaft schaffen können. Das erfordert, dass wir uns eingehend und kritisch mit unseren Modellen und Resultaten auseinander setzen.
 
-ML Beispiele
+## Zielgruppe {-}
 
+Das Buch richtet sich insbesondere an Fachhochschulstudierende in der Schweiz mit einem intrinsischen Interesse an quantitativen Methoden und Machine Learning. Vorausgesetzt werden Mathematikkenntnisse auf Stufe Mittelschule (Berufs- oder gymnasiale Matur), d.h. Sie sollten vertraut sein mit den Grundlagen bezüglich mathematischer Funktionen, der Integral- und Differentialrechnung sowie den wichtigsten Resultaten aus der Algebra. Ausserdem gehe ich davon aus, dass Sie bereits eine Einführung in das Thema Statistik besucht haben und Konzepte aus der deskriptiven Statistik (Mittelwert, Median, Varianz, Quantile, etc.) sowie aus der Inferenzstatistik (Verteilungen, statistisches Testen, etc.) bekannt sind.
 
+Bevor Sie sich aber nun Sorgen machen: **Kapitel \@ref(basics)** enthält eine Einführung in die wichtigsten Mathematik- und Statistikgrundlagen, die nötig sind für das Verständnis von Machine Learning Modellen.
 
+Da ich mit diesem Buch einen anwendungsorientierten Ansatz verfolge, werden wir auch in das Programmieren einsteigen. Dazu verwenden wir in diesem Buch die Programmiersprache `R`. Es werden keine Vorkenntnisse vorausgesetzt. **Kapitel \@ref(intro-R)** enthält eine kurze Einführung in die Programmiersprache `R` und verweist Sie auf weiterführende Ressourcen zum Thema Programmieren. Jedes Modell, das wir uns anschauen werden, ist mit R-Code dokumentiert, so dass Sie lernen, wie die Modelle in der Praxis angewendet werden können.
 
+## Struktur des Buchs {-}
 
+Das Buch enthält folgende Kapitel:
 
+* Kapitel \@ref(intro): Einführung in das Thema Machine Learning mit Definitionen sowie Anwendungsbeispielen.
+* Kapitel \@ref(basics): Wichtigste Mathematik- und Statistikgrundlagen, die für das Verständnis der Modelle in den späteren Kapitel elementar sind.
+* Kapitel \@ref(intro-R): Einführung in das Programmieren mit `R` sowie Überblick über die wichtigsten `R`-Packages, die wir verwenden werden.
+* ...
 
+## Lizenz {-}
 
+Das vorliegende Buch ist unter Lizenz [CC BY-NC-SA 4.0 DEED](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de) (Namensnennung, nicht-kommerziell, Weitergabe unter gleichen Bedingungen 4.0 International) lizenziert. Bitte halten Sie sich an die Lizenzbedingungen.
 
+## Weiterführende Literatur {-}
 
+Ein grosser Teil des vorliegenden Buchs baut auf bestehenden Büchern zum Thema Machine Learning auf. Ich werde im Buch immer wieder auf die Quellen verweisen. Die wichtigsten Referenzen für dieses Buch sind folgende:
 
-
-
-
-
-
-
-
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
-
-## Usage 
-
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
-
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
-
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
-
-## Render book
-
-You can render the HTML version of this example book without changing anything:
-
-1. Find the **Build** pane in the RStudio IDE, and
-
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
-
-Or build the book from the R console:
-
-
-```r
-bookdown::render_book()
-```
-
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-## Preview book
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
-
-
-```r
-bookdown::serve_book()
-```
-
-
-
+* Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani. (2021). [An Introduction to Statistical Learning: with Applications in R.](https://www.statlearning.com/) New York: Springer. 2nd Edition.
+* Aurélien Géron. (2019). [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems.](https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/) Sebastopol: O’Reilly Media Inc. 3rd Edition.
+* Christopher M. Bishop. (2006). [Pattern Recognition and Machine Learning.](https://link.springer.com/book/9780387310732) Berlin, Heidelberg: Springer.
+* Kevin P. Murphy. (2012). [Machine Learning A Probabilistic Perspective.](https://mitpress.mit.edu/9780262018029/machine-learning/) The MIT Press.

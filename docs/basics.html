@@ -43,7 +43,8 @@
 
       <nav aria-label="Table of contents"><h2>Inhaltsverzeichnis</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html"><span class="header-section-number">1</span> Über das Buch</a></li>
+<li><a class="" href="index.html">Über das Buch</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Einführung</a></li>
 <li><a class="active" href="basics.html"><span class="header-section-number">2</span> Mathematik- und Statistik-Grundlagen</a></li>
 <li><a class="" href="intro-R.html"><span class="header-section-number">3</span> Einführung in das Programmieren mit R</a></li>
 <li><a class="" href="lin-reg.html"><span class="header-section-number">4</span> Lineare Regression</a></li>
@@ -99,7 +100,7 @@ Obige Funktionsgleichung besagt, dass wir den entsprechenden <span class="math i
 <p>Am besten schauen wir uns ein paar konkrete Beispiele an (Abb. <a href="basics.html#fig:lin-func">2.2</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:lin-func"></span>
-<img src="01-basics_files/figure-html/lin-func-1.png" alt="Beispiele linearer Funktionen." width="50%"><img src="01-basics_files/figure-html/lin-func-2.png" alt="Beispiele linearer Funktionen." width="50%"><p class="caption">
+<img src="02-basics_files/figure-html/lin-func-1.png" alt="Beispiele linearer Funktionen." width="50%"><img src="02-basics_files/figure-html/lin-func-2.png" alt="Beispiele linearer Funktionen." width="50%"><p class="caption">
 Abbildung 2.2: Beispiele linearer Funktionen.
 </p>
 </div>
@@ -125,7 +126,7 @@ y = f(x) = a \cdot x^2 + b \cdot x + c
 Eine quadratische Funktion hat drei <strong>Parameter</strong>, nämlich <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> und <span class="math inline">\(c\)</span>. Grafisch entspricht die quadratische Funktion einer <strong>Parabel</strong> (vgl. Abb. <a href="basics.html#fig:quad-func">2.3</a>). Die Parameter sind hier nicht mehr so einfach grafisch zu interpretieren, aber die vier Beispiele in unten stehender Abbildung geben Anhaltspunkte, was passiert, wenn die Parameterwerte sich ändern.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:quad-func"></span>
-<img src="01-basics_files/figure-html/quad-func-1.png" alt="Beispiele quadratischer Funktionen." width="80%"><p class="caption">
+<img src="02-basics_files/figure-html/quad-func-1.png" alt="Beispiele quadratischer Funktionen." width="80%"><p class="caption">
 Abbildung 2.3: Beispiele quadratischer Funktionen.
 </p>
 </div>
@@ -135,7 +136,7 @@ Abbildung 2.3: Beispiele quadratischer Funktionen.
 <li>Sie haben folgende quadratische Gleichung: <span class="math inline">\(y = 2 \cdot x^2 + x - 2\)</span>. Berechnen Sie mit der bekannten Lösungsformel <span class="math inline">\(x_{1,2}=\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</span> die Orte auf der x-Achse, wo die Parabel die Achse schneidet (oder einfacher gesagt die Nullstellen).</li>
 <li>Verwenden Sie folgenden R-Code, um beliebige quadratische Funktionen grafisch darzustellen, indem Sie die Parameterwerte auf der ersten Code-Zeile verändern.</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Parameter setzen</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span>; <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0</span>; <span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="co"># Quadratische Funktion</span></span>
@@ -155,7 +156,7 @@ y = f(x) = 1 \cdot x^4 - 2 \cdot x^3 - 5 \cdot x^2 + 8 \cdot x - 2
 Die Visualisierung dieser Funktion ist in Abb. <a href="basics.html#fig:poly-func">2.4</a> gegeben. Diese Funktion ist nun bereits enorm flexibel und kann je nach Parameterwerten ganz unterschiedliche Zusammenhänge abbilden.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:poly-func"></span>
-<img src="01-basics_files/figure-html/poly-func-1.png" alt="Beispiel einer polynomischen Funktion vierten Grades" width="80%"><p class="caption">
+<img src="02-basics_files/figure-html/poly-func-1.png" alt="Beispiel einer polynomischen Funktion vierten Grades" width="80%"><p class="caption">
 Abbildung 2.4: Beispiel einer polynomischen Funktion vierten Grades.
 </p>
 </div>
@@ -176,7 +177,7 @@ Abbildung 2.4: Beispiel einer polynomischen Funktion vierten Grades.
 <p>Der Einfachheit halber schauen wir uns hier nur mal eine <strong>lineare</strong> Funktion zweier Argumente, nennen wir sie <span class="math inline">\(x_1\)</span> und <span class="math inline">\(x_2\)</span>, an, denn diese können wir in 3D immer noch visualisieren. Wir betrachten folgende Funktion: <span class="math inline">\(y = f(x_1,x_2) = 1 \cdot x_1 + 0.5 \cdot x_2 + 5\)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plane"></span>
-<img src="01-basics_files/figure-html/plane-1.png" alt="Lineare Funktion zweier Argumente (Ebene)." width="80%"><p class="caption">
+<img src="02-basics_files/figure-html/plane-1.png" alt="Lineare Funktion zweier Argumente (Ebene)." width="80%"><p class="caption">
 Abbildung 2.5: Lineare Funktion zweier Argumente (Ebene).
 </p>
 </div>
@@ -250,7 +251,7 @@ y &amp;= 1 \cdot x_1 + 0.5 \cdot x_2 + 5\\
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Über das Buch</a></div>
+<div class="prev"><a href="intro.html"><span class="header-section-number">1</span> Einführung</a></div>
 <div class="next"><a href="intro-R.html"><span class="header-section-number">3</span> Einführung in das Programmieren mit R</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="In diesem Kapitel"><h2>In diesem Kapitel</h2>
@@ -274,8 +275,8 @@ y &amp;= 1 \cdot x_1 + 0.5 \cdot x_2 + 5\\
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/martinSter/aml-book/blob/main/01-basics.Rmd">Quellcode anschauen <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/martinSter/aml-book/edit/main/01-basics.Rmd">Diese Seite bearbeiten <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/martinSter/aml-book/blob/main/02-basics.Rmd">Quellcode anschauen <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/martinSter/aml-book/edit/main/02-basics.Rmd">Diese Seite bearbeiten <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -287,7 +288,7 @@ y &amp;= 1 \cdot x_1 + 0.5 \cdot x_2 + 5\\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Angewandtes Machine Learning</strong>" wurde durch Martin Sterchi geschrieben. Letztes Erstellungsdatum: 2023-10-03.</p>
+    <p>"<strong>Angewandtes Machine Learning</strong>" wurde durch Martin Sterchi geschrieben. Letztes Erstellungsdatum: 2023-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -120,7 +120,7 @@
 
 \title{Angewandtes Machine Learning}
 \author{Martin Sterchi}
-\date{2023-10-03}
+\date{2023-10-04}
 
 \begin{document}
 \maketitle
@@ -130,56 +130,42 @@
 \tableofcontents
 }
 \hypertarget{uxfcber-das-buch}{%
-\chapter{Über das Buch}\label{uxfcber-das-buch}}
+\chapter*{Über das Buch}\label{uxfcber-das-buch}}
+\addcontentsline{toc}{chapter}{Über das Buch}
+
+Die Motivation für dieses Buch kam aus der Erkenntnis, dass viele kleine und mittelgrosse Unternehmen in der Schweiz zwar über Unmengen an Daten verfügen, aber nicht das nötige Know-How haben, um die Daten zu analysieren und für die Optimierung von Entscheidungsprozessen zu nutzen. Mit diesem Buch möchte ich einen kleinen Beitrag leisten, den Know-How Transfer in die Unternehmen zu katalysieren. Das Buch versucht, sowohl die klassischen Machine Learning Methoden als auch neueste Entwicklungen im Deep Learning mit einem Fokus auf die Anwendung zu vermitteln. Obwohl das Buch einen anwendungsorientierten Ansatz verfolgt, soll die mathematisch-statistische Intuition hinter den beschriebenen Modellen und Methoden nicht zu kurz kommen. Diese Intuition ist aus Sicht des Autors zwingend, um sich kritisch mit den Resultaten eines Modells auseinander zu setzen und um schlussendlich beurteilen zu können, ob sich ein Modell für ein bestimmtes Problem eignet.
+
+\hypertarget{zielgruppe}{%
+\section*{Zielgruppe}\label{zielgruppe}}
+\addcontentsline{toc}{section}{Zielgruppe}
+
+Das Buch richtet sich insbesondere an Fachhochschulstudierende in der Schweiz mit einem Interesse an quantitativen Methoden und Machine Learning. Vorausgesetzt werden Mathematikkenntnisse auf Stufe Mittelschule (Berufs- oder gymnasiale Matur), d.h. Sie sollten vertraut sein mit den Grundlagen bezüglich mathematischer Funktionen, der Integral- und Differentialrechnung sowie den wichtigsten Resultaten aus der Algebra. Bevor Sie sich aber nun Sorgen machen: Kapitel \ref{basics} fasst die wichtigsten Mathematik- und Statistikgrundlagen zusammen, die nötig sind für das Verständnis von Machine Learning Modellen.
+
+Allgemeines zu ML
+
+Zielgruppe
+
+Leitidee
+Knowhow Transfer in CH Startups
+Anwendungs- und Praxis-Fokus
+Sorgfältiger Aufbau der Mathe und Statistik
+
+Beispiele in R
+
+Outline of the book
+
+Prerequisites
+
+Lizenz
+
+Quellen zu anderen Textbooks
+
+\hypertarget{intro}{%
+\chapter{Einführung}\label{intro}}
 
 Link zu Kaggle und UC Irvine
 
 ML Beispiele
-
-This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports; for example, a math equation \(a^2 + b^2 = c^2\).
-
-\hypertarget{usage}{%
-\section{Usage}\label{usage}}
-
-Each \textbf{bookdown} chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter \emph{must} start with a first-level heading: \texttt{\#\ A\ good\ chapter}, and can contain one (and only one) first-level heading.
-
-Use second-level and higher headings within chapters like: \texttt{\#\#\ A\ short\ section} or \texttt{\#\#\#\ An\ even\ shorter\ section}.
-
-The \texttt{index.Rmd} file is required, and is also your first book chapter. It will be the homepage when you render the book.
-
-\hypertarget{render-book}{%
-\section{Render book}\label{render-book}}
-
-You can render the HTML version of this example book without changing anything:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Find the \textbf{Build} pane in the RStudio IDE, and
-\item
-  Click on \textbf{Build Book}, then select your output format, or select ``All formats'' if you'd like to use multiple formats from the same book source files.
-\end{enumerate}
-
-Or build the book from the R console:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{render\_book}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-To render this example to PDF as a \texttt{bookdown::pdf\_book}, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
-
-\hypertarget{preview-book}{%
-\section{Preview book}\label{preview-book}}
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in ``Preview book'', or from the R console:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{serve\_book}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{basics}{%
 \chapter{Mathematik- und Statistik-Grundlagen}\label{basics}}
@@ -225,7 +211,7 @@ Am besten schauen wir uns ein paar konkrete Beispiele an (Abb. \ref{fig:lin-func
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{01-basics_files/figure-latex/lin-func-1} \includegraphics[width=0.5\linewidth]{01-basics_files/figure-latex/lin-func-2} 
+{\centering \includegraphics[width=0.5\linewidth]{02-basics_files/figure-latex/lin-func-1} \includegraphics[width=0.5\linewidth]{02-basics_files/figure-latex/lin-func-2} 
 
 }
 
@@ -261,7 +247,7 @@ Eine quadratische Funktion hat drei \textbf{Parameter}, nämlich \(a\), \(b\) un
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{01-basics_files/figure-latex/quad-func-1} 
+{\centering \includegraphics[width=0.8\linewidth]{02-basics_files/figure-latex/quad-func-1} 
 
 }
 
@@ -305,7 +291,7 @@ Die Visualisierung dieser Funktion ist in Abb. \ref{fig:poly-func} gegeben. Dies
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{01-basics_files/figure-latex/poly-func-1} 
+{\centering \includegraphics[width=0.8\linewidth]{02-basics_files/figure-latex/poly-func-1} 
 
 }
 
@@ -334,7 +320,7 @@ Der Einfachheit halber schauen wir uns hier nur mal eine \textbf{lineare} Funkti
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{01-basics_files/figure-latex/plane-1} 
+{\centering \includegraphics[width=0.8\linewidth]{02-basics_files/figure-latex/plane-1} 
 
 }
 
