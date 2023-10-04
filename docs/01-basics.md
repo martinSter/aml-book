@@ -8,9 +8,10 @@ Eine Funktion, die wir in der Mathematik typischerweise mit $f$ bezeichnen, ordn
 
 Wie eine Funktion grafisch aussieht, ist aus Panel (a) der Abbildung \@ref(fig:functions)) ersichtlich. Hier zeigen wir die Form einer Funktion in einem kartesischen Koordinatensystem. Die Funktionskurve weist jedem Wert $x$ auf der x-Achse genau einen Wert $y$ auf der y-Achse zu. Der wichtigste Teil der oben aufgeführten Definition ist der Teil "genau einen Wert", denn eine Funktion kann einem Element $x$ nicht zwei oder mehr Werte zuweisen, sondern nur genau einen. Genau aus diesem Grund handelt es sich bei Panel (b) in Abbildung \@ref(fig:functions) *nicht* um eine Funktion, da gewissen $x$-Werten mehrere Werte $y$ zugeordnet werden. *Wichtig*: das heisst aber nicht, dass zwei verschiedenen $x$-Werten, nennen wir sie $x'$ und $x''$, derselbe $y$-Wert zugeordnet werden kann (vgl. Panel (a)).
 
-```{r functions, echo = FALSE, fig.cap = '(a) Eine Funktion, die jedem x-Wert genau einen y-Wert zuweist. (b) Keine Funktion. ', out.width='80%', fig.align='center'}
-knitr::include_graphics("images/Functions.png")
-```
+<div class="figure" style="text-align: center">
+<img src="images/Functions.png" alt="(a) Eine Funktion, die jedem x-Wert genau einen y-Wert zuweist. (b) Keine Funktion. " width="80%" />
+<p class="caption">(\#fig:functions)(a) Eine Funktion, die jedem x-Wert genau einen y-Wert zuweist. (b) Keine Funktion. </p>
+</div>
 
 Mathematisch wird diese allgemeine Definition einer Funktion häufig wie folgt beschrieben:
 
@@ -32,82 +33,10 @@ Eine lineare Funktion hat auch eine geometrische Interpretation und zwar entspri
 
 Am besten schauen wir uns ein paar konkrete Beispiele an (Abb. \@ref(fig:lin-func)).
 
-```{r lin-func, echo=FALSE, fig.show = 'hold', fig.cap='Beispiele linearer Funktionen.', out.width='50%', fig.asp=1, fig.align='center', fig.alt='Beispiele linearer Funktionen.'}
-library(latex2exp)
-# Specify the outer margins (in margin lines)
-# - bottom, left, top, right
-par(oma = c(0.5, 0.5, 0.5, 0.5))
-# Inner margins
-par(mar = c(4, 4, 0.5, 0.5), pty = "s")
-# Scatterplot
-plot(1, 1,
-     axes = F, ylim = c(-6, 6), xlim = c(-6, 6),
-     xlab = "x", ylab = "y",
-     type = "n", xaxs = "i", yaxs = "i",
-     cex = 2, cex.lab = 2, cex.axis = 2)
-# Box
-box(lwd = 1)
-# Custom axes
-axis(side = 1, at = seq(-6, 6, 2), labels = seq(-6, 6, 2), cex.axis = 1.5)
-axis(side = 2, at = seq(-6, 6, 2), labels = seq(-6, 6, 2), cex.axis = 1.5)
-# Lines through origin
-abline(h = 0, lty = 1, lwd = 1, col = "grey"); abline(v = 0, lty = 1, lwd = 1, col = "grey")
-# Add vertical segments
-segments(2, -6, 2, 3, lwd = 1, lty = 2, col = "darkcyan")
-segments(4, -6, 4, 5, lwd = 1, lty = 2, col = "darkcyan")
-# Add horizontal segments
-segments(-6, 3, 2, 3, lwd = 1, lty = 2, col = "darkcyan")
-segments(-6, 5, 4, 5, lwd = 1, lty = 2, col = "darkcyan")
-segments(-6, 1, 0, 1, lwd = 1, lty = 2, col = "darkorange3")
-# Add small distances
-segments(2, 3, 4, 3, lwd = 3, lty = 1, col = "blue")
-segments(4, 3, 4, 5, lwd = 3, lty = 1, col = "deeppink")
-# Add line indicating intercept
-segments(0, 0, 0, 1, lwd = 3, lty = 1, col = "darkorange3")
-# Add line
-abline(a = 1, b = 1, lwd = 3, lty = 1, col = "darkcyan")
-# Add text elements
-text(x = 2, y = 2.2, labels = TeX(r'($\Delta x = 2$)'), pos = 4, col = "blue", cex = 1.8)
-text(x = 4, y = 4, labels = TeX(r'($\Delta y = 2$)'), pos = 4, col = "deeppink", cex = 1.8)
-text(x = 0, y = 0.5, labels = TeX(r'($\b = 1$)'), pos = 4, col = "darkorange3", cex = 1.8)
-# ----------------------------------------------------------------------------------------------
-# Specify the outer margins (in margin lines)
-# - bottom, left, top, right
-par(oma = c(0.5, 0.5, 0.5, 0.5))
-# Inner margins
-par(mar = c(4, 4, 0.5, 0.5), pty = "s")
-# Scatterplot
-plot(1, 1,
-     axes = F, ylim = c(-6, 6), xlim = c(-6, 6),
-     xlab = "x", ylab = "y",
-     type = "n", xaxs = "i", yaxs = "i",
-     cex = 2, cex.lab = 2)
-# Box
-box(lwd = 1)
-# Custom axes
-axis(side = 1, at = seq(-6, 6, 2), labels = seq(-6, 6, 2), cex.axis = 1.5)
-axis(side = 2, at = seq(-6, 6, 2), labels = seq(-6, 6, 2), cex.axis = 1.5)
-# Lines through origin
-abline(h = 0, lty = 1, lwd = 1, col = "grey"); abline(v = 0, lty = 1, lwd = 1, col = "grey")
-# Add vertical segments
-segments(2, -6, 2, -3, lwd = 1, lty = 2, col = "darkcyan")
-segments(4, -6, 4, -4, lwd = 1, lty = 2, col = "darkcyan")
-# Add horizontal segments
-segments(-6, -3, 2, -3, lwd = 1, lty = 2, col = "darkcyan")
-segments(-6, -4, 4, -4, lwd = 1, lty = 2, col = "darkcyan")
-segments(-6, -2, 0, -2, lwd = 1, lty = 2, col = "darkorange3")
-# Add small distances
-segments(2, -4, 4, -4, lwd = 3, lty = 1, col = "blue")
-segments(2, -4, 2, -3, lwd = 3, lty = 1, col = "deeppink")
-# Add line indicating intercept
-segments(0, 0, 0, -2, lwd = 3, lty = 1, col = "darkorange3")
-# Add line
-abline(a = -2, b = -0.5, lwd = 3, lty = 1, col = "darkcyan")
-# Add text elements
-text(x = 2, y = -4.5, labels = TeX(r'($\Delta x = 2$)'), pos = 4, col = "blue", cex = 1.8)
-text(x = -0.5, y = -3.5, labels = TeX(r'($\Delta y = -1$)'), pos = 4, col = "deeppink", cex = 1.8)
-text(x = 0, y = -1, labels = TeX(r'($\b = -2$)'), pos = 4, col = "darkorange3", cex = 1.8)
-```
+<div class="figure" style="text-align: center">
+<img src="01-basics_files/figure-epub3/lin-func-1.png" alt="Beispiele linearer Funktionen." width="50%" /><img src="01-basics_files/figure-epub3/lin-func-2.png" alt="Beispiele linearer Funktionen." width="50%" />
+<p class="caption">(\#fig:lin-func)Beispiele linearer Funktionen.</p>
+</div>
 
 Aus der linken Abbildung können wir ablesen, dass die Steigung dieser Geraden $\frac{\Delta y}{\Delta x}=\frac{2}{2}=1$ ist und dass die Gerade die y-Achse am Ort $1$ schneidet. Die entsprechende lineare Funktion kann dementsprechend als $y = x + 1$ geschrieben werden.^[Wir müssen hier die Steigung $1$ nicht explizit schreiben, aber selbstverständlich ist es nicht falsch die lineare Funktion als $y = 1\cdot x + 1$ zu schreiben.]
 
@@ -131,48 +60,18 @@ y = f(x) = a \cdot x^2 + b \cdot x + c
 $$
 Eine quadratische Funktion hat drei **Parameter**, nämlich $a$, $b$ und $c$. Grafisch entspricht die quadratische Funktion einer **Parabel** (vgl. Abb. \@ref(fig:quad-func)). Die Parameter sind hier nicht mehr so einfach grafisch zu interpretieren, aber die vier Beispiele in unten stehender Abbildung geben Anhaltspunkte, was passiert, wenn die Parameterwerte sich ändern.
 
-```{r quad-func, echo=FALSE, fig.cap='Beispiele quadratischer Funktionen.', out.width='80%', fig.asp=1, fig.align='center', fig.alt='Beispiele quadratischer Funktionen.'}
-library(latex2exp)
-# Quadratic function
-quad <- function(x, a, b, c) {a * x^2 + b * x + c}
-# x-values
-x <- seq(-6, 6, 0.01)
-# Specify the outer margins (in margin lines)
-# - bottom, left, top, right
-par(oma = c(0.5, 0.5, 0.5, 0.5))
-# Inner margins
-par(mar = c(4, 4, 0.5, 0.5), pty = "s")
-# Scatterplot
-plot(1, 1,
-     axes = F, ylim = c(-30, 30), xlim = c(-6, 6),
-     xlab = "x", ylab = "y",
-     type = "n", xaxs = "i", yaxs = "i",
-     cex = 2, cex.lab = 2)
-# Box
-box(lwd = 1)
-# Custom axes
-axis(side = 1, at = seq(-6, 6, 2), labels = seq(-6, 6, 2), cex.axis = 1.5)
-axis(side = 2, at = seq(-30, 30, 10), labels = seq(-30, 30, 10), cex.axis = 1.5)
-# Lines through origin
-abline(h = 0, lty = 1, lwd = 1, col = "grey"); abline(v = 0, lty = 1, lwd = 1, col = "grey")
-# Add parabolas
-lines(x, quad(x, 1, 0, 0), lwd = 3, lty = 1, col = "darkcyan")
-lines(x, quad(x, 3, 0, 5), lwd = 3, lty = 1, col = "blue")
-lines(x, quad(x, -1, 2, -3), lwd = 3, lty = 1, col = "darkorange3")
-lines(x, quad(x, -1, 0, -3), lwd = 3, lty = 1, col = "deeppink")
-# Add text elements
-text(x = 2, y = 2, labels = TeX(r'($\a = 1, b = 0, c = 0$)'), pos = 4, col = "darkcyan", cex = 1.5)
-text(x = -2.5, y = 25, labels = TeX(r'($\a = 3, b = 0, c = 5$)'), pos = 4, col = "blue", cex = 1.5)
-text(x = -3.5, y = -25, labels = TeX(r'($\a = -1, b = 2, c = -3$)'), pos = 4, col = "darkorange3", cex = 1.5)
-text(x = -6, y = -3, labels = TeX(r'($\a = -1, b = 0, c = -3$)'), pos = 4, col = "deeppink", cex = 1.5)
-```
+<div class="figure" style="text-align: center">
+<img src="01-basics_files/figure-epub3/quad-func-1.png" alt="Beispiele quadratischer Funktionen." width="80%" />
+<p class="caption">(\#fig:quad-func)Beispiele quadratischer Funktionen.</p>
+</div>
 
 ::: {.rmdtip}
 **Aufgaben**
 
 1. Sie haben folgende quadratische Gleichung: $y = 2 \cdot x^2 + x - 2$. Berechnen Sie mit der bekannten Lösungsformel $x_{1,2}=\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ die Orte auf der x-Achse, wo die Parabel die Achse schneidet (oder einfacher gesagt die Nullstellen).
 2. Verwenden Sie folgenden R-Code, um beliebige quadratische Funktionen grafisch darzustellen, indem Sie die Parameterwerte auf der ersten Code-Zeile verändern.
-```{r, eval=FALSE}
+
+```r
 # Parameter setzen
 a <- 2; b <- 0; c <- 1
 # Quadratische Funktion
@@ -195,32 +94,10 @@ y = f(x) = 1 \cdot x^4 - 2 \cdot x^3 - 5 \cdot x^2 + 8 \cdot x - 2
 $$
 Die Visualisierung dieser Funktion ist in Abb. \@ref(fig:poly-func) gegeben. Diese Funktion ist nun bereits enorm flexibel und kann je nach Parameterwerten ganz unterschiedliche Zusammenhänge abbilden.
 
-```{r poly-func, echo=FALSE, fig.cap='Beispiel einer polynomischen Funktion vierten Grades.', out.width='80%', fig.asp=1, fig.align='center', fig.alt='Beispiel einer polynomischen Funktion vierten Grades'}
-# Quadratic function
-poly <- function(x, a, b, c, d, e) {a * x^4 + b * x^3 + c * x^2 + d * x + e}
-# x-values
-x <- seq(-6, 6, 0.01)
-# Specify the outer margins (in margin lines)
-# - bottom, left, top, right
-par(oma = c(0.5, 0.5, 0.5, 0.5))
-# Inner margins
-par(mar = c(4, 4, 0.5, 0.5), pty = "s")
-# Scatterplot
-plot(1, 1,
-     axes = F, xlim = c(-6, 6), ylim = c(-40, 60),
-     xlab = "x", ylab = "y",
-     type = "n", xaxs = "i", yaxs = "i",
-     cex = 2, cex.lab = 2)
-# Box
-box(lwd = 1)
-# Custom axes
-axis(side = 1, at = seq(-6, 6, 2), labels = seq(-6, 6, 2), cex.axis = 1.5)
-axis(side = 2, at = seq(-40, 60, 20), labels = seq(-40, 60, 20), cex.axis = 1.5)
-# Lines through origin
-abline(h = 0, lty = 1, lwd = 1, col = "grey"); abline(v = 0, lty = 1, lwd = 1, col = "grey")
-# Add parabolas
-lines(x, poly(x, 1, -2, -5, 8, -2), lwd = 3, lty = 1, col = "darkcyan")
-```
+<div class="figure" style="text-align: center">
+<img src="01-basics_files/figure-epub3/poly-func-1.png" alt="Beispiel einer polynomischen Funktion vierten Grades" width="80%" />
+<p class="caption">(\#fig:poly-func)Beispiel einer polynomischen Funktion vierten Grades.</p>
+</div>
 
 ::: {.rmdtip}
 **Aufgaben**
@@ -236,23 +113,10 @@ Bisher haben wir nur Funktionen mit **einem Argument** $x$ angeschaut, doch die 
 
 Der Einfachheit halber schauen wir uns hier nur mal eine **lineare** Funktion zweier Argumente, nennen wir sie $x_1$ und $x_2$, an, denn diese können wir in 3D immer noch visualisieren. Wir betrachten folgende Funktion: $y = f(x_1,x_2) = 1 \cdot x_1 + 0.5 \cdot x_2 + 5$.
 
-```{r plane, echo=FALSE, fig.cap='Lineare Funktion zweier Argumente (Ebene).', out.width='80%', fig.asp=1, fig.align='center', fig.alt='Lineare Funktion zweier Argumente (Ebene).'}
-library(scatterplot3d)
-x1 <- seq(0, 10, 0.1)
-x2 <- seq(0, 10, 0.1)
-y <- 2 * x1 + 3 * x2 + 1
-# 3D Plot
-out <- scatterplot3d(x1, x2, y, type = "n", highlight.3d = TRUE,
-                     xlim = c(0, 10), ylim = c(0, 10), zlim = c(0, 20), cex.axis = 1.2, cex.lab = 1.5)
-# Add plane
-out$plane3d(5, 1, 0.5, draw_polygon = TRUE)
-# Add lines and point
-out$points3d(x = c(6, 6), y = c(0, 4), z = c(0, 0), type = "l", lty = 2, col = "blue", lwd = 2)
-out$points3d(x = c(6, 10), y = c(4, 4), z = c(0, 0), type = "l", lty = 2, col = "blue", lwd = 2)
-out$points3d(x = c(6, 6), y = c(4, 4), z = c(0, 13), type = "l", lty = 2, col = "blue", lwd = 2)
-# out$points3d(x = c(6, 0), y = c(4, 0), z = c(13, 13), type = "l", lty = 2, col = "blue", lwd = 2)
-out$points3d(x = 6, y = 4, z = 13, col = "blue", pch = 16)
-```
+<div class="figure" style="text-align: center">
+<img src="01-basics_files/figure-epub3/plane-1.png" alt="Lineare Funktion zweier Argumente (Ebene)." width="80%" />
+<p class="caption">(\#fig:plane)Lineare Funktion zweier Argumente (Ebene).</p>
+</div>
 
 Aha! Während eine lineare Funktion eines Arguments grafisch einer Gerade entspricht, sehen wir nun, dass eine lineare Funktion zweier Argumente nichts anderes als eine Ebene darstellt. Wir sehen, dass die Ebene die y-Achse am Punkt $5$ schneidet. Etwas schwieriger zu sehen ist die Steigung der Ebene in die Richtung der $x_1$-Achse und in die Richtung der $x_2$-Achse. Sie können aber vielleicht bereits erraten, dass die (partiellen) Steigungen $1$ und $0.5$ betragen.
 

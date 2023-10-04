@@ -1,0 +1,6 @@
+# Lineare Regression {#lin-reg}
+
+
+
+
+

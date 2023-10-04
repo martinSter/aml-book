@@ -1,0 +1,421 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Angewandtes Machine Learning},
+  pdfauthor={Martin Sterchi},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Angewandtes Machine Learning}
+\author{Martin Sterchi}
+\date{2023-10-03}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{uxfcber-das-buch}{%
+\chapter{Über das Buch}\label{uxfcber-das-buch}}
+
+Link zu Kaggle und UC Irvine
+
+ML Beispiele
+
+This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports; for example, a math equation \(a^2 + b^2 = c^2\).
+
+\hypertarget{usage}{%
+\section{Usage}\label{usage}}
+
+Each \textbf{bookdown} chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter \emph{must} start with a first-level heading: \texttt{\#\ A\ good\ chapter}, and can contain one (and only one) first-level heading.
+
+Use second-level and higher headings within chapters like: \texttt{\#\#\ A\ short\ section} or \texttt{\#\#\#\ An\ even\ shorter\ section}.
+
+The \texttt{index.Rmd} file is required, and is also your first book chapter. It will be the homepage when you render the book.
+
+\hypertarget{render-book}{%
+\section{Render book}\label{render-book}}
+
+You can render the HTML version of this example book without changing anything:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Find the \textbf{Build} pane in the RStudio IDE, and
+\item
+  Click on \textbf{Build Book}, then select your output format, or select ``All formats'' if you'd like to use multiple formats from the same book source files.
+\end{enumerate}
+
+Or build the book from the R console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{render\_book}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+To render this example to PDF as a \texttt{bookdown::pdf\_book}, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
+
+\hypertarget{preview-book}{%
+\section{Preview book}\label{preview-book}}
+
+As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in ``Preview book'', or from the R console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{serve\_book}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{basics}{%
+\chapter{Mathematik- und Statistik-Grundlagen}\label{basics}}
+
+In diesem Kapitel repetieren wir die wichtigsten Grundlagen aus der Mathematik und Statistik, die es braucht, um Machine Learning Modelle zu verstehen. Das Thema \emph{Lineare Algebra} wird für die meisten von Ihnen wahrscheinlich Neuland sein.
+
+\hypertarget{funktionen}{%
+\section{Funktionen}\label{funktionen}}
+
+Eine Funktion, die wir in der Mathematik typischerweise mit \(f\) bezeichnen, ordnet jedem \textbf{Argument} \(x\) aus dem Definitionsbereich \(D\) (engl. \emph{Domain}) \textbf{genau einen Wert \(y\)} aus dem Wertebereich \(W\) (engl. \emph{Codomain}) zu. Oft sind \(D\) und \(W\) die Menge der reellen Zahlen, also \(\mathbb{R}\). Die Menge der reellen Zahlen enthält alle möglichen Zahlen, die Sie sich vorstellen können.\footnote{Einzige Ausnahme sind die komplexen Zahlen.} Zum Beispiel die Zahlen \(3\), \(-4.247\), \(\sqrt{14}\), \(5/8\), etc.
+
+Wie eine Funktion grafisch aussieht, ist aus Panel (a) der Abbildung \ref{fig:functions}) ersichtlich. Hier zeigen wir die Form einer Funktion in einem kartesischen Koordinatensystem. Die Funktionskurve weist jedem Wert \(x\) auf der x-Achse genau einen Wert \(y\) auf der y-Achse zu. Der wichtigste Teil der oben aufgeführten Definition ist der Teil ``genau einen Wert'', denn eine Funktion kann einem Element \(x\) nicht zwei oder mehr Werte zuweisen, sondern nur genau einen. Genau aus diesem Grund handelt es sich bei Panel (b) in Abbildung \ref{fig:functions} \emph{nicht} um eine Funktion, da gewissen \(x\)-Werten mehrere Werte \(y\) zugeordnet werden. \emph{Wichtig}: das heisst aber nicht, dass zwei verschiedenen \(x\)-Werten, nennen wir sie \(x'\) und \(x''\), derselbe \(y\)-Wert zugeordnet werden kann (vgl. Panel (a)).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{images/Functions} 
+
+}
+
+\caption{(a) Eine Funktion, die jedem x-Wert genau einen y-Wert zuweist. (b) Keine Funktion. }\label{fig:functions}
+\end{figure}
+
+Mathematisch wird diese allgemeine Definition einer Funktion häufig wie folgt beschrieben:
+
+\[
+f : x \mapsto y
+\]
+Wir haben also eine Funktion \(f\), die jedem Element \(x\) genau einen Wert \(y\) zuweist. Der Pfeil in obiger mathematischer Schreibweise beschreibt genau dieses Mapping. Wie genau dieses Mapping einem Argument \(x\) den entsprechenden \(y\)-Wert zuordnet, wird durch die Funktion \(f(x)\) beschrieben. In den folgenden Abschnitten schauen wir uns typische Beispiele von Funktionen an, angefangen mit linearen Funktionen. Doch vorher wollen wir uns kurz überlegen, warum Funktionen für das Machine Learning überhaupt wichtig sind. Ein grosser Teil des Machine Learnings, der \textbf{Supervised Learning} genannt wird, befasst sich mit dem Problem, wie eine Zielvariable \(y\) mithilfe von einem oder mehreren Prädiktoren \(x\) vorhergesagt werden kann. Ein Machine Learning Modell ist darum nichts anderes als eine Funktion \(y=f(x)\), die basierend auf den Prädiktoren \(x\) die Zielvariable \(y\) möglichst gut beschreiben kann.\footnote{Zumindest aus einer nicht-probabilistischen Perspektive.}
+
+\hypertarget{lineare-funktionen}{%
+\subsection{Lineare Funktionen}\label{lineare-funktionen}}
+
+Nun schauen wir uns an, wie eine \textbf{lineare} Funktion aussieht. Eine lineare Funktion kann allgemein wie folgt geschrieben werden:
+
+\[
+y = f(x) = a \cdot x + b
+\]
+Obige Funktionsgleichung besagt, dass wir den entsprechenden \(y\)-Wert kriegen, indem wir den Wert des Arguments \(x\) mit \(a\) multiplizieren und danach eine Konstante \(b\) addieren. \(a\) und \(b\) sind die \textbf{Parameter} dieser Funktion. Die konkreten Zahlenwerte dieser beiden Parameter definieren, wie die Funktion am Schluss genau aussieht.
+
+Eine lineare Funktion hat auch eine geometrische Interpretation und zwar entspricht eine lineare Funktion einer Gerade. Das ist auch der Grund, warum wir diese Funktionen \textbf{linear} nennen, sie können graphisch durch eine ``Linie'' dargestellt werden. Der Parameter \(a\) ist die Steigung dieser Geraden und der Parameter \(b\) entspricht dem Ort, wo die Gerade die y-Achse schneidet (sogenannter y-Achsenabschnitt).
+
+Am besten schauen wir uns ein paar konkrete Beispiele an (Abb. \ref{fig:lin-func}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{01-basics_files/figure-latex/lin-func-1} \includegraphics[width=0.5\linewidth]{01-basics_files/figure-latex/lin-func-2} 
+
+}
+
+\caption{Beispiele linearer Funktionen.}\label{fig:lin-func}
+\end{figure}
+
+Aus der linken Abbildung können wir ablesen, dass die Steigung dieser Geraden \(\frac{\Delta y}{\Delta x}=\frac{2}{2}=1\) ist und dass die Gerade die y-Achse am Ort \(1\) schneidet. Die entsprechende lineare Funktion kann dementsprechend als \(y = x + 1\) geschrieben werden.\footnote{Wir müssen hier die Steigung \(1\) nicht explizit schreiben, aber selbstverständlich ist es nicht falsch die lineare Funktion als \(y = 1\cdot x + 1\) zu schreiben.}
+
+Aus der rechten Abbildung können wir ablesen, dass die Steigung \(\frac{\Delta y}{\Delta x}=\frac{-1}{2}=-0.5\) ist und dass die Gerade die y-Achse am Ort \(-2\) schneidet. Die entsprechende lineare Funktion kann dementsprechend als \(y = -0.5\cdot x -2\) geschrieben werden.
+
+Es ist wichtig zu sehen, dass der Effekt einer Veränderung von \(x\) (also \(\Delta x\)) auf \(y\) überall derselbe ist. Es spielt also keine Rolle, ob wir von \(x=-2\) zu \(x=-1\) gehen oder von \(x=100\) zu \(x=101\), die entsprechende Veränderung in \(y\) (also \(\Delta y\)) wird dieselbe sein. Das muss so sein, denn die Gerade steigt (oder sinkt) mit konstanter Steigung.
+
+\textbf{Aufgaben}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Zeichnen Sie die Funktion \(y = 2\cdot x\) in ein Koordinatensystem ein. Warum fehlt der Parameter \(b\)?
+\item
+  Zeichnen Sie die Funktion \(y=-3\) in ein Koordinatensystem ein. Ist das überhaupt eine Funktion nach obiger Definition?
+\end{enumerate}
+
+\hypertarget{quadratische-funktionen}{%
+\subsection{Quadratische Funktionen}\label{quadratische-funktionen}}
+
+Nun wollen wir uns eine etwas interessantere (und flexiblere) Familie von Funktionen anschauen, nämlich \textbf{quadratische} Funktionen. Auch hier wollen wir die Funktion erstmal allgemein aufschreiben:
+
+\[
+y = f(x) = a \cdot x^2 + b \cdot x + c
+\]
+Eine quadratische Funktion hat drei \textbf{Parameter}, nämlich \(a\), \(b\) und \(c\). Grafisch entspricht die quadratische Funktion einer \textbf{Parabel} (vgl. Abb. \ref{fig:quad-func}). Die Parameter sind hier nicht mehr so einfach grafisch zu interpretieren, aber die vier Beispiele in unten stehender Abbildung geben Anhaltspunkte, was passiert, wenn die Parameterwerte sich ändern.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{01-basics_files/figure-latex/quad-func-1} 
+
+}
+
+\caption{Beispiele quadratischer Funktionen.}\label{fig:quad-func}
+\end{figure}
+
+\textbf{Aufgaben}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Sie haben folgende quadratische Gleichung: \(y = 2 \cdot x^2 + x - 2\). Berechnen Sie mit der bekannten Lösungsformel \(x_{1,2}=\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\) die Orte auf der x-Achse, wo die Parabel die Achse schneidet (oder einfacher gesagt die Nullstellen).
+\item
+  Verwenden Sie folgenden R-Code, um beliebige quadratische Funktionen grafisch darzustellen, indem Sie die Parameterwerte auf der ersten Code-Zeile verändern.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Parameter setzen}
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{2}\NormalTok{; b }\OtherTok{\textless{}{-}} \DecValTok{0}\NormalTok{; c }\OtherTok{\textless{}{-}} \DecValTok{1}
+\CommentTok{\# Quadratische Funktion}
+\NormalTok{quad }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, a, b, c) \{a }\SpecialCharTok{*}\NormalTok{ x}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ b }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}\NormalTok{ c\}}
+\CommentTok{\# x{-}Werte}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{6}\NormalTok{, }\DecValTok{6}\NormalTok{, }\FloatTok{0.01}\NormalTok{)}
+\CommentTok{\# y{-}Werte}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{quad}\NormalTok{(x, a, b, c)}
+\CommentTok{\# Plot}
+\FunctionTok{plot}\NormalTok{(x, y, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{, }\AttributeTok{col =} \StringTok{"darkcyan"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Sie wundern sich nun vielleicht, könnte man nicht auch eine Funktion antreffen, in der \(x^3\), \(x^4\), etc. vorkommen? Das ist selbstverständlich möglich. In diesem Fall spricht man dann von einem sogenannten \textbf{Polynom}. Die höchste Potenz des Arguments \(x\) definiert den Grad des Polynoms.
+
+Schauen wir uns doch am besten gleich wieder ein Beispiel an:
+
+\[
+y = f(x) = 1 \cdot x^4 - 2 \cdot x^3 - 5 \cdot x^2 + 8 \cdot x - 2
+\]
+Die Visualisierung dieser Funktion ist in Abb. \ref{fig:poly-func} gegeben. Diese Funktion ist nun bereits enorm flexibel und kann je nach Parameterwerten ganz unterschiedliche Zusammenhänge abbilden.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{01-basics_files/figure-latex/poly-func-1} 
+
+}
+
+\caption{Beispiel einer polynomischen Funktion vierten Grades.}\label{fig:poly-func}
+\end{figure}
+
+\textbf{Aufgaben}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Eine quadratische Funktion ist ein Polynom welchen Grades?
+\item
+  Handelt es sich bei der Funktion \(y=2x^5 + x + 1\) immer noch um ein Polynom? Falls ja, ein Polynom welchen Grades?
+\item
+  Handelt es sich bei der Funktion \(y = x^{0.5} + 2\) um ein Polynom?
+\end{enumerate}
+
+\hypertarget{funktionen-mehrerer-argumente}{%
+\subsection{Funktionen mehrerer Argumente}\label{funktionen-mehrerer-argumente}}
+
+Bisher haben wir nur Funktionen mit \textbf{einem Argument} \(x\) angeschaut, doch die meisten für das Machine Learning interessanten Funktionen sind Funktionen \textbf{mehrerer Argumente}.
+
+Der Einfachheit halber schauen wir uns hier nur mal eine \textbf{lineare} Funktion zweier Argumente, nennen wir sie \(x_1\) und \(x_2\), an, denn diese können wir in 3D immer noch visualisieren. Wir betrachten folgende Funktion: \(y = f(x_1,x_2) = 1 \cdot x_1 + 0.5 \cdot x_2 + 5\).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{01-basics_files/figure-latex/plane-1} 
+
+}
+
+\caption{Lineare Funktion zweier Argumente (Ebene).}\label{fig:plane}
+\end{figure}
+
+Aha! Während eine lineare Funktion eines Arguments grafisch einer Gerade entspricht, sehen wir nun, dass eine lineare Funktion zweier Argumente nichts anderes als eine Ebene darstellt. Wir sehen, dass die Ebene die y-Achse am Punkt \(5\) schneidet. Etwas schwieriger zu sehen ist die Steigung der Ebene in die Richtung der \(x_1\)-Achse und in die Richtung der \(x_2\)-Achse. Sie können aber vielleicht bereits erraten, dass die (partiellen) Steigungen \(1\) und \(0.5\) betragen.
+
+Die Funktion ordnet jeden möglichen Punkt \((x_1,x_2)\) einem Punkt auf der Ebene zu. Wir können zum Beispiel für den in Abb. \ref{fig:plane} eingezeichneten Punkt \((6,4)\) den entsprechenden Punkt auf der Ebene ausrechnen:
+
+\[ \begin{split}
+y &= 1 \cdot x_1 + 0.5 \cdot x_2 + 5\\
+&= 1 \cdot 6 + 0.5 \cdot 4 + 5\\
+&= 13
+\end{split}\]
+
+Selbstverständlich könnten wir uns nun auch quadratische Funktionen oder Polynome mehrerer Argumente anschauen, aber darauf verzichten wir vorerst.
+
+\hypertarget{potenzen-und-logarithmen}{%
+\subsection{Potenzen und Logarithmen}\label{potenzen-und-logarithmen}}
+
+Blabla\ldots{}
+
+\hypertarget{integral--und-differentialrechnung}{%
+\section{Integral- und Differentialrechnung}\label{integral--und-differentialrechnung}}
+
+\hypertarget{lineare-algebra}{%
+\section{Lineare Algebra}\label{lineare-algebra}}
+
+\hypertarget{wahrscheinlichkeitsrechnung}{%
+\section{Wahrscheinlichkeitsrechnung}\label{wahrscheinlichkeitsrechnung}}
+
+\hypertarget{diskrete-zufallsvariablen}{%
+\subsection{Diskrete Zufallsvariablen}\label{diskrete-zufallsvariablen}}
+
+Wir werden später sehen, dass im Machine Learning oftmals Dinge als \textbf{Zufallsvariablen} modelliert werden. Eine Zufallsvariable \(X\) ist eine Variable, für die der konkrete Wert nicht von vornherein klar ist. Wir können mit \(X\) zum Beispiel das Resultat eines Münzwurfs modellieren. Die zwei möglichen Resultate sind Kopf und Zahl. Vor dem Münzwurf ist nicht klar, ob Kopf oder Zahl erscheinen wird. Genau darum modellieren wir das Resultat des Münzwurfs als Zufallsvariable.
+
+Es gibt in diesem einfachen Beispiel nur zwei mögliche Resultate (Kopf und Zahl), d.h. die Anzahl möglicher Resultate ist endlich (= nicht unendlich). Darum handelt es sich in diesem Fall um eine \textbf{diskrete} Zufallsvariable.
+
+\hypertarget{verteilungen}{%
+\section{Verteilungen}\label{verteilungen}}
+
+\hypertarget{intro-R}{%
+\chapter{Einführung in das Programmieren mit R}\label{intro-R}}
+
+leaRn Materialen
+
+tidymodels
+
+Referenzen auf andere Ressourcen (Hadley et al.)
+
+\hypertarget{lin-reg}{%
+\chapter{Lineare Regression}\label{lin-reg}}
+
+\hypertarget{lin-class}{%
+\chapter{Lineare Klassifikation}\label{lin-class}}
+
+\hypertarget{ml-pipeline}{%
+\chapter{Machine Learning Pipeline}\label{ml-pipeline}}
+
+\hypertarget{trees}{%
+\chapter{Decision Trees}\label{trees}}
+
+\hypertarget{ensembles}{%
+\chapter{Ensembles}\label{ensembles}}
+
+\hypertarget{svm}{%
+\chapter{Support Vector Machines}\label{svm}}
+
+\hypertarget{ann}{%
+\chapter{Artificial Neural Networks}\label{ann}}
+
+\hypertarget{cnn}{%
+\chapter{Convolutional Neural Networks}\label{cnn}}
+
+\hypertarget{rnn}{%
+\chapter{Recurrent Neural Networks}\label{rnn}}
+
+\hypertarget{gen-AI}{%
+\chapter{Generative AI}\label{gen-AI}}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
