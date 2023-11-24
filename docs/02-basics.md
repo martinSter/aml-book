@@ -6,7 +6,7 @@ In diesem Kapitel repetieren wir die wichtigsten Grundlagen aus der Mathematik u
 
 Eine Funktion, die wir in der Mathematik typischerweise mit $f$ bezeichnen, ordnet jedem **Argument** $x$ aus dem Definitionsbereich $D$ (engl. *Domain*) **genau einen Wert $y$** aus dem Wertebereich $W$ (engl. *Codomain*) zu. Oft sind $D$ und $W$ die Menge der reellen Zahlen, also $\mathbb{R}$. Die Menge der reellen Zahlen enthält alle möglichen Zahlen, die Sie sich vorstellen können.^[Einzige Ausnahme sind die komplexen Zahlen.] Zum Beispiel die Zahlen $3$, $-4.247$, $\sqrt{14}$, $5/8$, etc.
 
-Wie eine Funktion grafisch aussieht, ist aus Panel (a) der Abbildung \@ref(fig:functions)) ersichtlich. Hier zeigen wir die Form einer Funktion in einem kartesischen Koordinatensystem. Die Funktionskurve weist jedem Wert $x$ auf der x-Achse genau einen Wert $y$ auf der y-Achse zu. Der wichtigste Teil der oben aufgeführten Definition ist der Teil "genau einen Wert", denn eine Funktion kann einem Element $x$ nicht zwei oder mehr Werte zuweisen, sondern nur genau einen. Genau aus diesem Grund handelt es sich bei Panel (b) in Abbildung \@ref(fig:functions) *nicht* um eine Funktion, da gewissen $x$-Werten mehrere Werte $y$ zugeordnet werden. *Wichtig*: das heisst aber nicht, dass zwei verschiedenen $x$-Werten, nennen wir sie $x'$ und $x''$, derselbe $y$-Wert zugeordnet werden kann (vgl. Panel (a)).
+Wie eine Funktion grafisch aussieht, ist aus Panel (a) der Abbildung \@ref(fig:functions) ersichtlich. Hier zeigen wir die Form einer Funktion in einem kartesischen Koordinatensystem. Die Funktionskurve weist jedem Wert $x$ auf der x-Achse genau einen Wert $y$ auf der y-Achse zu. Der wichtigste Teil der oben aufgeführten Definition ist der Teil "genau einen Wert", denn eine Funktion kann einem Element $x$ nicht zwei oder mehr Werte zuweisen, sondern nur genau einen. Genau aus diesem Grund handelt es sich bei Panel (b) in Abbildung \@ref(fig:functions) *nicht* um eine Funktion, da gewissen $x$-Werten mehrere Werte $y$ zugeordnet werden. *Wichtig*: das heisst aber nicht, dass zwei verschiedenen $x$-Werten, nennen wir sie $x'$ und $x''$, derselbe $y$-Wert zugeordnet werden kann (vgl. Panel (a)).
 
 <div class="figure" style="text-align: center">
 <img src="images/Functions.png" alt="(a) Eine Funktion, die jedem x-Wert genau einen y-Wert zuweist. (b) Keine Funktion. " width="80%" />
@@ -34,7 +34,7 @@ Eine lineare Funktion hat auch eine geometrische Interpretation und zwar entspri
 Am besten schauen wir uns ein paar konkrete Beispiele an (Abb. \@ref(fig:lin-func)).
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-epub3/lin-func-1.png" alt="Beispiele linearer Funktionen." width="50%" /><img src="02-basics_files/figure-epub3/lin-func-2.png" alt="Beispiele linearer Funktionen." width="50%" />
+<img src="02-basics_files/figure-html/lin-func-1.png" alt="Beispiele linearer Funktionen." width="50%" /><img src="02-basics_files/figure-html/lin-func-2.png" alt="Beispiele linearer Funktionen." width="50%" />
 <p class="caption">(\#fig:lin-func)Beispiele linearer Funktionen.</p>
 </div>
 
@@ -61,7 +61,7 @@ $$
 Eine quadratische Funktion hat drei **Parameter**, nämlich $a$, $b$ und $c$. Grafisch entspricht die quadratische Funktion einer **Parabel** (vgl. Abb. \@ref(fig:quad-func)). Die Parameter sind hier nicht mehr so einfach grafisch zu interpretieren, aber die vier Beispiele in unten stehender Abbildung geben Anhaltspunkte, was passiert, wenn die Parameterwerte sich ändern.
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-epub3/quad-func-1.png" alt="Beispiele quadratischer Funktionen." width="80%" />
+<img src="02-basics_files/figure-html/quad-func-1.png" alt="Beispiele quadratischer Funktionen." width="80%" />
 <p class="caption">(\#fig:quad-func)Beispiele quadratischer Funktionen.</p>
 </div>
 
@@ -95,7 +95,7 @@ $$
 Die Visualisierung dieser Funktion ist in Abb. \@ref(fig:poly-func) gegeben. Diese Funktion ist nun bereits enorm flexibel und kann je nach Parameterwerten ganz unterschiedliche Zusammenhänge abbilden.
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-epub3/poly-func-1.png" alt="Beispiel einer polynomischen Funktion vierten Grades" width="80%" />
+<img src="02-basics_files/figure-html/poly-func-1.png" alt="Beispiel einer polynomischen Funktion vierten Grades" width="80%" />
 <p class="caption">(\#fig:poly-func)Beispiel einer polynomischen Funktion vierten Grades.</p>
 </div>
 
@@ -114,7 +114,7 @@ Bisher haben wir nur Funktionen mit **einem Argument** $x$ angeschaut, doch die 
 Der Einfachheit halber schauen wir uns hier nur mal eine **lineare** Funktion zweier Argumente, nennen wir sie $x_1$ und $x_2$, an, denn diese können wir in 3D immer noch visualisieren. Wir betrachten folgende Funktion: $y = f(x_1,x_2) = 1 \cdot x_1 + 0.5 \cdot x_2 + 5$.
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-epub3/plane-1.png" alt="Lineare Funktion zweier Argumente (Ebene)." width="80%" />
+<img src="02-basics_files/figure-html/plane-1.png" alt="Lineare Funktion zweier Argumente (Ebene)." width="80%" />
 <p class="caption">(\#fig:plane)Lineare Funktion zweier Argumente (Ebene).</p>
 </div>
 
@@ -136,6 +136,18 @@ Blabla...
 
 
 ## Integral- und Differentialrechnung
+
+Olteanu materials:
+Local vs. global minima
+From a maximization to a minimization problem
+Basic definition of derivative
+Differentiation rules
+local min., max. and saddle point
+Second derivative test
+Partial derivatives
+What is a gradient? What is Hessian? What is Jacobian?
+Chain rules
+Lagrange optimization
 
 
 ## Lineare Algebra
@@ -175,7 +187,29 @@ Blabla...
 
 <!-- The problem of determining whether a square matrix has maximal rank is a cetral on in lin. alg. One can use the determinant of the matrix to find out. -->
 
+Olteanu materials:
+What is a scalar? What is a vector? What is a matrix?
+Vector norms
+Inner products
+Symmetric, diagonal, square and identity matrix
+Associative, commutative laws for matrices
+Matrix addition and multiplication
+Matrix inversion
+Eigenvectors and eigenvalues
+Quadratic form and positive (semi-) definiteness
+Differentiation rules for matrices
+
+
+
 ## Wahrscheinlichkeitsrechnung
+
+Olteanu materials:
+Sample space and axioms of probability
+Conditional probability definition
+Discrete vs. continuous random variables
+Joint probability distributions
+Expectation and variance, covariance (always for discrete and continuous)
+Bernoulli, Binomial, Normal, Multivariate Normal, Laplace
 
 
 

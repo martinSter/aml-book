@@ -1,7 +1,7 @@
 bookdown::bs4_book:
   css: style.css
   theme:
-    primary: "#0028a5"
+    primary: "#065535"
   repo:
     base: https://github.com/martinSter/aml-book
     branch: main

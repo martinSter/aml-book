@@ -6,7 +6,7 @@ In diesem Kapitel repetieren wir die wichtigsten Grundlagen aus der Mathematik u
 
 Eine Funktion, die wir in der Mathematik typischerweise mit $f$ bezeichnen, ordnet jedem **Argument** $x$ aus dem Definitionsbereich $D$ (engl. *Domain*) **genau einen Wert $y$** aus dem Wertebereich $W$ (engl. *Codomain*) zu. Oft sind $D$ und $W$ die Menge der reellen Zahlen, also $\mathbb{R}$. Die Menge der reellen Zahlen enthält alle möglichen Zahlen, die Sie sich vorstellen können.^[Einzige Ausnahme sind die komplexen Zahlen.] Zum Beispiel die Zahlen $3$, $-4.247$, $\sqrt{14}$, $5/8$, etc.
 
-Wie eine Funktion grafisch aussieht, ist aus Panel (a) der Abbildung \@ref(fig:functions)) ersichtlich. Hier zeigen wir die Form einer Funktion in einem kartesischen Koordinatensystem. Die Funktionskurve weist jedem Wert $x$ auf der x-Achse genau einen Wert $y$ auf der y-Achse zu. Der wichtigste Teil der oben aufgeführten Definition ist der Teil "genau einen Wert", denn eine Funktion kann einem Element $x$ nicht zwei oder mehr Werte zuweisen, sondern nur genau einen. Genau aus diesem Grund handelt es sich bei Panel (b) in Abbildung \@ref(fig:functions) *nicht* um eine Funktion, da gewissen $x$-Werten mehrere Werte $y$ zugeordnet werden. *Wichtig*: das heisst aber nicht, dass zwei verschiedenen $x$-Werten, nennen wir sie $x'$ und $x''$, derselbe $y$-Wert zugeordnet werden kann (vgl. Panel (a)).
+Wie eine Funktion grafisch aussieht, ist aus Panel (a) der Abbildung \@ref(fig:functions) ersichtlich. Hier zeigen wir die Form einer Funktion in einem kartesischen Koordinatensystem. Die Funktionskurve weist jedem Wert $x$ auf der x-Achse genau einen Wert $y$ auf der y-Achse zu. Der wichtigste Teil der oben aufgeführten Definition ist der Teil "genau einen Wert", denn eine Funktion kann einem Element $x$ nicht zwei oder mehr Werte zuweisen, sondern nur genau einen. Genau aus diesem Grund handelt es sich bei Panel (b) in Abbildung \@ref(fig:functions) *nicht* um eine Funktion, da gewissen $x$-Werten mehrere Werte $y$ zugeordnet werden. *Wichtig*: das heisst aber nicht, dass zwei verschiedenen $x$-Werten, nennen wir sie $x'$ und $x''$, derselbe $y$-Wert zugeordnet werden kann (vgl. Panel (a)).
 
 ```{r functions, echo = FALSE, fig.cap = '(a) Eine Funktion, die jedem x-Wert genau einen y-Wert zuweist. (b) Keine Funktion. ', out.width='80%', fig.align='center'}
 knitr::include_graphics("images/Functions.png")
@@ -273,6 +273,18 @@ Blabla...
 
 ## Integral- und Differentialrechnung
 
+Olteanu materials:
+Local vs. global minima
+From a maximization to a minimization problem
+Basic definition of derivative
+Differentiation rules
+local min., max. and saddle point
+Second derivative test
+Partial derivatives
+What is a gradient? What is Hessian? What is Jacobian?
+Chain rules
+Lagrange optimization
+
 
 ## Lineare Algebra
 
@@ -311,7 +323,29 @@ Blabla...
 
 <!-- The problem of determining whether a square matrix has maximal rank is a cetral on in lin. alg. One can use the determinant of the matrix to find out. -->
 
+Olteanu materials:
+What is a scalar? What is a vector? What is a matrix?
+Vector norms
+Inner products
+Symmetric, diagonal, square and identity matrix
+Associative, commutative laws for matrices
+Matrix addition and multiplication
+Matrix inversion
+Eigenvectors and eigenvalues
+Quadratic form and positive (semi-) definiteness
+Differentiation rules for matrices
+
+
+
 ## Wahrscheinlichkeitsrechnung
+
+Olteanu materials:
+Sample space and axioms of probability
+Conditional probability definition
+Discrete vs. continuous random variables
+Joint probability distributions
+Expectation and variance, covariance (always for discrete and continuous)
+Bernoulli, Binomial, Normal, Multivariate Normal, Laplace
 
 
 
