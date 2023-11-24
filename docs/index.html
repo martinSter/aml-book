@@ -48,7 +48,23 @@ set in the _output.yml file.&lt;/p&gt;">
 </form>
 
       <nav aria-label="Table of contents"><h2>Inhaltsverzeichnis</h2>
-        <ul class="book-toc list-unstyled"><li><a class="active" href="index.html">Über das Buch</a></li></ul>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html">Über das Buch</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Einführung</a></li>
+<li><a class="" href="basics.html"><span class="header-section-number">2</span> Mathematik- und Statistik-Grundlagen</a></li>
+<li><a class="" href="intro-R.html"><span class="header-section-number">3</span> Einführung in das Programmieren mit R</a></li>
+<li><a class="" href="lin-reg.html"><span class="header-section-number">4</span> Lineare Regression</a></li>
+<li><a class="" href="lin-class.html"><span class="header-section-number">5</span> Lineare Klassifikation</a></li>
+<li><a class="" href="ml-pipeline.html"><span class="header-section-number">6</span> Machine Learning Pipeline</a></li>
+<li><a class="" href="trees.html"><span class="header-section-number">7</span> Decision Trees</a></li>
+<li><a class="" href="ensembles.html"><span class="header-section-number">8</span> Ensembles</a></li>
+<li><a class="" href="svm.html"><span class="header-section-number">9</span> Support Vector Machines</a></li>
+<li><a class="" href="ann.html"><span class="header-section-number">10</span> Artificial Neural Networks</a></li>
+<li><a class="" href="cnn.html"><span class="header-section-number">11</span> Convolutional Neural Networks</a></li>
+<li><a class="" href="rnn.html"><span class="header-section-number">12</span> Recurrent Neural Networks</a></li>
+<li><a class="" href="gen-AI.html"><span class="header-section-number">13</span> Generative AI</a></li>
+<li><a class="" href="bibliographie.html">Bibliographie</a></li>
+</ul>
 
         <div class="book-extra">
           <p><a id="book-repo" href="https://github.com/martinSter/aml-book">Zum Quellcode des Buchs <i class="fab fa-github"></i></a></p>
@@ -80,8 +96,8 @@ Abbildung 0.1: Unterscheidung zwischen KI, ML und DL.
 <p>Bevor Sie sich aber nun Sorgen machen: Kapitel <a href="basics.html#basics">2</a> enthält eine Einführung in die wichtigsten Mathematik- und Statistikgrundlagen, die nötig sind für das Verständnis von Machine Learning Modellen.</p>
 <p>Da ich mit diesem Buch einen anwendungsorientierten Ansatz verfolge, werden wir auch in das Programmieren einsteigen. Dazu verwenden wir in diesem Buch die Programmiersprache <code>R</code>. Es werden keine Vorkenntnisse vorausgesetzt. Kapitel <a href="intro-R.html#intro-R">3</a> enthält eine kurze Einführung in die Programmiersprache <code>R</code> und verweist Sie auf weiterführende Ressourcen zum Thema Programmieren. Jedes Modell, das wir uns anschauen werden, ist mit R-Code dokumentiert, so dass Sie lernen, wie die Modelle in der Praxis angewendet werden können.</p>
 </div>
-<div id="struktur-des-buchs" class="section level2 unnumbered">
-<h2>Struktur des Buchs<a class="anchor" aria-label="anchor" href="#struktur-des-buchs"><i class="fas fa-link"></i></a>
+<div id="aufbau-des-buchs" class="section level2 unnumbered">
+<h2>Aufbau des Buchs<a class="anchor" aria-label="anchor" href="#aufbau-des-buchs"><i class="fas fa-link"></i></a>
 </h2>
 <p>Das Buch enthält folgende Kapitel:</p>
 <ul>
@@ -90,7 +106,7 @@ Abbildung 0.1: Unterscheidung zwischen KI, ML und DL.
 <li>Kapitel <a href="intro-R.html#intro-R">3</a>: Einführung in das <strong>Programmieren</strong> mit <code>R</code> sowie Überblick über die wichtigsten <code>R</code>-Packages, die wir verwenden werden.</li>
 <li>Kapitel <a href="lin-reg.html#lin-reg">4</a>: Hier erlernen wir die Grundmodelle, um <strong>Regressionsprobleme</strong> zu lösen. Es sind lineare Modelle, was bedeutet, dass die funktionale Form der Modelle linear von den Parametern des Modells abhängen. Grafisch bedeutet dies, dass ein solches Modell im einfachsten Fall durch eine Gerade beschrieben werden kann.</li>
 <li>Kapitel <a href="lin-class.html#lin-class">5</a>: In diesem Kapitel lernen wir die Grundmodelle für das <strong>Klassifikationsproblem</strong> kennen. Diese Modelle führen typischerweise zu einer linearen Entscheidungsgrenze (engl. <em>Decision Boundary</em>) zwischen den verschiedenen Klassen, die wir unterscheiden oder klassifizieren wollen.</li>
-<li>Kapitel <a href="ml-pipeline.html#ml-pipeline">6</a>: Damit wir ML in der Praxis anwenden können, lernen wir hier die typische <strong>ML-Pipeline</strong> kennen. Sie werden die Techniken und Methoden kennen lernen, die es braucht, um überhaupt erst an den Punkt zu kommen, um ein ML-Modell rechnen zu können. Oft werden diese Techniken und Methoden unter dem Begriff Preprocessing der Daten zusammengefasst. Doch die Pipeline endet nicht mit dem Rechnen eines ML-Modells. Danach muss ein Modell evaluiert werden und wenn Sie als Analyst*in zufrieden sind, müssen Sie sich Gedanken machen, wie das Deployment des Modells aussehen soll. Das heisst, wie kann Ihr Modell Dritten zur Verfügung gestellt werden?</li>
+<li>Kapitel <a href="ml-pipeline.html#ml-pipeline">6</a>: Damit wir ML in der Praxis anwenden können, lernen wir hier die typische <strong>ML-Pipeline</strong> kennen. Sie werden die Techniken und Methoden kennen lernen, die es braucht, um überhaupt erst an den Punkt zu kommen, um ein ML-Modell rechnen zu können. Oft werden diese Techniken und Methoden unter dem Begriff Preprocessing der Daten zusammengefasst. Doch die Pipeline endet nicht mit dem Rechnen eines ML-Modells. Danach muss ein Modell evaluiert werden und wenn Sie als Analyst*in zufrieden sind, müssen Sie sich Gedanken machen, wie das Deployment des Modells aussehen soll. Das heisst, wie kann Ihr Modell Dritten zur Verfügung gestellt werden? Wir werden uns hier auch kurz mit den wichtigsten Techniken aus dem Unsupervised Learning befassen.</li>
 <li>Kapitel <a href="trees.html#trees">7</a>: Nach den ersten linearen Modellen für das Regressions- und Klassifikationsproblem lernen wir hier ein flexibleres Modell kennen, nämlich den <strong>Entscheidungsbaum</strong> (engl. <em>Decision Tree</em>). Entscheidungsbäume eignen sich sowohl für das Regressions- als auch für das Klassifikationsproblem. Obwohl sie in realen Projekten typischerweise anderen Modellen unterlegen sind, wenn es um die Vorhersagequalität geht, sind sie trotzdem attraktive Modelle, da sie gut visualisierbar sind.</li>
 <li>Kapitel <a href="ensembles.html#ensembles">8</a>: Aufbauend auf den Entscheidungsbäumen aus dem vorherigen Kapitel können sehr mächtige Modelle erstellt werden, die in der Praxis oft die besten Vorhersagen liefern. Weil es sich dabei üblicherweise um eine clevere Aggregierung der Resultate einer grossen Anzahl individueller Entscheidungsbäume handelt, werden diese Modelle <strong>Ensembles</strong> genannt. Wie die individuellen Entscheidungsbäume eignen sich Ensembles sowohl für das Regressions- als auch für das Klassifikationsproblem.</li>
 <li>Kapitel <a href="svm.html#svm">9</a>: Ein weiteres mächtiges Modell, das sich sowohl für das Regressions- als auch für das Klassifikationsproblem eignet, sind die <strong>Support Vector Machines</strong>. Ihre Popularität ist mit dem Aufstieg von Deep Learning etwas verblasst. Es lohnt sich aber immer noch allemal, diese Familie von Modellen kennen zu lernen, insbesondere auch weil sie nicht als Blackbox-Modelle gelten und theoretisch gut fundiert sind.</li>
@@ -99,11 +115,6 @@ Abbildung 0.1: Unterscheidung zwischen KI, ML und DL.
 <li>Kapitel <a href="rnn.html#rnn">12</a>: Nach ANNs und CNNs lernen wir hier <strong>Recurrent Neural Networks</strong> (RNNs) kennen. Diese Modelle bilden die Basis für Probleme, in denen die Daten als Sequenzen vorliegen. Das können einache Zeitreihen (z.B. Börsenkurse) sein, aber auch komplexere Sequenzdaten wie beispielsweise geschriebene oder gesprochene Sprache oder Tonaufnahmen.</li>
 <li>Kapitel <a href="gen-AI.html#gen-AI">13</a>: In diesem letzten Kapitel geht es schliesslich um <strong>Generative KI</strong>. Wir beschäftigen uns hier also mit Modellen, die nicht nur einfach ein Vorhersageprobleme lösen können, sondern auch neue Inhalte (z.B. Texte, Musik, Bilder) generieren können. Nach dem Lesen dieses Kapitels sollten Sie ein grundlegendes Verständnis für die Funktionsweise von Modellen wie Chat-GPT haben.</li>
 </ul>
-</div>
-<div id="lizenz" class="section level2 unnumbered">
-<h2>Lizenz<a class="anchor" aria-label="anchor" href="#lizenz"><i class="fas fa-link"></i></a>
-</h2>
-<p>Das vorliegende Buch ist unter Lizenz <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">CC BY-NC-SA 4.0 DEED</a> (Namensnennung, nicht-kommerziell, Weitergabe unter gleichen Bedingungen 4.0 International) lizenziert. Bitte halten Sie sich an die Lizenzbedingungen.</p>
 </div>
 <div id="weiterführende-literatur" class="section level2 unnumbered">
 <h2>Weiterführende Literatur<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur"><i class="fas fa-link"></i></a>
@@ -117,6 +128,11 @@ Abbildung 0.1: Unterscheidung zwischen KI, ML und DL.
 </ul>
 <p>Die ersten beiden Referenzen sind einführende Texte und können parallel zum vorliegenden Buch gelesen werden. Die letzten zwei Referenzen sind fortgeschrittene Texte und ich empfehle, sie erst nach dem vollständigen Verständnis des vorliegenden Buchs oder der ersten beiden Referenzen zu lesen.</p>
 </div>
+<div id="lizenz" class="section level2 unnumbered">
+<h2>Lizenz<a class="anchor" aria-label="anchor" href="#lizenz"><i class="fas fa-link"></i></a>
+</h2>
+<p>Das vorliegende Buch ist unter Lizenz <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">CC BY-NC-SA 4.0 DEED</a> (Namensnennung, nicht-kommerziell, Weitergabe unter gleichen Bedingungen 4.0 International) lizenziert. Bitte halten Sie sich an die Lizenzbedingungen.</p>
+</div>
 <div id="kontakt" class="section level2 unnumbered">
 <h2>Kontakt<a class="anchor" aria-label="anchor" href="#kontakt"><i class="fas fa-link"></i></a>
 </h2>
@@ -129,21 +145,22 @@ Riggenbachstrasse 16<br>
 </div>
   <div class="chapter-nav">
 <div class="empty"></div>
-<div class="empty"></div>
+<div class="next"><a href="intro.html"><span class="header-section-number">1</span> Einführung</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <img src="images/fhnw_10mm.jpg" alt="FHNW Logo" style="height: auto; width: 100%; object-fit: contain; Padding: 10px;"><nav id="toc" data-toggle="toc" aria-label="In diesem Kapitel"><h2>In diesem Kapitel</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#%C3%BCber-das-buch">Über das Buch</a></li>
 <li><a class="nav-link" href="#zielgruppe">Zielgruppe</a></li>
-<li><a class="nav-link" href="#struktur-des-buchs">Struktur des Buchs</a></li>
-<li><a class="nav-link" href="#lizenz">Lizenz</a></li>
+<li><a class="nav-link" href="#aufbau-des-buchs">Aufbau des Buchs</a></li>
 <li><a class="nav-link" href="#weiterf%C3%BChrende-literatur">Weiterführende Literatur</a></li>
+<li><a class="nav-link" href="#lizenz">Lizenz</a></li>
 <li><a class="nav-link" href="#kontakt">Kontakt</a></li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          
+<li><a id="book-source" href="https://github.com/martinSter/aml-book/blob/main/index.Rmd">Quellcode anschauen <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/martinSter/aml-book/edit/main/index.Rmd">Diese Seite bearbeiten <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -163,6 +180,34 @@ Riggenbachstrasse 16<br>
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

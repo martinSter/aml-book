@@ -66,7 +66,7 @@ Im Klassifikationsproblem ist der Output bzw. die Zielvariable eine kategorische
 K-Nearest Neighbor als erstes (nicht-parametrisches) Beispiel
 Hier erste kleine App
 
-<iframe src="https://martin-sterchi.shinyapps.io/appKNN/?showcase=0" width="672" height="600px" data-external="1"></iframe>
+<iframe src="https://martin-sterchi.shinyapps.io/appKNN/?showcase=0" width="100%" height="600px" data-external="1"></iframe>
 
 
 ## Machine Learning Pipeline

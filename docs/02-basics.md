@@ -34,7 +34,7 @@ Eine lineare Funktion hat auch eine geometrische Interpretation und zwar entspri
 Am besten schauen wir uns ein paar konkrete Beispiele an (Abb. \@ref(fig:lin-func)).
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-html/lin-func-1.png" alt="Beispiele linearer Funktionen." width="50%" /><img src="02-basics_files/figure-html/lin-func-2.png" alt="Beispiele linearer Funktionen." width="50%" />
+<img src="02-basics_files/figure-epub3/lin-func-1.png" alt="Beispiele linearer Funktionen." width="50%" /><img src="02-basics_files/figure-epub3/lin-func-2.png" alt="Beispiele linearer Funktionen." width="50%" />
 <p class="caption">(\#fig:lin-func)Beispiele linearer Funktionen.</p>
 </div>
 
@@ -61,7 +61,7 @@ $$
 Eine quadratische Funktion hat drei **Parameter**, nämlich $a$, $b$ und $c$. Grafisch entspricht die quadratische Funktion einer **Parabel** (vgl. Abb. \@ref(fig:quad-func)). Die Parameter sind hier nicht mehr so einfach grafisch zu interpretieren, aber die vier Beispiele in unten stehender Abbildung geben Anhaltspunkte, was passiert, wenn die Parameterwerte sich ändern.
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-html/quad-func-1.png" alt="Beispiele quadratischer Funktionen." width="80%" />
+<img src="02-basics_files/figure-epub3/quad-func-1.png" alt="Beispiele quadratischer Funktionen." width="80%" />
 <p class="caption">(\#fig:quad-func)Beispiele quadratischer Funktionen.</p>
 </div>
 
@@ -95,7 +95,7 @@ $$
 Die Visualisierung dieser Funktion ist in Abb. \@ref(fig:poly-func) gegeben. Diese Funktion ist nun bereits enorm flexibel und kann je nach Parameterwerten ganz unterschiedliche Zusammenhänge abbilden.
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-html/poly-func-1.png" alt="Beispiel einer polynomischen Funktion vierten Grades" width="80%" />
+<img src="02-basics_files/figure-epub3/poly-func-1.png" alt="Beispiel einer polynomischen Funktion vierten Grades" width="80%" />
 <p class="caption">(\#fig:poly-func)Beispiel einer polynomischen Funktion vierten Grades.</p>
 </div>
 
@@ -114,7 +114,7 @@ Bisher haben wir nur Funktionen mit **einem Argument** $x$ angeschaut, doch die 
 Der Einfachheit halber schauen wir uns hier nur mal eine **lineare** Funktion zweier Argumente, nennen wir sie $x_1$ und $x_2$, an, denn diese können wir in 3D immer noch visualisieren. Wir betrachten folgende Funktion: $y = f(x_1,x_2) = 1 \cdot x_1 + 0.5 \cdot x_2 + 5$.
 
 <div class="figure" style="text-align: center">
-<img src="02-basics_files/figure-html/plane-1.png" alt="Lineare Funktion zweier Argumente (Ebene)." width="80%" />
+<img src="02-basics_files/figure-epub3/plane-1.png" alt="Lineare Funktion zweier Argumente (Ebene)." width="80%" />
 <p class="caption">(\#fig:plane)Lineare Funktion zweier Argumente (Ebene).</p>
 </div>
 
