@@ -120,7 +120,7 @@
 
 \title{Machine Learning für das KMU}
 \author{Martin Sterchi}
-\date{2023-11-24}
+\date{2023-12-07}
 
 \begin{document}
 \maketitle
@@ -203,8 +203,17 @@ Das Buch enthält folgende Kapitel:
 \item
   Kapitel \ref{rnn}: Nach ANNs und CNNs lernen wir hier \textbf{Recurrent Neural Networks} (RNNs) kennen. Diese Modelle bilden die Basis für Probleme, in denen die Daten als Sequenzen vorliegen. Das können einache Zeitreihen (z.B. Börsenkurse) sein, aber auch komplexere Sequenzdaten wie beispielsweise geschriebene oder gesprochene Sprache oder Tonaufnahmen.
 \item
-  Kapitel \ref{gen-AI}: In diesem letzten Kapitel geht es schliesslich um \textbf{Generative KI}. Wir beschäftigen uns hier also mit Modellen, die nicht nur einfach ein Vorhersageprobleme lösen können, sondern auch neue Inhalte (z.B. Texte, Musik, Bilder) generieren können. Nach dem Lesen dieses Kapitels sollten Sie ein grundlegendes Verständnis für die Funktionsweise von Modellen wie Chat-GPT haben.
+  Kapitel \ref{gen-AI}: In diesem letzten Kapitel geht es schliesslich um \textbf{Generative KI}. Wir beschäftigen uns hier also mit Modellen, die nicht nur einfach ein Vorhersageprobleme lösen können, sondern auch neue Inhalte (z.B. Texte, Musik, Bilder) generieren können. Abbildung \ref{fig:genAIExML} enthält als Beispiel den Output einer generativen Software, die basierend auf einem Prompt ein Bild erstellt. Nach dem Lesen dieses Kapitels sollten Sie ein grundlegendes Verständnis für die Funktionsweise von Modellen wie Chat-GPT haben.
 \end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{images/title_picture_ML} 
+
+}
+
+\caption{Beispielsoutput einer generativen Bildgenerierungssoftware (https://stablediffusionweb.com/) basierend auf dem Prompt "A title image for a textbook about Machine Learning targeting small and medium companies."}\label{fig:genAIExML}
+\end{figure}
 
 \hypertarget{weiterfuxfchrende-literatur}{%
 \section*{Weiterführende Literatur}\label{weiterfuxfchrende-literatur}}
@@ -253,7 +262,7 @@ In diesem Kapitel geht es darum zu verstehen, was ML überhaupt ist, warum es n�
 
 Kurze Geschichte von ML
 
-Wie der Name sagt, geht es im ML darum, dass eine Maschine (oder präziser, ein Computer) aus einem gegebenen Datensatz automatisch lernt, ohne dass ein Mensch dem Computer sagen muss, was er lernen soll. Der Mensch gibt jedoch dem Computer die Rahmenbedingungen für das selbständige Lernen vor.
+Wie der Name sagt, geht es im ML darum, dass eine Maschine (oder präziser, ein Computer) aus einem gegebenen Datensatz automatisch lernt, ohne dass ein Mensch dem Computer (explizit) sagen muss, was er lernen soll. Der Mensch gibt jedoch dem Computer die Rahmenbedingungen für das selbständige Lernen vor.
 
 Bevor wir etwas konkreter anschauen, wie genau ein Computer selbständig aus Daten lernen kann, schauen wir uns die Definitionen von zwei Experten im Gebiet ML an:
 
@@ -267,31 +276,48 @@ Zusammenfassend lässt sich sagen, dass wir mit ML dem Computer die Möglichkeit
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Sie entscheiden sich für ein spezifisches ML Modell. Typischerweise kann ein ML Modell durch eine mathematische Funktion (Kapitel \ref{basics}) charakterisiert werden. ML Modelle können unterschiedlich flexibel sein und es liegt im Ermessen von Ihnen, wie flexibel das Modell sein soll. Grundsätzliche gilt bei der Wahl des Modells, dass flexiblere Modelle komplexere Sachverhalte abbilden können. Ein zu flexibles Modell kann aber zu Overfitting führen, aber dazu später mehr.
+  Sie entscheiden sich für ein spezifisches ML Modell. Typischerweise kann ein ML Modell durch eine mathematische Funktion (siehe Kapitel \ref{basics}) charakterisiert werden. ML Modelle können unterschiedlich flexibel sein und es liegt im Ermessen von Ihnen, wie flexibel das Modell sein soll. Sie müssen bei der Wahl des Modells die Komplexität des Problems berücksichtigen. Grundsätzliche gilt bei der Wahl des Modells, dass flexiblere Modelle komplexere Sachverhalte abbilden können. Ein zu flexibles Modell kann aber zu Overfitting führen, aber dazu später mehr. Dieser Schritt wird im Fachjargon typischerweise \textbf{Model Selection} (Modelauswahl) genannt.
 \item
-  Sobald Sie das Modell ausgewählt haben, übergeben Sie dem Computer das Modell, einen Datensatz sowie einen Lernalgorithmus. Nun hat der Computer alle Zutaten, um automatisch zu lernen, doch was lernt er eigentlich? Der Computer lernt die Parameter Ihres gewählten Modells, so dass das Modell sich optimal an die Daten anpasst.
+  Sobald Sie das Modell ausgewählt haben, übergeben Sie dem Computer (etwas vereinfacht gesagt) das Modell, einen Datensatz sowie einen Lernalgorithmus. Nun hat der Computer alle Zutaten, um automatisch zu lernen. Doch was lernt er eigentlich? Der Computer lernt die Parameter Ihres gewählten Modells, so dass das Modell sich optimal an die Daten anpasst. Dieser Schritt wird im Fachjargon \textbf{Model Training} (Trainieren des Modells) genannt.
 \item
-  Das so erlernte Modell kann nun entweder verwendet werden, um \ldots{}
+  Falls Sie mit dem erlernten Modell zufrieden sind, können Sie es nun entweder dazu verwenden Vorhersagen zu machen oder um Zusammenhänge in den Daten zu interpretieren und daraus wertvolle Einsichten gewinnen. Dieser Schritt wird im Fachjargon als \textbf{Model Inference} (Modellinferenz) zusammengefasst. Typischerweise sind Sie in der Realität mit dem ersten erlernten Modell allerdings noch nicht zufrieden und gehen zurück zu Schritt 1 und wählen ein anderes Modell.
 \end{enumerate}
+
+Es handelt sich bei dieser Vorgehensweise um eine sehr allgemeine Beschreibung des Machine Learning Prozesses. Wie diese drei Schritte konkret funktionieren, werden Sie in den nachfolgenden Kapiteln dieses Buchs erfahren.
 
 \hypertarget{wann-macht-es-sinn-ml-einzusetzen}{%
 \section{Wann macht es Sinn ML einzusetzen?}\label{wann-macht-es-sinn-ml-einzusetzen}}
 
-Ein ML Modell zu trainieren kann viel Zeit und Geld kosten. Zum Beispiel müssen Sie unter Umständen überhaupt erst die Daten sammeln, um ein Modell zu erlernen. Oder das Projekt ist so komplex, dass Sie als Analyst*in unzählige Stunden benötigen, um die Daten überhaupt erst in eine Form zu bringen, die es erlaubt ein Modell zu trainieren. Für neuartige DL Modelle oder Generative KI kann das Trainieren bzw. Lernen eines Modells durch den reinen Stromverbrauch bzw. die vom Cloud-Betreibeber in Rechnung gestellten Kosten so hoch sein, dass sich Ihr ursprüngliches Vorhaben nicht mehr lohnt. Es ist also ungemein wichtig, dass Sie sich vor Projektbeginn gut überlegen, ob ML für Ihr vorliegendes Problem überhaupt Sinn macht und einen Mehrwert generieren kann.
+Ein ML Modell zu trainieren kann viel Zeit und Geld kosten. Zum Beispiel müssen Sie unter Umständen überhaupt erst die Daten sammeln (oder von einem Datendienstleister kaufen), um ein Modell zu trainieren. Oder das Projekt ist so komplex, dass Sie als Analyst*in unzählige Stunden benötigen, um die Daten überhaupt erst in eine Form zu bringen, die es erlaubt ein Modell zu trainieren. Für neuartige DL Modelle oder Generative KI kann das Trainieren bzw. Lernen eines Modells durch den reinen Stromverbrauch bzw. die vom Cloud-Betreiber in Rechnung gestellten Kosten so hoch sein, dass sich Ihr ursprüngliches Vorhaben nicht mehr lohnt. Es ist also ungemein wichtig, dass Sie sich vor Projektbeginn gut überlegen, ob ML für Ihr vorliegendes Problem überhaupt Sinn macht und einen Mehrwert generieren kann.
 
-Folgende Daumenregeln können Ihnen dabei helfen, zu entscheiden, ob ML für Ihr Projekt Sinn macht:
+Folgende Daumenregeln\footnote{siehe auch Seite 7 in Aurélien Géron. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. Sebastopol: O'Reilly Media Inc.~3rd Edition.} können Ihnen dabei helfen, zu entscheiden, ob ML für Ihr Projekt Sinn macht:
 
 \begin{itemize}
 \tightlist
 \item
+  Ihr Problem entspricht einem Standard ML-Problem, das bereits mehrfach gelöst wurde und für das es sogenannte ``off-the-shelf'' Lösungen gibt. Beispiel: Sie wollen das Sentiment (positive vs.~negative Grundhaltung) von Social Media Posts über Ihr Unternehmen automatisch klassifizieren. Dazu gibt es viele vortrainierte Modelle, die teilweise gratis verwendet werden können.
+\item
   Der manuelle Arbeitsaufwand ist sehr gross, wenn das Problem durch Menschen gelöst werden soll. Das Problem ist aber ansonsten klar strukturiert und benötigt keinen grossen kognitiven Einsatz eines Menschen. Beispiel: In den Post-Verteilzentren werden die von Hand geschriebenen PLZ problemlos mittels Computer bzw. ML Modellen ``gelesen'' und die Briefe und Pakete entsprechend sortiert.
 \item
-  Komplexe Probleme, in denen ein Mensch keinen Überblick hat, weil so viele Daten vorhanden sind (Bsp. Anscome Quartett).
-\item
-  Wenn sich das Problem dynamisch verändert. ML erlaubt es uns, ein Modell effizient mit neuen Daten zu rechnen und so an das veränderte Problem anzupassen.
-\item
-  \ldots{}
+  Komplexe Probleme, in denen ein Mensch keinen Überblick hat, weil so grosse und komplexe Datenmengen vorhanden sind. Wir Menschen haben grosse Mühe damit, in Rohdaten (reinen Datentabellen) irgendwelche Muster zu erkennen. In diesem Fall können wir entweder versuchen, die Daten zu visualisieren oder mithilfe von ML Zusammenhänge zu lernen, die wir sonst nicht erkennen könnten. Ein illustratives Beispiel ist das Anscombe Quartett\footnote{\url{https://de.wikipedia.org/wiki/Anscombe-Quartett}}, das vier kleine Stichproben mit jeweils elf Datenpunkten enthält. Jeder Datenpunkt wird durch eine \(x\) und eine \(y\) Variable beschrieben. Die vier \(x\)- sowie die vier \(y\)-Variablen haben identische Mittelwerte. Erst eine einfache Visualisierung der vier Stichproben mithilfe eines Streudiagramms zeigt die Muster sowie die Unterschiede zwischen den vier Stichproben deutlich auf.
 \end{itemize}
+
+\begin{verbatim}
+#>    x1 x2 x3 x4    y1   y2    y3    y4
+#> 1  10 10 10  8  8.04 9.14  7.46  6.58
+#> 2   8  8  8  8  6.95 8.14  6.77  5.76
+#> 3  13 13 13  8  7.58 8.74 12.74  7.71
+#> 4   9  9  9  8  8.81 8.77  7.11  8.84
+#> 5  11 11 11  8  8.33 9.26  7.81  8.47
+#> 6  14 14 14  8  9.96 8.10  8.84  7.04
+#> 7   6  6  6  8  7.24 6.13  6.08  5.25
+#> 8   4  4  4 19  4.26 3.10  5.39 12.50
+#> 9  12 12 12  8 10.84 9.13  8.15  5.56
+#> 10  7  7  7  8  4.82 7.26  6.42  7.91
+#> 11  5  5  5  8  5.68 4.74  5.73  6.89
+\end{verbatim}
+
+\includegraphics{01-intro_files/figure-latex/anscombe-1.pdf}
 
 \hypertarget{anwendungsfuxe4lle-von-ml}{%
 \section{Anwendungsfälle von ML}\label{anwendungsfuxe4lle-von-ml}}
@@ -308,13 +334,43 @@ ML Beispiele
 \hypertarget{supervised-vs.-unsupervised-learning}{%
 \section{Supervised vs.~Unsupervised Learning}\label{supervised-vs.-unsupervised-learning}}
 
-Beim Supervised Learning geht es um ML Probleme, in denen sowohl Input-Daten als auch ein Output vorhanden ist. Für die Input-Daten gibt es ganz viele verschiedene Begriffe, die synonym verwendet werden: z.B. Features, unabhängige Variablen, Attribute, Prädiktoren. Dasselbe gilt für den Output, hier gibt es folgende Synonyme: Zielvariable, abhängige Variable, Label, oder auch einfach y.
+Den Unterschied zwischen dem Supervised Learning und dem Unsupervised Learning können wir am besten erklären, indem wir uns mit ein paar mathematischen Grundlagen des Machine Learnings befassen. Keine Sorge, diese Grundlagen sind sehr einfach, aber versuchen Sie, diese bereits gut zu verstehen, denn wir bauen später darauf auf.
 
-Mathe Notation einführen.
+Im \textbf{Supervised Learning} haben wir einerseits sogenannte Input-Daten und andererseits einen Output, den wir vorhersagen wollen. Für die Input-Daten gibt es ganz viele verschiedene Begriffe, die synonym verwendet werden: z.B. Features, unabhängige Variablen, Attribute, Prädiktoren. Dasselbe gilt für den Output, hier gibt es folgende Synonyme: Zielvariable, abhängige Variable, Label, oder auch einfach \(y\). Unsere Konvention hier ist aber folgende: es gibt Input-Daten (oder Input-Variablen) und einen Output (oder Output-Variable).
 
-Ziel ist es, ein Modell zu lernen, das basierend auf den Input-Daten möglichst gute Vorhersagen für den Output macht. Es geht also hier um Vorhersageprobleme. In einem gewissen Sinn ist der Output der Supervisor, der den Lernprozess des Modells überwacht.
+Die Input-Daten für eine Beobachtung \(i\) schreiben wir mathematisch wie folgt:
 
-Neben dem Supervised und dem Unsupervised Learning gibt es noch eine dritte erwähnenswerte ML Kategorie, nämlich Reinforcement Learning (RL). Dieser Kategorie gehören Modelle an, die sogenannte (virtuelle) Agenten so trainieren, dass sie langfristig möglichst optimal handeln. Das bekannteste Beispiel aus dem RL ist Googles AlphaGo Agent, welcher den menschlichen Go Weltmeister im Jahr 2017 schlug.
+\[
+\mathbf{x}_i=\begin{pmatrix} x_{i1} \\ x_{i2} \\ \vdots \\ x_{ip} \end{pmatrix},
+\]
+Diese Notation bedarf ein paar Erklärungen:
+
+\begin{itemize}
+\tightlist
+\item
+  Den Index \(i\) brauchen wir, um die verschiedenen Beobachtungen zu kennzeichnen. \(i\) kann eine Ganzzahl zwischen \(1\) und \(n\) annehmen, wobei \(n\) die Anzahl Beobachtungen im Datensatz bezeichnet. Wenn wir zum Beispiel etwas über die Input-Daten der dritten Beobachtung sagen wollen, dann können wir die Notation \(\mathbf{x}_3\) verwenden.
+\item
+  Für jede Beobachtung \(i\) haben wir insgesamt \(p\) Variablen, welche die verschiedenen Attribute einer Beobachtung enthalten. \(x_{i1}\) bezeichnet also die erste Variable der i-ten Beobachtung, \(x_{i2}\) die zweite Variable der i-ten Beobachtung und \(x_{ip}\) die p-te (letzte) Variable der i-ten Beobachtung.
+\item
+  Was Sie oben sehen, ist aus mathematischer Sicht ein Spaltenvektor. Im Moment reicht es, wenn Sie wissen, dass wir mit diesem Spaltenvektor die Input-Daten einer Beobachtung \emph{kompakt} darstellen können.
+\end{itemize}
+
+Neben den Input-Daten haben wir im Supervised Learning aber wie erwähnt auch einen Output und den bezeichnen wir üblicherweise mit \(y_i\). Auch hier hilft uns der Index \(i\) dabei, die Beobachtungen eindeutig zu kennzeichnen. Schauen wir uns am besten kurz ein konkretes Beispiel an:
+
+\textbf{Aufgabe}
+
+Stellen Sie sich vor, wir versuchen mithilfe eines Datensatzes von 5000 getätigten Kreditkartentransaktionen ein Modell zu trainieren, das vorhersagen kann, ob es sich bei einer gegebenen Transaktion um eine betrügerische Transaktion handelt oder nicht. Jede Transaktion in Ihrem Datensatz entspricht einer Beobachtung \(i\). Der Output \(y_i\) in diesem Beispiel ist eine kategorische Variable, die wir als \(y_i=(\text{Betrug},\;\text{kein Betrug})\) darstellen können. Ausserdem haben Sie folgende Input-Daten:
+
+\[
+\mathbf{x}_i=\begin{pmatrix} \text{Transaktionsbetrag} \\ \text{Land des Zahlungsempfaengers} \\ \text{Zeitstempel der Transaktion} \end{pmatrix}
+\]
+Welche Werte nehmen in diesem Beispiel \(n\) und \(p\) an?
+
+\textbf{Wichtig}: Beim Supervised Learning geht es um ML Probleme, in denen sowohl Input-Daten als auch ein Output vorhanden ist. Ziel beim Supervised Learning ist es, ein Modell zu trainieren, das basierend auf den Input-Daten möglichst gute Vorhersagen für den Output macht. Es geht also hier um Vorhersageprobleme. In einem gewissen Sinn ist der Output der Überwacher (engl. Supervisor), der den Lernprozess des Modells kontrolliert.
+
+Im Gegensatz zum Supervised Learning haben wir im \textbf{Unsupervised Learning} nur Input-Daten und \emph{keinen Output}. Im Unsupervised Learning geht es darum, aus den Input-Daten interessante Muster zu lernen, welche für bessere unternehmerische Entscheidungen verwendet werden können. Ein einfaches Beispiel ist das Clustering von Kundinnen und Kunden eines Unternehmens in ähnliche Kundengruppen, so dass die verschiedenen Kundengruppen gezielter mit Marketingaktionen angesprochen werden können.
+
+Neben dem Supervised und dem Unsupervised Learning gibt es noch eine dritte Kategorie von Machine Learning, nämlich das \textbf{Reinforcement Learning} (RL). Dieser Kategorie gehören Modelle an, die (virtuelle) Agenten so trainieren, dass sie langfristig möglichst optimal handeln. Das bekannteste Beispiel aus dem RL ist Googles AlphaGo Agent, welcher den menschlichen Go Weltmeister im Jahr 2017 schlug.\footnote{\url{https://deepmind.google/technologies/alphago/}}. Reinforcement Learning ist aber auch eine wichtige Komponente in der Optimierung von grossen Sprachmodellen wie ChatGPT. In einer ersten Fassung dieses Buchs werden wir uns nicht (oder nur am Rande) mit RL befassen.
 
 \hypertarget{regression-vs.-klassifikation}{%
 \section{Regression vs.~Klassifikation}\label{regression-vs.-klassifikation}}

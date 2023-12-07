@@ -1,4 +1,5 @@
 fig:kimldl
+fig:genAIExML
 fig:functions
 fig:lin-func
 fig:quad-func
