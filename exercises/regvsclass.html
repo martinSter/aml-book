@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+body{font-family: Arial, Helvetica, Sans;}
+
+.collapsible {
+  background-color: #065535;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.active, .collapsible:hover {
+  background-color: #065535;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<p>Welche der folgenden Probleme sind Regressionsprobleme?</p>
+<ol type="a">
+<li>
+Vorhersage des Lohns der Leiter*in eines Unternehmens basierend auf Profit, Marktkapitalisation, Anzahl Mitarbeitender, sowie Sektor, in dem das Unternehmen tätig ist.
+</li>
+<li>
+Basierend auf der aktuellen Marktlage und weiteren wirtschaftlichen Aspekten wollen Sie den morgigen Preis einer bestimmten Aktie vorhersagen
+</li>
+<li>
+Vorhersage des Alters einer Person, welche ein bestimmtes Youtube Video schauen will.
+</li>
+<li>
+Eine Bank möchte mithilfe von historischen Daten vorhersagen, ob ein bestimmter Kunde zahlungsunfähig wird oder nicht.
+</li>
+<li>
+Ein Detailhandelsunternehmen möchte vorhersagen, ob eine Kundin ein Produkt aus der Kategorie A, B, C, oder kein Produkt kauft.
+</li>
+<li>
+Vorhersage von Hauspreisen basierend auf Attributen wie der Grösse, Anzahl Zimmer, Seeblick (ja/nein), Steuerlast, etc.
+</li>
+<li>
+Ein Unternehmen lanciert ein neues Produkt und schätzt anhand von Konkurrenzprodukten, ob das eigene Produkt ein Erfolg wird oder nicht.
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<ol type="a">
+<li>
+Richtig
+</li>
+<li>
+Richtig
+</li>
+<li>
+Richtig
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+<li>
+Richtig
+</li>
+<li>
+Falsch
+</li>
+</ol>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

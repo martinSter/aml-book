@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+body{font-family: Arial, Helvetica, Sans;}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<h4>Aufgabe</h4>
+<p>Stellen Sie sich vor, wir versuchen mithilfe eines Datensatzes von 5000 getätigten Kreditkartentransaktionen ein Modell zu trainieren, das vorhersagen kann, ob es sich bei einer gegebenen Transaktion um eine betrügerische Transaktion handelt oder nicht. Jede Transaktion in Ihrem Datensatz entspricht einer Beobachtung <span class="math inline">\(i\)</span>. Der Output <span class="math inline">\(y_i\)</span> in diesem Beispiel ist eine kategorische Variable, die wir als <span class="math inline">\(y_i=(\text{Betrug},\;\text{kein Betrug})\)</span> darstellen können. Ausserdem haben Sie folgende Input-Daten:</p>
+<p><span class="math display">\[
+\mathbf{x}_i=\begin{pmatrix} \text{Transaktionsbetrag} \\ \text{Land des Zahlungsempfaengers} \\ \text{Zeitstempel der Transaktion} \end{pmatrix}
+\]</span></p>
+<p>Welche Werte nehmen in diesem Beispiel <span class="math inline">\(n\)</span> und <span class="math inline">\(p\)</span> an?</p>
+<br/>
+<ol type="a">
+<li>
+<span class="math inline">\(n=100\)</span> und <span class="math inline">\(p=3\)</span>
+</li>
+<li>
+<span class="math inline">\(n=5000\)</span> und <span class="math inline">\(p=3\)</span>
+</li>
+<li>
+<span class="math inline">\(n=3\)</span> und <span class="math inline">\(p=5000\)</span>
+</li>
+<li>
+<span class="math inline">\(n=100\)</span> und <span class="math inline">\(p=4\)</span>
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+  <p>Wir haben 5000 Beobachungen, darum gilt <span class="math inline">\(n=5000\)</span>. Ausserdem haben wir 3 Variablen (Attribute), darum gilt <span class="math inline">\(p=3\)</span>.</p>
+  <br/>
+<ol type="a">
+<li>
+Falsch
+</li>
+<li>
+Richtig
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+</ol>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>
