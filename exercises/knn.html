@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+body{font-family: Arial, Helvetica, Sans;}
+
+.collapsible {
+  background-color: #065535;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<p>1. Stellen Sie sich vor, Sie haben folgendes Klassifikationsproblem, das Sie mit KNN lösen wollen. Welche Kategorie prognostiziert ein KNN Modell für den Punkt <span class="math inline">\(x\)</span> in der unten stehenden Abbildung?</p>
+<img src="images/knn.PNG" alt="KNN Klassifikationsproblem" style="width:450px;height:400px;">
+
+<ol type="a">
+<li>
+Blauer Kreis.
+</li>
+<li>
+Beide Klassen sind gleich wahrscheinlich.
+</li>
+<li>
+Rotes Kreuz.
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<ol type="a">
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+<li>
+Richtig
+</li>
+</ol>
+</div>
+<br/>
+
+<p style="margin-top:1.5cm;">2. Was ist der Wert für <span class="math inline">\(K\)</span> für das KNN Modell in der oben stehenden Abbildung?</p>
+
+<ol type="a">
+<li>
+5
+</li>
+<li>
+2
+</li>
+<li>
+3
+</li>
+<li>
+10
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<ol type="a">
+<li>
+Richtig
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+</ol>
+</div>
+
+<p style="margin-top:1.5cm;">3. Stellen Sie sich vor, Sie haben folgendes Regressionsproblem, das Sie mit KNN lösen wollen. Was ist die Vorhersage für den Punkt <span class="math inline">\(x\)</span> für das KNN-Regressionsmodell in der unten stehenden Abbildung?</p>
+<img src="images/knnreg.PNG" alt="KNN Regressionsproblem" style="width:450px;height:400px;">
+
+<ol type="a">
+<li>
+4
+</li>
+<li>
+20
+</li>
+<li>
+5
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<ol type="a">
+<li>
+Richtig
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+</ol>
+</div>
+<br/>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

@@ -13,7 +13,7 @@ In diesem Kapitel geht es darum zu verstehen, was ML überhaupt ist, warum es n�
 
 Im Prinzip geht die Geschichte des MLs weit zurück, nämlich zu den Anfängen der Statistik. Viele Modelle, die heutzutage im ML angewendet werden sind nämlich eigentlich von Statistiker\*innen erfundene Modelle. Die Geschichte des MLs und der Statistik sind darum eng verknüpft. Einen eigentlichen Startpunkt des MLs könnte man vielleicht in den 1960er Jahren ausmachen, mit den Arbeiten von Frank Rosenblatt^[https://en.wikipedia.org/wiki/Frank_Rosenblatt], welcher das sogenannte **Perceptron** und einen dazugehörigen Lernalgorithmus prägte (dazu später mehr). Danach blieb es aber rund 20 Jahre relativ ruhig bis die Forschung im Bereich Machine Learning so richtig Fahrt aufnahm. Ein grosser Schub für die Entwicklung von ML ging vom Aufkommen von extrem grossen Datenmengen (**Big Data**) und dem Internet aus. Das führte nämlich dazu, dass sich immer mehr Leute aus den Fachbereichen Informatik und Computer Science mit dem Thema ML befassten und effiziente Hard- und Software sowie algorithmische Kniffs und Tricks beisteuerten. Ausserdem ermöglichte das Internet den Zugang zu gewaltigen Datenmengen an Bildern, Videos, Klicks, etc. - denken Sie beispielsweise nur schon an die Informationen, die jede\*r von uns tagtäglich im Internet hinterlässt. Ein weiterer Schub für das Machine Learning war (und ist) zudem die immer besser werdende Rechenleistung von Computern. Diese Entwicklungen haben sich im November 2022 kulminiert in der erstmaligen breiten öffentlichen Wahrnehmung von sogenannten **Large Language Models** wie ChatGPT.
 
-Wie der Name sagt, geht es im ML darum, dass eine Maschine (oder präziser, ein Computer) aus einem gegebenen Datensatz automatisch Muster lernt, ohne dass ein Mensch dem Computer (explizit) sagen muss, was er lernen soll. Der Mensch gibt jedoch dem Computer die Rahmenbedingungen für das selbständige Lernen vor. Die erlernten Muster sind selbstverständlich nur nützlich, wenn sie genereller Natur sind und auch für neue bzw. zukünftige Beobachtungen gelten. Beispiel: ein Spital hat während der Corona Pandemie ein Modell trainiert, um den täglichen Pflegebedarf je nach Wochentag, Saison, und weiteren Indikatoren vorherzusagen. Das Modell funktioniert nun nach der Pandemie aber nicht wunschgemäss und prognostiziert in den Tendenz einen zu hohen Pflegebedarf. Das Problem ist, dass die erlernten Muster nicht auf eine Zeit nach der Pandemie übertragbar sind. Die Trainingsdaten waren nicht repräsentativ genug.
+Wie der Name sagt, geht es im ML darum, dass eine Maschine (oder präziser, ein Computer) aus einem gegebenen Datensatz automatisch Muster lernt, ohne dass ein Mensch dem Computer (explizit) sagen muss, was er lernen soll. Der Mensch gibt jedoch dem Computer die Rahmenbedingungen für das selbständige Lernen vor. Die erlernten Muster sind selbstverständlich nur nützlich, wenn sie **genereller Natur** sind und auch für neue bzw. zukünftige Beobachtungen gelten. Beispiel: ein Spital hat während der Corona Pandemie ein Modell trainiert, um den täglichen Pflegebedarf je nach Wochentag, Saison, und weiteren Indikatoren vorherzusagen. Das Modell funktioniert nun nach der Pandemie aber nicht wunschgemäss und prognostiziert in der Tendenz einen zu hohen Pflegebedarf. Das Problem ist, dass die erlernten Muster nicht gut auf eine Zeit nach der Pandemie generalisierbar sind. Mit anderen Worten: die Trainingsdaten waren nicht repräsentativ genug.
 
 Bevor wir etwas konkreter anschauen, wie genau ein Computer selbständig aus Daten lernen kann, schauen wir uns die Definitionen von zwei Experten im Gebiet ML an:
 
@@ -38,10 +38,8 @@ Ein ML Modell zu trainieren kann viel Zeit und Geld kosten. Zum Beispiel müssen
 Folgende Daumenregeln^[siehe auch Seiten 6 - 7 in Aurélien Géron. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. Sebastopol: O’Reilly Media Inc. 3rd Edition.] können Ihnen dabei helfen, zu entscheiden, ob ML für Ihr Projekt Sinn macht:
 
 * Ihr Problem entspricht einem Standard ML-Problem, das bereits mehrfach gelöst wurde und für das es sogenannte "off-the-shelf" Lösungen gibt. Beispiel: Sie wollen das Sentiment (positive vs. negative Grundhaltung) von Social Media Posts über Ihr Unternehmen automatisch klassifizieren. Dazu gibt es viele vortrainierte Modelle, die teilweise gratis verwendet werden können.
-* Der manuelle Arbeitsaufwand ist sehr gross, wenn das Problem durch Menschen gelöst werden soll. Das Problem ist aber ansonsten klar strukturiert und benötigt keinen grossen kognitiven Einsatz eines Menschen. Beispiel: In den Post-Verteilzentren werden die von Hand geschriebenen PLZ problemlos mittels Computer bzw. ML Modellen "gelesen" und die Briefe und Pakete entsprechend sortiert.
+* Der manuelle Arbeitsaufwand ist sehr gross, wenn das Problem durch Menschen gelöst werden soll. Das Problem ist aber ansonsten klar strukturiert und benötigt keinen grossen kognitiven Einsatz eines Menschen. Beispiel: In den Post-Verteilzentren werden die von Hand geschriebenen Postleitzahlen (PLZ) problemlos mittels Computer bzw. ML Modellen erkannt und "gelesen" und die Briefe und Pakete entsprechend sortiert.
 * Komplexe Probleme, in denen ein Mensch keinen Überblick hat, weil so grosse und komplexe Datenmengen vorhanden sind. Wir Menschen haben grosse Mühe damit, in Rohdaten (reinen Datentabellen) irgendwelche Muster zu erkennen. In diesem Fall können wir entweder versuchen, die Daten zu visualisieren oder mithilfe von ML Zusammenhänge zu lernen, die wir sonst nicht erkennen könnten. Ein illustratives Beispiel ist das Anscombe Quartett^[https://de.wikipedia.org/wiki/Anscombe-Quartett], das vier kleine Stichproben mit jeweils elf Datenpunkten enthält. Jeder Datenpunkt wird durch eine $x$ und eine $y$ Variable beschrieben. Die vier $x$- sowie die vier $y$-Variablen haben identische Mittelwerte. Erst eine einfache Visualisierung der vier Stichproben mithilfe eines Streudiagramms zeigt die Muster sowie die Unterschiede zwischen den vier Stichproben deutlich auf. 
-
-TODO: DL nur mit grossen Datenmengen
 
 
 ```
@@ -63,23 +61,17 @@ TODO: DL nur mit grossen Datenmengen
 
 ## Anwendungsfälle von ML
 
-Stellen Sie sich vor, wir haben einen Datensatz mit 300 Spam Emails und 700 “Ham” Emails (kein Spam). Ohne Machine Learning müssten wir nun von Hand die 300 Spam Emails mit den 700 Ham Emails vergleichen und versuchen, Muster zu finden, die es uns erlauben Regeln aufzustellen, um die Spam Emails korrekt zu klassifizieren (z.B. Spam enthält tendenziell eher Geldbeträge oder Preise als Ham). Danach könnten wir die Regeln mit R implementieren. Dann stellt sich aber auch noch die Frage, wie die verschiedenen Regeln miteinander kombiniert werden, um eine Klassifikation zu machen. Dieses Vorgehen würde sehr viel zu tun geben und es würde gezwungenermassen zu willkürlichen Entscheidungen führen.
+In diesem Abschnitt stelle ich erfolgreiche Anwendungsfälle von ML vor. Einige davon treffen Sie womöglich tagtäglich in Ihrem Alltag an:
 
-Machine Learning führt zu i) weniger Aufwand und ii) besseren Lösungen, indem wir in einem R-Skript ein Modell (z.B. logistische Regression) aufsetzen und dann dem Modell die Daten in geeigneter Form füttern. Danach lernt der Computer selbständig, wie er die Emails bestmöglich in Spam und Ham klassifiziert.
+* **Spam Filter** sind ein frühes Beispiel einer erfolgreichen Anwendung von ML. Ein Klassifikationsmodell entscheidet dabei automatisch aufgrund der Inhalte einer Email, des Betreffs sowie des Absenders, ob es sich um eine Spam oder eine sogenannte Ham Email (unproblematische Email) handelt. Falls Sie gängige Email Software verwenden, dann arbeitet im Hintergrund ein Spam Filter daran, Sie vor lästigen Emails zu schützen.
+* Ein grosser Teil des wirtschaftlichen Erfolgs von **Google** basiert auf der Idee, dass aufgrund der Suchhistorie hervorgesagt werden kann, welche Nutzerin oder welcher Nutzer mit welcher Wahrscheinlichkeit eine bestimmte Werbung anklickt. Dies erlaubt Google für jede Nutzer*in die Werbung mit den höchsten "Erfolgschancen" zu schalten. Da jeder Klick Einnahmen generiert, ist es für das Geschäftsmodell von Google entscheidend, dass möglichst viele Klicks stattfinden.
+* Ein grosser Bereich des MLs und speziell des DLs befasst sich mit **Computer Vision**. Dabei geht es darum, das Hauptmotiv von Bildern zu klassifizieren (z.B. Zeigt ein Bild ein Tier oder einen Menschen?), Objekte in Bildern zu entdecken (z.B. Enthält das Bild eine Person?) und das entdeckte Objekt dann auch zu klassifizieren (z.B. Handelt es sich bei der Person um XY?). Als konkreteres Beispiel können Sie sich einen Industriebetrieb vorstellen, welcher ein Computer Vision Modell einsetzen möchte, um den Abnützungsgrad der von ihnen produzierten Werkzeuge automatisch zu erkennen und den Kundinnen und Kunden den optimalen Ersatzzeitpunkt für das Werkzeug vorhersagen zu können.
+* Ähnlich wie im vorherigen Beispiel gibt es bereits viele Anwendungen im öffentlichen Verkehr, in denen es um **Predictive Maintenance** geht. Z.B. kann der optimale Wartungszeitpunkt für eine Weiche oder einen Gleisabschnitt aufgrund einer Vielzahl an Indikatoren und Messungen vorhergesagt werden.
+* Ein grosses Einsatzgebiet für ML ergibt sich im Finanzsektor durch das automatische Erkennen von potentiell **betrügerischen Transaktionen**. Falls Sie auch schon mal eine Kreditkartentransaktion direkt am Telefon einer Kundenberaterin oder einem Kundenberater bestätigen mussten, dann ist es wahrscheinlich, dass Ihre Transaktion von einem ML System zur manuellen Überprüfung geflaggt wurde. In diesem Zusammenhang spricht man manchmal auch vom Erkennen von Anomalien (engl. *Anomaly Detection*).
+* Sogenannte **Recommender Systems** sind insbesondere in Online Verkaufspunkten von grossem Nutzen. Betreiben Sie beispielsweise einen grossen Onlinehandel, dann wollen Sie Ihren Kundinnen und Kunden Produkte zum Kauf vorschlagen. Dazu verwenden Sie ein Modell, das basierend auf der Ähnlichkeit zwischen Kundinnen und Kunden potentiell interessante Produkte vorschlägt.
+* Die rasanten Entwicklungen im Bereich **Natural Language Processing** (NLP) in den letzten 10 Jahren haben viele neue und interessante Anwendungsgebiete zutage gefördert. Zum Beispiel eignen sich *Large Language Models* (LLMs) als erste Anlaufstelle für Kundinnen und Kunden (automatisierter Kundenservice). LLMs werden vermutlich aber auch immer mehr in internen Prozessen in Unternehmen eingesetzt, z.B. um komplexe Dokumente zusammenzufassen oder Sitzungsprotokolle zu erstellen.
 
-ML Beispiele
-- Spam Filter
-- ChatGPT
-- Face Recognition in Fotos
-- Predictive Maintenance von Maschinen
-- Fraisa Fotos
-- Summarizing documents
-- Customer Service Chatbots
-- Credit Card Fraud Detection
-- Recommender Systems
-- Optimierungsprobleme (RL)
-- Anomaly/Novelty Detection
-
+Die obige Liste ist bei weitem nicht komplett und die Entwicklungen im Bereich ML sind aktuell so rasant, dass jeden Tag eine grosse Zahl von neuen ML-basierten Produkten und Dienstleistungen auf den Markt kommen.
 
 ## Supervised vs. Unsupervised Learning
 
@@ -120,10 +112,6 @@ body{font-family: Arial, Helvetica, Sans;}
   border: none;
   text-align: left;
   outline: none;
-}
-
-.active, .collapsible:hover {
-  background-color: #065535;
 }
 
 .content {
@@ -230,10 +218,6 @@ body{font-family: Arial, Helvetica, Sans;}
   outline: none;
 }
 
-.active, .collapsible:hover {
-  background-color: #065535;
-}
-
 .content {
   padding: 0 18px;
   display: none;
@@ -256,7 +240,7 @@ Vorhersage des Lohns der Leiter*in eines Unternehmens basierend auf Profit, Mark
 Basierend auf der aktuellen Marktlage und weiteren wirtschaftlichen Aspekten wollen Sie den morgigen Preis einer bestimmten Aktie vorhersagen
 </li>
 <li>
-Vorhersage des Alters einer Person, welche ein bestimmtes Youtube Video schauen will.
+Vorhersage ob eine Person, welche ein bestimmtes Youtube Video schauen will, volljährig ist oder nicht.
 </li>
 <li>
 Eine Bank möchte mithilfe von historischen Daten vorhersagen, ob ein bestimmter Kunde zahlungsunfähig wird oder nicht.
@@ -284,7 +268,7 @@ Richtig
 Richtig
 </li>
 <li>
-Richtig
+Falsch
 </li>
 <li>
 Falsch
@@ -300,23 +284,6 @@ Falsch
 </li>
 </ol>
 </div>
-
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
-</script>
 
 </body>
 </html>
@@ -349,9 +316,166 @@ Um die $K$ nächsten Nachbarn zu finden, müssen wir die Distanzen zwischen Punk
 
 Das KNN Modell ist ein sehr einfaches ML Modell, welches in der Praxis allerdings nicht allzu häufig angewendet wird. Warum nicht? Weil es am sogenannten **Fluch der Dimensionalität** (engl. Curse of Dimensionality) leidet. Doch was bedeutet das? Je mehr Input-Variablen wir haben, desto weiter entfernt sind Datenpunkte voneinander (das ist etwas, das man sich nur schwer vorstellen kann, aber Sie können es mir für den Moment einfach mal glauben). Das KNN beruht auf der Grundidee, dass wir $K$ nahe, ähnliche Beobachtungen für die Vorhersage verwenden. Wenn diese $K$ nahen Beobachtungen im hochdimensionalen Raum (= viele Input-Variablen) nicht mehr nahe sind, dann funktioniert auch das Modell nicht mehr gut.
 
-Ev. Market-Basket Analyse
+::: {.rmdtip}
+**Aufgaben**
 
-Zwei Fragen mit Bildern (siehe Rapp)
+```{=html}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+body{font-family: Arial, Helvetica, Sans;}
+
+.collapsible {
+  background-color: #065535;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<p>1. Stellen Sie sich vor, Sie haben folgendes Klassifikationsproblem, das Sie mit KNN lösen wollen. Welche Kategorie prognostiziert ein KNN Modell für den Punkt <span class="math inline">\(x\)</span> in der unten stehenden Abbildung?</p>
+<img src="images/knn.PNG" alt="KNN Klassifikationsproblem" style="width:450px;height:400px;">
+
+<ol type="a">
+<li>
+Blauer Kreis.
+</li>
+<li>
+Beide Klassen sind gleich wahrscheinlich.
+</li>
+<li>
+Rotes Kreuz.
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<ol type="a">
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+<li>
+Richtig
+</li>
+</ol>
+</div>
+<br/>
+
+<p style="margin-top:1.5cm;">2. Was ist der Wert für <span class="math inline">\(K\)</span> für das KNN Modell in der oben stehenden Abbildung?</p>
+
+<ol type="a">
+<li>
+5
+</li>
+<li>
+2
+</li>
+<li>
+3
+</li>
+<li>
+10
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<ol type="a">
+<li>
+Richtig
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+</ol>
+</div>
+
+<p style="margin-top:1.5cm;">3. Stellen Sie sich vor, Sie haben folgendes Regressionsproblem, das Sie mit KNN lösen wollen. Was ist die Vorhersage für den Punkt <span class="math inline">\(x\)</span> für das KNN-Regressionsmodell in der unten stehenden Abbildung?</p>
+<img src="images/knnreg.PNG" alt="KNN Regressionsproblem" style="width:450px;height:400px;">
+
+<ol type="a">
+<li>
+4
+</li>
+<li>
+20
+</li>
+<li>
+5
+</li>
+</ol>
+<br/>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<ol type="a">
+<li>
+Richtig
+</li>
+<li>
+Falsch
+</li>
+<li>
+Falsch
+</li>
+</ol>
+</div>
+<br/>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>
+```
+
+:::
 
 
 ## Machine Learning Pipeline
