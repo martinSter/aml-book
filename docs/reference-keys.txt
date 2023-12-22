@@ -36,3 +36,5 @@ ann
 cnn
 rnn
 gen-AI
+fig:pipeline
+url-your-book-url-like-httpsbookdown.orgyihuibookdown

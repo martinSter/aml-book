@@ -57,7 +57,7 @@ Folgende Daumenregeln^[siehe auch Seiten 6 - 7 in Aurélien Géron. (2019). Hand
 #> 11  5  5  5  8  5.68 4.74  5.73  6.89
 ```
 
-![](01-intro_files/figure-epub3/anscombe-1.png)<!-- -->
+<img src="01-intro_files/figure-html/anscombe-1.png" width="672" />
 
 ## Anwendungsfälle von ML
 
@@ -101,7 +101,6 @@ Neben den Input-Daten haben wir im Supervised Learning aber wie erwähnt auch ei
 
 <head>
 <style type="text/css">
-body{font-family: Arial, Helvetica, Sans;}
 
 .collapsible {
   background-color: #065535;
@@ -205,7 +204,6 @@ Im Klassifikationsproblem ist der Output bzw. die Zielvariable eine **kategorisc
 
 <head>
 <style type="text/css">
-body{font-family: Arial, Helvetica, Sans;}
 
 .collapsible {
   background-color: #065535;
@@ -310,7 +308,7 @@ Ausserdem können Sie in der ersten Abbildung auch den schwarzen Punkt mit der M
 
 Die zweite Abbildung zeigt die Entscheidungsregionen mit unterschiedlicher Intensität je nachdem wie sicher sich das Modell ist. In einer Region, in der alle $K$ Nachbarn nicht-erfolgreiche Produkte sind, sind wir uns eher sicher bezüglich der Vorhersage als in einer Region, in der die Anteile zwischen erfolgreichen und nicht-erfolgreichen Produkten ausgeglichen sind.
 
-<iframe src="https://martin-sterchi.shinyapps.io/appKNN/?showcase=0" width="100%" height="600px" data-external="1"></iframe>
+<iframe src="https://martin-sterchi.shinyapps.io/appKNN/?showcase=0" width="672" height="600px" data-external="1"></iframe>
 
 Um die $K$ nächsten Nachbarn zu finden, müssen wir die Distanzen zwischen Punkten rechnen können. Dazu verwenden wir die Euklidische Distanz, welche wir in Kapitel \@ref(basics) kennen lernen werden.
 
@@ -325,7 +323,6 @@ Das KNN Modell ist ein sehr einfaches ML Modell, welches in der Praxis allerding
 
 <head>
 <style type="text/css">
-body{font-family: Arial, Helvetica, Sans;}
 
 .collapsible {
   background-color: #065535;
@@ -480,6 +477,23 @@ for (i = 0; i < coll.length; i++) {
 
 ## Machine Learning Pipeline
 
-Pipeline zeigen
+Abbildung \@ref(fig:pipeline) zeigt, wie eine typische ML-Pipeline aussieht.^[Icons stammen von https://thenounproject.com/.]
 
+<div class="figure" style="text-align: center">
+<img src="images/Pipeline.png" alt="Eine typische ML-Pipeline. " width="90%" />
+<p class="caption">(\#fig:pipeline)Eine typische ML-Pipeline. </p>
+</div>
 
+Sie starten typischerweise mit einem **Problem** oder einer Herausforderung. Ihr ganzes Projekt sollte darauf ausgelegt sein, dieses Problem zu lösen. Es ist grundsätzlich nicht ratsam, auf Biegen und Brechen eine ML Lösung zu implementieren, wenn kein klar definiertes Problem vorliegt. Nehmen Sie sich also zu Beginn eines Projekts Zeit, das Problem grundlegend zu definieren. Sprechen Sie auch mit den entsprechenden Fachexpert\*innen im Unternehmen, um genau zu verstehen, was verbessert oder effizienter gemacht werden soll und was die technischen oder ökonomischen Einschränkungen sind.
+
+Sobald das Problemverständnis vorhanden ist, beginnen Sie, sich mit den **verfügbaren Daten** zu befassen. Auch hier müssen Sie sich wahrscheinlich mit den entsprechenden Expert\*innen im Unternehmen (z.B. Datenbankadministrator\*innen) austauschen. Es geht hier unter anderem darum abzuklären, welche Daten verfügbar sind, in welchem Format die Daten vorhanden sind wie die Datenqualität ist.
+
+Danach beginnen Sie mit den Datenarbeiten. Häufig wird dieser Schritt **Preprocessing** oder **Data Cleaning** genannt. Oft verschlingt dieser Arbeitsschritt sehr viel Zeit und es ist nicht unüblich, dass 80\% der Projektzeit hier aufgewendet werden. Es ist auch völlig normal, wenn Sie von diesem Schritt zurück zur Problemdefinition gehen und sie verfeinern oder anpassen müssen oder zum Beispiel nochmals Fragen mit den Datenbankexpert\*innen klären müssen, weil Ihr Datenverständnis noch nicht vollständig ist.
+
+Nachdem die Daten vorbereitet wurden, gehen Sie typischerweise zu einer **explorativen Analyse** der Daten über. Das heisst, Sie visualisieren die vorhandenen Variablen univariat (d.h. jede Variable einzeln) oder multivariat (d.h. zwei oder mehr Variablen zusammen). Ein Beispiel einer univariaten Visualisierung ist ein Histogramm einer quantitativen Variable (z.B. Quartalsumsätze). Ein Beispiel einer multivariaten Visualisierung ist ein Streudiagramm zweier quantitativer Variablen (z.B. Quartalsumsätze und Wechselkurse). Auch hier ist es üblich, dass Sie einen Schritt zurück gehen und weitere Datenbereinigungen vornehmen müssen.
+
+Nach der explorativen Analyse der Daten sollten Sie eine erste Idee von den wichtigsten Zusammenhängen in den Daten haben. Basierend darauf können Sie Ihr erstes Modell wählen und trainieren und mit der eigentlichen **Analyse** bzw. der Lösung des Problems beginnen.
+
+Einer der wichtigsten Schritte ist die saubere und gründliche **Evaluation** Ihrer Modelle. Dieser Schritt dient einerseits dazu das beste Modell auszuwählen und andererseits dazu die Qualität Ihrer Lösung bzw. Ihres Modells abzuschätzen. Mit diesem zweiten Schritt wollen Sie nämlich bereits während der Projektphase einschätzen können, wie gut Ihr Modell das gegebene Problem löst oder einen bestehenden Betriebsprozess verbessert oder effizienter macht. Die beiden Schritte Analyse und Evaluation werden typischerweise ein paar Mal iteriert, bis Sie das beste Modell gefunden haben.
+
+Am Schluss geht es darum, dass Sie Ihr Wissen und Ihre Erkenntnisse an die relevanten Fachexpert\*innen weitergeben (**Wissenstransfer**) und Ihr finales Modell in einer produktiven Umgebung implementieren (oft **Deployment** genannt). Zum Beispiel können Sie Ihr Modell in einer mobilen App einbetten oder als REST API Service zur Verfügung stellen.
