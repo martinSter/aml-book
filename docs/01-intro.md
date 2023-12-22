@@ -127,7 +127,7 @@ Neben den Input-Daten haben wir im Supervised Learning aber wie erwähnt auch ei
 </head>
 
 <body>
-<p>Stellen Sie sich vor, wir versuchen mithilfe eines Datensatzes von 5000 getätigten Kreditkartentransaktionen ein Modell zu trainieren, das vorhersagen kann, ob es sich bei einer gegebenen Transaktion um eine betrügerische Transaktion handelt oder nicht. Jede Transaktion in Ihrem Datensatz entspricht einer Beobachtung <span class="math inline">\(i\)</span>. Der Output <span class="math inline">\(y_i\)</span> in diesem Beispiel ist eine kategorische Variable, die wir als <span class="math inline">\(y_i=(\text{Betrug},\;\text{kein Betrug})\)</span> darstellen können. Ausserdem haben Sie folgende Input-Daten:</p>
+<p>Stellen Sie sich vor, wir versuchen mithilfe eines Datensatzes von 5000 getätigten Kreditkartentransaktionen ein Modell zu trainieren, das vorhersagen kann, ob es sich bei einer gegebenen Transaktion um eine betrügerische Transaktion handelt oder nicht. Jede Transaktion in Ihrem Datensatz entspricht einer Beobachtung <span class="math inline">\(i\)</span>. Der Output <span class="math inline">\(y_i\)</span> in diesem Beispiel ist eine kategorische Variable, die wir als <span class="math inline">\(y_i \in \{\text{Betrug},\;\text{kein Betrug}\}\)</span> darstellen können. Ausserdem haben Sie folgende Input-Daten:</p>
 <p><span class="math display">\[
 \mathbf{x}_i=\begin{pmatrix} \text{Transaktionsbetrag} \\ \text{Land des Zahlungsempfaengers} \\ \text{Zeitstempel der Transaktion} \end{pmatrix}
 \]</span></p>
@@ -191,9 +191,9 @@ Die Unterscheidung zwischen den drei Arten von Machine Learning ist im oberen Te
 
 In der Kategorie des Supervised Learnings unterscheiden wir weiter zwischen Regressions- und Klassifikationsproblemen (siehe auch Abbildung \@ref(fig:slulrl)).
 
-Im Regressionsproblem ist der Output eine **stetige** Variable (Intervall- oder Verhältnisskalierung), d.h. die Variable enthält numerische Werte.
+Im Regressionsproblem ist der Output eine **stetige** Variable (Intervall- oder Verhältnisskalierung), d.h. die Variable enthält reelle (numerische) Werte. Mathematisch schreibt man dies als $y_i \in \mathbb{R}$, wobei $\mathbb{R}$ die Menge der reellen Zahlen beschreibt.
 
-Im Klassifikationsproblem ist der Output bzw. die Zielvariable eine **kategorische** Variable (Nominal- oder Ordinalskalierung).
+Im Klassifikationsproblem ist der Output bzw. die Zielvariable eine **kategorische** Variable (Nominal- oder Ordinalskalierung). Mathematisch schreibt man dies als $y_i \in \{1, \dots, C\}$, wobei $C$ die Anzahl Kategorien beschreibt. Wenn wir nur $C=2$ Kategorien haben wie im Beispiel oben mit $y_i \in \{\text{Betrug}, \text{kein Betrug}\}$ sprechen wir von einem binären Klassifikationsproblem. Falls $C>2$ sprechen wir vom mehrklassigen (engl. *multiclass*) Klassifikationsproblem.
 
 ::: {.rmdtip}
 **Aufgabe**
@@ -473,7 +473,6 @@ for (i = 0; i < coll.length; i++) {
 ```
 
 :::
-
 
 ## Machine Learning Pipeline
 

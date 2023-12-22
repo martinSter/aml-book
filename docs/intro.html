@@ -183,7 +183,7 @@ Diese Notation bedarf ein paar Erklärungen:</p>
 
 </style>
 <meta charset="utf-8">
-<script type="text/javascript" src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script><p>Stellen Sie sich vor, wir versuchen mithilfe eines Datensatzes von 5000 getätigten Kreditkartentransaktionen ein Modell zu trainieren, das vorhersagen kann, ob es sich bei einer gegebenen Transaktion um eine betrügerische Transaktion handelt oder nicht. Jede Transaktion in Ihrem Datensatz entspricht einer Beobachtung <span class="math inline">\(i\)</span>. Der Output <span class="math inline">\(y_i\)</span> in diesem Beispiel ist eine kategorische Variable, die wir als <span class="math inline">\(y_i=(\text{Betrug},\;\text{kein Betrug})\)</span> darstellen können. Ausserdem haben Sie folgende Input-Daten:</p>
+<script type="text/javascript" src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script><p>Stellen Sie sich vor, wir versuchen mithilfe eines Datensatzes von 5000 getätigten Kreditkartentransaktionen ein Modell zu trainieren, das vorhersagen kann, ob es sich bei einer gegebenen Transaktion um eine betrügerische Transaktion handelt oder nicht. Jede Transaktion in Ihrem Datensatz entspricht einer Beobachtung <span class="math inline">\(i\)</span>. Der Output <span class="math inline">\(y_i\)</span> in diesem Beispiel ist eine kategorische Variable, die wir als <span class="math inline">\(y_i \in \{\text{Betrug},\;\text{kein Betrug}\}\)</span> darstellen können. Ausserdem haben Sie folgende Input-Daten:</p>
 <p><span class="math display">\[
 \mathbf{x}_i=\begin{pmatrix} \text{Transaktionsbetrag} \\ \text{Land des Zahlungsempfaengers} \\ \text{Zeitstempel der Transaktion} \end{pmatrix}
 \]</span></p>
@@ -240,8 +240,8 @@ Abbildung 1.1: Die verschiedenen Kategorien des Machine Learnings und deren Hier
 <span class="header-section-number">1.5</span> Regression vs. Klassifikation<a class="anchor" aria-label="anchor" href="#regression-vs.-klassifikation"><i class="fas fa-link"></i></a>
 </h2>
 <p>In der Kategorie des Supervised Learnings unterscheiden wir weiter zwischen Regressions- und Klassifikationsproblemen (siehe auch Abbildung <a href="intro.html#fig:slulrl">1.1</a>).</p>
-<p>Im Regressionsproblem ist der Output eine <strong>stetige</strong> Variable (Intervall- oder Verhältnisskalierung), d.h. die Variable enthält numerische Werte.</p>
-<p>Im Klassifikationsproblem ist der Output bzw. die Zielvariable eine <strong>kategorische</strong> Variable (Nominal- oder Ordinalskalierung).</p>
+<p>Im Regressionsproblem ist der Output eine <strong>stetige</strong> Variable (Intervall- oder Verhältnisskalierung), d.h. die Variable enthält reelle (numerische) Werte. Mathematisch schreibt man dies als <span class="math inline">\(y_i \in \mathbb{R}\)</span>, wobei <span class="math inline">\(\mathbb{R}\)</span> die Menge der reellen Zahlen beschreibt.</p>
+<p>Im Klassifikationsproblem ist der Output bzw. die Zielvariable eine <strong>kategorische</strong> Variable (Nominal- oder Ordinalskalierung). Mathematisch schreibt man dies als <span class="math inline">\(y_i \in \{1, \dots, C\}\)</span>, wobei <span class="math inline">\(C\)</span> die Anzahl Kategorien beschreibt. Wenn wir nur <span class="math inline">\(C=2\)</span> Kategorien haben wie im Beispiel oben mit <span class="math inline">\(y_i \in \{\text{Betrug}, \text{kein Betrug}\}\)</span> sprechen wir von einem binären Klassifikationsproblem. Falls <span class="math inline">\(C&gt;2\)</span> sprechen wir vom mehrklassigen (engl. <em>multiclass</em>) Klassifikationsproblem.</p>
 <div class="rmdtip">
 <p><strong>Aufgabe</strong></p>
 
