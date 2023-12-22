@@ -57,7 +57,7 @@ Folgende Daumenregeln^[siehe auch Seiten 6 - 7 in Aurélien Géron. (2019). Hand
 #> 11  5  5  5  8  5.68 4.74  5.73  6.89
 ```
 
-<img src="01-intro_files/figure-html/anscombe-1.png" width="672" />
+![](01-intro_files/figure-epub3/anscombe-1.png)<!-- -->
 
 ## Anwendungsfälle von ML
 
@@ -308,7 +308,7 @@ Ausserdem können Sie in der ersten Abbildung auch den schwarzen Punkt mit der M
 
 Die zweite Abbildung zeigt die Entscheidungsregionen mit unterschiedlicher Intensität je nachdem wie sicher sich das Modell ist. In einer Region, in der alle $K$ Nachbarn nicht-erfolgreiche Produkte sind, sind wir uns eher sicher bezüglich der Vorhersage als in einer Region, in der die Anteile zwischen erfolgreichen und nicht-erfolgreichen Produkten ausgeglichen sind.
 
-<iframe src="https://martin-sterchi.shinyapps.io/appKNN/?showcase=0" width="672" height="600px" data-external="1"></iframe>
+<iframe src="https://martin-sterchi.shinyapps.io/appKNN/?showcase=0" width="100%" height="600px" data-external="1"></iframe>
 
 Um die $K$ nächsten Nachbarn zu finden, müssen wir die Distanzen zwischen Punkten rechnen können. Dazu verwenden wir die Euklidische Distanz, welche wir in Kapitel \@ref(basics) kennen lernen werden.
 

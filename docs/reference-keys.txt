@@ -1,6 +1,7 @@
 fig:kimldl
 fig:genAIExML
 fig:slulrl
+fig:pipeline
 fig:functions
 fig:lin-func
 fig:quad-func
@@ -36,5 +37,3 @@ ann
 cnn
 rnn
 gen-AI
-fig:pipeline
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
