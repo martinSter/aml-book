@@ -46,13 +46,11 @@ $$\mathbf{w}=\begin{pmatrix} w_0 \\ w_1 \\ w_2 \\ \vdots \\ w_p \end{pmatrix}$$
 
 Wir können nun das lineare Regressionsmodell (für die Beobachtung $i$) als **Skalarprodukt** dieser beiden Vektoren aufschreiben:
 
-$$
 \begin{align}
 f(\mathbf{x}_i) &= \mathbf{w}' \mathbf{x_i}\\ 
 &= \begin{pmatrix} w_0 & w_1 & w_2 & \dots & w_p \end{pmatrix} \begin{pmatrix} 1\\ x_{i1} \\ x_{i2} \\ \vdots \\ x_{ip} \end{pmatrix}\\
 &= w_0 \cdot 1 + w_1 \cdot x_{i1} + w_2 \cdot x_{i2} + \dots + w_p \cdot x_{ip}
 \end{align}
-$$
 
 Die Form $\mathbf{w}' \mathbf{x_i}$ ist schon ziemlich kompakt, aber es geht noch besser. Wir können nämlich das Modell gleich für alle $n$ Beobachtungen (und nicht nur für die $i$-te Beobachtung) aufschreiben. Dazu müssen wir die Input-Variablen für jede Beobachtung $i$ in einer Matrix anordnen:
 
@@ -67,7 +65,6 @@ $$
 
 Die Matrix $\mathbf{X}$ wird typischerweise **Design Matrix** genannt. Die erste Zeile enthält die Input-Variablen für die erste Beobachtung, die zweite Zeile die Input-Variablen für die zweite Beobachtung, usw. Nun können wir das Modell mithilfe einer Multiplikation zwischen der Design Matrix $\mathbf{X}$ und dem Spaltenvektor $\mathbf{w}$ in einem Schritt für alle Beobachtungen aufschreiben:
 
-$$
 \begin{align}
 f(\mathbf{X}) &= \mathbf{X}\mathbf{w}\\
 &= \begin{pmatrix}
@@ -82,7 +79,6 @@ w_0 \cdot 1 + w_1 \cdot x_{21} + w_2 \cdot x_{22} + \dots + w_p \cdot x_{2p} \\
 \cdots \\ 
 w_0 \cdot 1 + w_1 \cdot x_{n1} + w_2 \cdot x_{n2} + \dots + w_p \cdot x_{np}\end{pmatrix}
 \end{align}
-$$
 
 Überprüfen wir doch noch kurz die Dimensionen von obigem Matrix-Vektor Produkt. Die Matrix $\mathbf{X}$ hat $n$ Zeilen und $p+1$ Spalten und darum eine Dimensionalität von $n \times (p+1)$. Der Spaltenvektor $\mathbf{w}$ hat Dimensionalität $(p+1) \times 1$. Das Matrix-Vektor Produkt hat dementsprechend eine Dimensionalität von $n \times 1$, genau was wir erwarten würden, nämlich einen Vektor mit den Vorhersagen für alle $n$ Beobachtungen.
 
@@ -122,13 +118,11 @@ Im Vergleich zur Summer der quadrierten Residuen haben wir hier noch den Faktor 
 
 Sie wundern sich nun vielleicht, wie diese Kostenfunktion von den Modellparameter abhängt, da diese in obiger Formel ja gar nicht ersichtlich sind. Schreiben wir die Kostenfunktion doch mal etwas um (unter der Annahme, dass es nur eine Input-Variable $x_i$ gibt und wir ein einfaches lineares Regressionsmodell anwenden wollen):
 
-$$
 \begin{align}
 J(\hat{b}_0, \hat{b}_1) &= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2 \\
 &= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - (\hat{b}_0 + \hat{b}_1 \cdot x_i) \right)^2 \\
 &= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{b}_0 - \hat{b}_1 \cdot x_i \right)^2 \\
 \end{align}
-$$
 
 Nun ist offensichtlich, wie die Kostenfunktion $J$ von den Modellparameter $\hat{b}_0$ und $\hat{b}_1$ abhängt. Im ML gibt es nun viele verschiedene Arten, wie man für die beiden Modellparameter die optimalen Werte findet. Hier ist die Lösung zum Glück einfach, denn es gibt eine sogenannte **analytische Lösung**, die man mit der oben erwähnten Kleinstquadratemethode findet. Wie Sie diese analytische Lösung finden, haben Sie bei Thomas Heimsch in Aufgabe 5 der Übungsserie 2 gelernt (zwar mit anderer Notation, aber vom Prinzip her gleich).
 
@@ -150,7 +144,6 @@ Dazu gilt folgendes:
 
 Nun können wir den **Erwartungswert** des quadrierten Fehlers rechnen:
 
-$$
 \begin{align}
 \text{E}\,\left[\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\right] &= \text{E}\,\left[\left(f(\mathbf{x}_i) + \epsilon - \hat{f}(\mathbf{x}_i)\right)^2\right] \\
 &= \text{E}\,\left[f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot \epsilon \cdot f(\mathbf{x}_i) - 2 \cdot \epsilon \cdot \hat{f}(\mathbf{x}_i) + \epsilon^2 \right] \\
@@ -159,7 +152,6 @@ $$
 &= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + \text{Var}(\epsilon) \\
 &= \left(f(\mathbf{x}_i) - \hat{f}(\mathbf{x}_i)\right)^2 + \text{Var}(\epsilon)
 \end{align}
-$$
 
 Der erste Teil auf der rechten Seite der Formel beschreibt den **reduzierbaren Fehler** und der zweite Teil den **nicht-reduzierbaren Fehler**. Wir sehen also auch hier: es ist sehr wichtig, dass wir eine Funktion $\hat{f}(\mathbf{x}_i)$ schätzen, welche dem wahren funktionalen Zusammenhang $f(\mathbf{x}_i)$ möglichst nahe kommt.
 </div>
