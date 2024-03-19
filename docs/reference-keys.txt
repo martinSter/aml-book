@@ -37,3 +37,17 @@ ann
 cnn
 rnn
 gen-AI
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+ml-modelle-im-allgemeinen
+wie-rechnen-wir-ein-ml-modell
+log-transformation-der-output-variable
+regularisierte-regression
+das-modell
+das-modell-in-matrix-vektor-form
+modell-training
+interpretierbarkeit
+bias-variance-tradeoff
+polynomische-regression
+lineare-regression-in-r
+das-modell-ausgeschrieben
+das-modell-kompakt

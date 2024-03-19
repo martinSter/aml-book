@@ -4,22 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>4 Lineare Regression | Machine Learning für das KMU</title>
+<title>5 Lineare Regression | Machine Learning für das KMU</title>
 <meta name="author" content="Martin Sterchi">
-<meta name="description" content="&lt;p&gt;This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::bs4_book,
-set in the _output.yml file.&lt;/p&gt;">
+<meta name="description" content="In diesem Kapitel werden wir uns eingehend mit dem einfachsten Modell für das Regressionsproblem auseinander setzen, nämlich dem linearen Regressionsmodell. Liegt ein Regressionsproblem vor, dann...">
 <meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="4 Lineare Regression | Machine Learning für das KMU">
+<meta property="og:title" content="5 Lineare Regression | Machine Learning für das KMU">
 <meta property="og:type" content="book">
-<meta property="og:description" content="&lt;p&gt;This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::bs4_book,
-set in the _output.yml file.&lt;/p&gt;">
+<meta property="og:description" content="In diesem Kapitel werden wir uns eingehend mit dem einfachsten Modell für das Regressionsproblem auseinander setzen, nämlich dem linearen Regressionsmodell. Liegt ein Regressionsproblem vor, dann...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4 Lineare Regression | Machine Learning für das KMU">
-<meta name="twitter:description" content="&lt;p&gt;This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::bs4_book,
-set in the _output.yml file.&lt;/p&gt;">
+<meta name="twitter:title" content="5 Lineare Regression | Machine Learning für das KMU">
+<meta name="twitter:description" content="In diesem Kapitel werden wir uns eingehend mit dem einfachsten Modell für das Regressionsproblem auseinander setzen, nämlich dem linearen Regressionsmodell. Liegt ein Regressionsproblem vor, dann...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -48,46 +42,263 @@ set in the _output.yml file.&lt;/p&gt;">
 </form>
 
       <nav aria-label="Table of contents"><h2>Inhaltsverzeichnis</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Über das Buch</a></li>
-<li><a class="" href="intro.html"><span class="header-section-number">1</span> Einführung</a></li>
-<li><a class="" href="basics.html"><span class="header-section-number">2</span> Mathematik- und Statistik-Grundlagen</a></li>
-<li><a class="" href="intro-R.html"><span class="header-section-number">3</span> Einführung in das Programmieren mit R</a></li>
-<li><a class="active" href="lin-reg.html"><span class="header-section-number">4</span> Lineare Regression</a></li>
-<li><a class="" href="lin-class.html"><span class="header-section-number">5</span> Lineare Klassifikation</a></li>
-<li><a class="" href="ml-pipeline.html"><span class="header-section-number">6</span> Machine Learning Pipeline</a></li>
-<li><a class="" href="trees.html"><span class="header-section-number">7</span> Decision Trees</a></li>
-<li><a class="" href="ensembles.html"><span class="header-section-number">8</span> Ensembles</a></li>
-<li><a class="" href="svm.html"><span class="header-section-number">9</span> Support Vector Machines</a></li>
-<li><a class="" href="ann.html"><span class="header-section-number">10</span> Artificial Neural Networks</a></li>
-<li><a class="" href="cnn.html"><span class="header-section-number">11</span> Convolutional Neural Networks</a></li>
-<li><a class="" href="rnn.html"><span class="header-section-number">12</span> Recurrent Neural Networks</a></li>
-<li><a class="" href="gen-AI.html"><span class="header-section-number">13</span> Generative AI</a></li>
-<li><a class="" href="bibliographie.html">Bibliographie</a></li>
-</ul>
+        <ul class="book-toc list-unstyled"><li><a class="" href="index.html"><span class="header-section-number">5</span> Lineare Regression</a></li></ul>
 
         <div class="book-extra">
           <p><a id="book-repo" href="https://github.com/martinSter/aml-book">Zum Quellcode des Buchs <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="lin-reg" class="section level1" number="4">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="lin-reg" class="section level1" number="5">
 <h1>
-<span class="header-section-number">4</span> Lineare Regression<a class="anchor" aria-label="anchor" href="#lin-reg"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5</span> Lineare Regression<a class="anchor" aria-label="anchor" href="#lin-reg"><i class="fas fa-link"></i></a>
 </h1>
+<p>In diesem Kapitel werden wir uns eingehend mit dem einfachsten Modell für das Regressionsproblem auseinander setzen, nämlich dem linearen Regressionsmodell. Liegt ein Regressionsproblem vor, dann macht es in der Praxis fast immer Sinn mit diesem Modell zu starten und dann die Komplexität nach Bedarf zu erhöhen.</p>
+<div id="ml-modelle-im-allgemeinen" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> ML-Modelle im Allgemeinen<a class="anchor" aria-label="anchor" href="#ml-modelle-im-allgemeinen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wie bereits in Kapitel <a href="intro.html#intro">2</a> gesehen, geht es beim Regressionsproblem darum, eine stetige Variable <span class="math inline">\(y_i \in \mathbb{R}\)</span> möglichst optimal vorherzusagen. Dazu verwenden wir eine oder mehrere Input-Variablen, welche wir kompakt als Vektor <span class="math inline">\(\mathbf{x}_i\)</span> schreiben.</p>
+<p>Das Problem ist nur lösbar, falls es tatsächlich einen Zusammenhang zwischen den Input-Variablen <span class="math inline">\(\mathbf{x}_i\)</span> und dem Output <span class="math inline">\(y_i\)</span> gibt. Wir nehmen ganz allgemein an, dass der Zusammenhang zwischen dem Output <span class="math inline">\(y_i\)</span> und den Input-Variablen <span class="math inline">\(\mathbf{x}_i\)</span> mathematisch wie folgt ausgedrückt werden kann:</p>
+<p><span class="math display">\[
+y_i = f(\mathbf{x}_i) + \epsilon
+\]</span></p>
+<ul>
+<li>Die Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> bezeichnet die <strong>systematische Information</strong>, die wir aus <span class="math inline">\(\mathbf{x}_i\)</span> im Hinblick auf <span class="math inline">\(y_i\)</span> lernen können.</li>
+<li>
+<span class="math inline">\(\epsilon\)</span> ist ein Fehlerterm, der die Differenz zwischen <span class="math inline">\(y_i\)</span> und <span class="math inline">\(f(\mathbf{x}_i)\)</span> abbildet,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\epsilon = y_i - f(\mathbf{x}_i)\)&lt;/span&gt;&lt;/p&gt;'><sup>1</sup></a> also den <strong>nicht-lernbaren</strong> (unsystematischen) <strong>Teil</strong>. Der Fehlerterm beinhaltet einerseits den Effekt von Variablen, die uns nicht zur Verfügung stehen, aber einen Einfluss auf den Output <span class="math inline">\(y_i\)</span> haben und andererseits nicht-messbare Variation, oft auch einfach “Noise” genannt. Grob gesagt: alles nicht-messbare.</li>
+</ul>
+<p>Der Output <span class="math inline">\(y_i\)</span> ergibt sich also aus der Addition eines systematischen Teils <span class="math inline">\(f(\mathbf{x}_i)\)</span> sowie eines Fehlerterms <span class="math inline">\(\epsilon\)</span>.</p>
+<div class="rmdnote">
+<p><strong>Wichtig</strong>: Ziel des Machine Learnings ist es, eine Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> zu trainieren (schätzen), die der wahren aber unbekannten Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> so nahe wie möglich kommt. Im (unrealistischen) Idealfall ist unser trainiertes Modell gleich der wahren Funktion, also <span class="math inline">\(\hat{f}(\mathbf{x}_i) = f(\mathbf{x}_i)\)</span> und wir haben die systematische Information perfekt gelernt. Jedes ML-Modell, das wir uns in diesem Buch anschauen werden, kann als eine mathematische Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> der Input-Variablen <span class="math inline">\(\mathbf{x}_i\)</span> aufgeschrieben werden. Sobald wir <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> trainiert haben, können wir damit Vorhersagen machen, denn die Vorhersage für einen gegebenen Input-Vektor <span class="math inline">\(\mathbf{x}_0\)</span> ist nichts anderes als der Wert der trainierten Funktion an diesem Punkt, also <span class="math inline">\(\hat{y}_0 = \hat{f}(\mathbf{x}_0)\)</span>.</p>
+</div>
+</div>
+<div id="das-modell-ausgeschrieben" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Das Modell (ausgeschrieben)<a class="anchor" aria-label="anchor" href="#das-modell-ausgeschrieben"><i class="fas fa-link"></i></a>
+</h2>
+<p>Nun wollen wir uns konkret mit dem linearen Regressionsmodell befassen. Das bedeutet nun nichts anderes, als dass wir die allgemein geschriebene Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> durch eine konkrete mathematische Funktion ersetzen. Das Modell kann wie folgt geschrieben werden:</p>
+<p><span class="math display">\[
+f(\mathbf{x}_i) = w_0 + w_1 \cdot x_{i1} + w_2 \cdot x_{i2} + \ldots + w_p \cdot x_{ip}
+\]</span>
+Wir verzichten hier bewusst darauf, den Hut für <span class="math inline">\(f\)</span> zu schreiben, da es sich lediglich um eine allgemein gültige Funktion handelt und noch nichts geschätzt bzw. trainiert wurde. Dieses Modell bzw. diese Funktion hat sogenannte <strong>Parameter</strong>, die es zu schätzen gilt. Hier sind dies die Parameter <span class="math inline">\(w_0,\; w_1,\; \ldots,\; w_p\)</span>. Wegen der Konstante <span class="math inline">\(w_0\)</span> haben wir immer einen Parameter mehr als es Input-Variablen hat, also <span class="math inline">\(p+1\)</span> Parameter.</p>
+<p>Diese Parameter sind die Schlüsselzutat in einem ML-Modell. Wir wollen sie optimieren, so dass die trainierte Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> der wahren Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> möglichst nahe kommt.</p>
+</div>
+<div id="das-modell-kompakt" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Das Modell (kompakt)<a class="anchor" aria-label="anchor" href="#das-modell-kompakt"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sie sehen oben, dass es ziemlich umständlich sein kann, das lineare Regressionsmodell aufzuschreiben, insbesondere wenn wir viele Input-Variablen haben. Mithilfe von <strong>Vektoren und Matrizen</strong> können wir das Modell viel kompakter aufschreiben.</p>
+<p>Wir haben in Kapitel <a href="intro.html#intro">2</a> bereits gesehen, dass die Input-Variablen für eine Beobachtung <span class="math inline">\(i\)</span> als Spaltenvektor geschrieben werden können. Wir modifizieren diesen Spaltenvektor in einem ersten Schritt, indem wir an erster Stelle eine 1 einfügen, also:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;So müssen wir die Konstante &lt;span class="math inline"&gt;\(w_0\)&lt;/span&gt; nicht separat aufschreiben.&lt;/p&gt;'><sup>2</sup></a></p>
+<p><span class="math display">\[\mathbf{x}_i=\begin{pmatrix} 1\\ x_{i1} \\ x_{i2} \\ \vdots \\ x_{ip} \end{pmatrix}\]</span></p>
+<p>Nun stecken wir die Parameter des Modells ebenfalls in einen Spaltenvektor:</p>
+<p><span class="math display">\[\mathbf{w}=\begin{pmatrix} w_0 \\ w_1 \\ w_2 \\ \vdots \\ w_p \end{pmatrix}\]</span></p>
+<p>Wir können nun das lineare Regressionsmodell (für die Beobachtung <span class="math inline">\(i\)</span>) als <strong>Skalarprodukt</strong> dieser beiden Vektoren aufschreiben:</p>
+<p><span class="math display">\[
+\begin{align}
+f(\mathbf{x}_i) &amp;= \mathbf{w}' \mathbf{x_i}\\
+&amp;= \begin{pmatrix} w_0 &amp; w_1 &amp; w_2 &amp; \dots &amp; w_p \end{pmatrix} \begin{pmatrix} 1\\ x_{i1} \\ x_{i2} \\ \vdots \\ x_{ip} \end{pmatrix}\\
+&amp;= w_0 \cdot 1 + w_1 \cdot x_{i1} + w_2 \cdot x_{i2} + \dots + w_p \cdot x_{ip}
+\end{align}
+\]</span></p>
+<p>Die Form <span class="math inline">\(\mathbf{w}' \mathbf{x_i}\)</span> ist schon ziemlich kompakt, aber es geht noch besser. Wir können nämlich das Modell gleich für alle <span class="math inline">\(n\)</span> Beobachtungen (und nicht nur für die <span class="math inline">\(i\)</span>-te Beobachtung) aufschreiben. Dazu müssen wir die Input-Variablen für jede Beobachtung <span class="math inline">\(i\)</span> in einer Matrix anordnen:</p>
+<p><span class="math display">\[
+\mathbf{X} = \begin{pmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p}\\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p}\\
+\vdots &amp; \cdots &amp; \cdots &amp; \ddots &amp; \vdots\\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}\\
+\end{pmatrix}
+\]</span></p>
+<p>Die Matrix <span class="math inline">\(\mathbf{X}\)</span> wird typischerweise <strong>Design Matrix</strong> genannt. Die erste Zeile enthält die Input-Variablen für die erste Beobachtung, die zweite Zeile die Input-Variablen für die zweite Beobachtung, usw. Nun können wir das Modell mithilfe einer Multiplikation zwischen der Design Matrix <span class="math inline">\(\mathbf{X}\)</span> und dem Spaltenvektor <span class="math inline">\(\mathbf{w}\)</span> in einem Schritt für alle Beobachtungen aufschreiben:</p>
+<p><span class="math display">\[
+\begin{align}
+f(\mathbf{X}) &amp;= \mathbf{X}\mathbf{w}\\
+&amp;= \begin{pmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p}\\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p}\\
+\vdots &amp; \cdots &amp; \cdots &amp; \ddots &amp; \vdots\\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}\\
+\end{pmatrix}\begin{pmatrix} w_0 \\ w_1 \\ w_2 \\ \dots \\ w_p \end{pmatrix}\\
+&amp;= \begin{pmatrix}
+w_0 \cdot 1 + w_1 \cdot x_{11} + w_2 \cdot x_{12} + \dots + w_p \cdot x_{1p} \\
+w_0 \cdot 1 + w_1 \cdot x_{21} + w_2 \cdot x_{22} + \dots + w_p \cdot x_{2p} \\
+\cdots \\
+w_0 \cdot 1 + w_1 \cdot x_{n1} + w_2 \cdot x_{n2} + \dots + w_p \cdot x_{np}\end{pmatrix}
+\end{align}
+\]</span></p>
+<p>Überprüfen wir doch noch kurz die Dimensionen von obigem Matrix-Vektor Produkt. Die Matrix <span class="math inline">\(\mathbf{X}\)</span> hat <span class="math inline">\(n\)</span> Zeilen und <span class="math inline">\(p+1\)</span> Spalten und darum eine Dimensionalität von <span class="math inline">\(n \times (p+1)\)</span>. Der Spaltenvektor <span class="math inline">\(\mathbf{w}\)</span> hat Dimensionalität <span class="math inline">\((p+1) \times 1\)</span>. Das Matrix-Vektor Produkt hat dementsprechend eine Dimensionalität von <span class="math inline">\(n \times 1\)</span>, genau was wir erwarten würden, nämlich einen Vektor mit den Vorhersagen für alle <span class="math inline">\(n\)</span> Beobachtungen.</p>
+</div>
+<div id="modell-training" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Modell Training<a class="anchor" aria-label="anchor" href="#modell-training"><i class="fas fa-link"></i></a>
+</h2>
+<p>Grob gesagt rechnen wir ein ML-Modell in zwei Schritten. In einem <strong>ersten Schritt</strong> entscheiden wir uns für die funktionale Form unseres Modells <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span>. Man nennt dies in der Fachsprache <strong>Model Selection</strong>. Wir betrachten hier nur mal den vereinfachten Fall, in dem wir nur eine <span class="math inline">\(x_i\)</span>-Variable pro Beobachtung als Input haben. Folgende Funktionen bzw. Modelle sind mögliche Kandidaten:</p>
+<ul>
+<li>
+<span class="math inline">\(f(x_i) = b_0 + b_1 \cdot x_i\)</span> (einfache lineare Regression)</li>
+<li>
+<span class="math inline">\(f(x_i) = b_0 + b_1 \cdot x_i + b_2 \cdot x_i^2\)</span> (polynomische Regression)</li>
+<li><span class="math inline">\(f(x_i) = \begin{cases} \bar{y}_1, &amp; \text{falls}\; x_i &gt; x^*\\ \bar{y}_2, &amp; \text{sonst} \end{cases}\)</span></li>
+</ul>
+<p>Wir werden mit unserer Wahl der Funktion nie genau die wahre aber unbekannte Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> treffen, aber wir versuchen möglichst nahe daran zu kommen.</p>
+<div style="background-color:#DEEBF7; padding:10px">
+<p><strong>“No Free Lunch” Theorem</strong></p>
+<p>Das <em>No Free Lunch</em> Theorem besagt, dass es kein universal bestes Modell gibt. Das heisst, dass es je nach Problem und Datensatz andere Modelle bzw. Funktionen braucht, um gute Vorhersagen zu machen. Das ist der Hauptgrund, warum wir Ihnen möglichst viele verschiedene Tools mit auf den Weg geben wollen.</p>
+</div>
+<p><br></p>
+<p>In einem <strong>zweiten Schritt</strong> geht es darum, die Parameter des im ersten Schritt gewählten Modells zu schätzen. Man nennt dies in der Fachsprache <strong>Model Fitting / Training</strong>, weil wir versuchen, das Modell so gut wie möglich an die Daten zu fitten. Sie haben bereits eine Methode kennen gelernt, wie die Parameter eines Modells geschätzt werden können:</p>
+<ul>
+<li>Kleinstquadratemethode oder auf English “Least squares” (Modul EMBA)</li>
+</ul>
+<p>Die Grundidee beim <strong>Model Fitting</strong> ist, eine <strong>Kostenfunktion</strong> (engl. <em>Loss Function</em>) aufzustellen, die von den Parameterwerten der Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> abhängt. Und nun der Schlüsselschritt:</p>
+<p>Während des Trainings verändern wir die Parameterwerte so lange, bis die Kostenfunktion ein <strong>Minimum</strong> erreicht.</p>
+<p>Nun haben wir die optimalen Parameterwerte und darum auch das optimale Modell <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> gefunden. Für das Regressionsproblem haben Sie bereits eine mögliche Kostenfunktion (Stichwort <em>Summe der quadrierten Residuen</em>) kennen gelernt:</p>
+<p><span class="math display">\[
+J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mathbf{x}_i) \right)^2
+\]</span></p>
+<p>Im Vergleich zur Summer der quadrierten Residuen haben wir hier noch den Faktor <span class="math inline">\(\frac{1}{2n}\)</span> drin. Dieser Faktor macht daraus eine Art Mittelwert und darum wird diese Kostenfunktion typischerweise <strong>Mean Squared Error</strong> (MSE) genannt.</p>
+<p>Sie wundern sich nun vielleicht, wie diese Kostenfunktion von den Modellparameter abhängt, da diese in obiger Formel ja gar nicht ersichtlich sind. Schreiben wir die Kostenfunktion doch mal etwas um (unter der Annahme, dass es nur eine Input-Variable <span class="math inline">\(x_i\)</span> gibt und wir ein einfaches lineares Regressionsmodell anwenden wollen):</p>
+<p><span class="math display">\[
+\begin{align}
+J(\hat{b}_0, \hat{b}_1) &amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2 \\
+&amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - (\hat{b}_0 + \hat{b}_1 \cdot x_i) \right)^2 \\
+&amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{b}_0 - \hat{b}_1 \cdot x_i \right)^2 \\
+\end{align}
+\]</span></p>
+<p>Nun ist offensichtlich, wie die Kostenfunktion <span class="math inline">\(J\)</span> von den Modellparameter <span class="math inline">\(\hat{b}_0\)</span> und <span class="math inline">\(\hat{b}_1\)</span> abhängt. Im ML gibt es nun viele verschiedene Arten, wie man für die beiden Modellparameter die optimalen Werte findet. Hier ist die Lösung zum Glück einfach, denn es gibt eine sogenannte <strong>analytische Lösung</strong>, die man mit der oben erwähnten Kleinstquadratemethode findet. Wie Sie diese analytische Lösung finden, haben Sie bei Thomas Heimsch in Aufgabe 5 der Übungsserie 2 gelernt (zwar mit anderer Notation, aber vom Prinzip her gleich).</p>
+<p>Für andere Modelle gibt es oft leider keine analytische Lösung für die optimalen Parameterwerte. In diesem Fall werden wir <strong>iterative Optimierungsverfahren</strong> anwenden, mit denen wir uns langsam den optimalen Parameterwerten annähern (dazu später mehr).</p>
+<p>Grundsätzlich gilt: je besser die Modellparameter geschätzt werden können, desto kleiner sind die quadrierten Differenzen, <span class="math inline">\(\left(y_i - \hat{f}(x_i) \right)^2\)</span>, und desto kleiner der Wert der Kostenfunktion.</p>
+<div style="background-color:#fef9e7; padding:10px">
+<p><strong>Optional: Zerlegung des Vorhersagefehlers</strong></p>
+<p>Wir wollen hier kurz anschauen, wie der <strong>Erwartungswert</strong> des quadrierten Fehlers, <span class="math inline">\(\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\)</span>, in zwei Komponenten zerlegt werden kann.</p>
+<p>Dazu gilt folgendes:</p>
+<ul>
+<li>Von oben wissen wir, dass <span class="math inline">\(y_i = f(\mathbf{x}_i) + \epsilon\)</span> gilt.</li>
+<li>Wir nehmen an, dass der Erwartungswert des unsystematischen Teils <span class="math inline">\(\epsilon\)</span> Null ist, also <span class="math inline">\(\text{E}(\epsilon)=0\)</span>.</li>
+<li>Allgemeine Regel zur Varianz einer Zufallsvariable: <span class="math inline">\(\text{Var}(\epsilon) = \text{E}(\epsilon^2) - \text{E}(\epsilon)^2 = \text{E}(\epsilon^2) - 0^2 = \text{E}(\epsilon^2)\)</span>.</li>
+<li>
+<span class="math inline">\(\hat{f}\)</span> und <span class="math inline">\(\mathbf{x}_i\)</span> sind fix und gegeben (keine Zufallsvariablen) und darum gilt <span class="math inline">\(\text{E}\left(\hat{f}(\mathbf{x}_i)\right)=\hat{f}(\mathbf{x}_i)\)</span>.</li>
+</ul>
+<p>Nun können wir den <strong>Erwartungswert</strong> des quadrierten Fehlers rechnen:</p>
+<p><span class="math display">\[
+\begin{align}
+\text{E}\,\left[\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\right] &amp;= \text{E}\,\left[\left(f(\mathbf{x}_i) + \epsilon - \hat{f}(\mathbf{x}_i)\right)^2\right] \\
+&amp;= \text{E}\,\left[f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot \epsilon \cdot f(\mathbf{x}_i) - 2 \cdot \epsilon \cdot \hat{f}(\mathbf{x}_i) + \epsilon^2 \right] \\
+&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot \text{E}(\epsilon) \cdot f(\mathbf{x}_i) - 2 \cdot \text{E}(\epsilon) \cdot \hat{f}(\mathbf{x}_i) + \text{E}(\epsilon^2) \\
+&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot 0 \cdot f(\mathbf{x}_i) - 2 \cdot 0 \cdot \hat{f}(\mathbf{x}_i) + \text{Var}(\epsilon) \\
+&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + \text{Var}(\epsilon) \\
+&amp;= \left(f(\mathbf{x}_i) - \hat{f}(\mathbf{x}_i)\right)^2 + \text{Var}(\epsilon)
+\end{align}
+\]</span></p>
+<p>Der erste Teil auf der rechten Seite der Formel beschreibt den <strong>reduzierbaren Fehler</strong> und der zweite Teil den <strong>nicht-reduzierbaren Fehler</strong>. Wir sehen also auch hier: es ist sehr wichtig, dass wir eine Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> schätzen, welche dem wahren funktionalen Zusammenhang <span class="math inline">\(f(\mathbf{x}_i)\)</span> möglichst nahe kommt.</p>
+</div>
+<p>Komplexität des Modelltrainings erwähnen.</p>
+</div>
+<div id="interpretierbarkeit" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> Interpretierbarkeit<a class="anchor" aria-label="anchor" href="#interpretierbarkeit"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir werden in diesem Modul sehr einfache, aber auch sehr komplexe Funktionen kennen lernen. Je komplexer die Funktionen sind, desto mehr haben wir es mit einer <strong>Blackbox</strong> zu tun und desto schwieriger wird es, das Modell zu interpretieren. Relativ unflexible Modelle wie z.B. die lineare Regression sind einfach interpretierbar. Die geschätzten Koeffizienten <span class="math inline">\(\hat{b}_1,\; \hat{b}_2,\; \ldots\)</span> erlauben uns direkt zu quantifizieren, was der Effekt der verschiedenen Input-Variablen ist. Im Gegensatz dazu führen komplexe Modelle (mit vielen zu optimierenden Parameter) oft zu einer sehr guten Vorhersagegüte, weil komplexe Modelle flexibel sind und darum komplexe Zusammenhänge zwischen <span class="math inline">\(\mathbf{x}_i\)</span> und <span class="math inline">\(y_i\)</span> modellieren können.</p>
+<p>Kurz Variable Importance erwähnen</p>
+</div>
+<div id="regularisierte-regression" class="section level2" number="5.6">
+<h2>
+<span class="header-section-number">5.6</span> Regularisierte Regression<a class="anchor" aria-label="anchor" href="#regularisierte-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>Kurz auf Variable Selection (siehe ISLR) eingehen.</p>
+<p>Hier ist nun der richtige Moment, um mal kurz auf die Theorie zum linearen Regressionsmodell <strong>mit Regularisierung</strong> einzugehen.</p>
+<p>Wir haben in der Einführung gelernt, dass wir für das lineare Regressionsproblem folgende Kostenfunktion minimieren (den Mean Squared Error oder kurz MSE):</p>
+<p><span class="math display">\[
+J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mathbf{x}_i) \right)^2
+\]</span></p>
+<p>Normalerweise gibt es hier sogar eine analytische Lösung, d.h. es gibt Formeln wie die optimalen Parameter des Modells aus den Trainingsdaten berechnet werden können. Das ist mathematisch aber nur dann möglich, wenn die Anzahl Beobachtungen im Trainingsdatensatz grösser ist als die Anzahl Input-Variablen. Oder mathematisch ausgedrückt, nur wenn <span class="math inline">\(n&gt;p\)</span>.</p>
+<p>Wenn <span class="math inline">\(n&lt;p\)</span> gibt es keine analytische Lösung für das Problem. Wir haben zu wenig Datenpunkte, um die vielen Parameter des Modells schätzen zu können. Selbst wenn <span class="math inline">\(n&gt;p\)</span>, aber <span class="math inline">\(p\)</span> (Anzahl Input-Variablen) sehr gross ist, sind die Schätzungen oft nicht sehr gut, weil es dann zu Overfitting kommt. Die Lösung für dieses Problem ist <strong>Regularisierung</strong>.</p>
+<p>Regularisierung bedeutet eigentlich nichts anderes, als dass wir die obige Kostenfunktion modifizieren. Dabei gibt es zwei mögliche Varianten, <strong>Ridge</strong> Regularisierung oder <strong>LASSO</strong>:</p>
+<ul>
+<li>Kostenfunktion für Ridge Regularisierung: <span class="math inline">\(J(b_0,b_1,\dots,b_p) = \text{MSE} + \lambda \cdot \sum_{j=1}^p b_j^2\)</span>
+</li>
+<li>Kostenfunktion für LASSO Regularisierung: <span class="math inline">\(J(b_0,b_1,\dots,b_p) = \text{MSE} + \lambda \cdot \sum_{j=1}^p |b_j|\)</span>
+</li>
+</ul>
+<p>Diese beiden modifizierten Kostenfunktionen haben ein bisschen Erklärungsbedarf:</p>
+<ul>
+<li>In beiden Varianten wollen wir <strong>gleichzeitig</strong> den MSE so klein wie möglich und eine spezielle Summe über die Modellparameter (d.h. den Regularisierungsterm) so klein wie möglich machen. Das sind zwei konkurrenzierende Ziele und während des Trainings muss der beste Tradeoff gefunden werden.</li>
+<li>Bei Ridge ist der Regularisierungsterm eine Summe über die quadrierten Modellparameter. Das Quadrieren stellt sicher, dass sich positive und negative Parameterwerte nicht gegenseitig kompensieren.</li>
+<li>Bei LASSO ist der Regularisierungsterm eine Summe über die absoluten Werte der Modellparameter.</li>
+<li>Der Regularisierungsterm enthält die Konstante <span class="math inline">\(b_0\)</span> <strong>nicht</strong> (Summe startet bei <span class="math inline">\(j=1\)</span> und nicht bei <span class="math inline">\(j=0\)</span>).</li>
+<li>Der Hyperparameter <span class="math inline">\(\lambda\)</span> legt fest, wie viel Gewicht der Regularisierungsterm bekommt. Je grösser <span class="math inline">\(\lambda\)</span>, desto stärker “bestrafen” wir komplexe Modelle.</li>
+<li>Die Optimierung der LASSO Kostenfunktion hat einen gewichtigen Vorteil gegenüber Ridge: unwichtige Parameter werden bei LASSO automatisch auf 0 gesetzt. Das Modell nimmt also selbständig eine Selektion der wichtigen Variablen vor.</li>
+</ul>
+<div style="background-color:#fef9e7; padding:10px">
+<p><strong>Fragen</strong>:</p>
+<ul>
+<li>Was passiert wenn <span class="math inline">\(\lambda=0\)</span>?</li>
+<li>Was passiert wenn <span class="math inline">\(\lambda \rightarrow \infty\)</span>?</li>
+</ul>
+</div>
+<p><br></p>
+<p>Die grosse Frage ist nun, wie wir den Wert für den Hyperparameter <span class="math inline">\(\lambda\)</span> wählen. Das schauen wir uns im nächsten Abschnitt an.</p>
+</div>
+<div id="bias-variance-tradeoff" class="section level2" number="5.7">
+<h2>
+<span class="header-section-number">5.7</span> Bias-Variance Tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
+</h2>
+<div style="background-color:#DEEBF7; padding:10px">
+<p><strong>Was gibt es bei der Wahl des optimalen Modells zu berücksichtigen?</strong></p>
+<p>Das zentrale Thema bei der Wahl des Modells ist der <strong>Bias-Variance Tradeoff</strong>. Wir wollen ein Modell wählen, das weder zu viel Bias noch zu viel Varianz hat. In der Einführung zum Machine Learning haben wir bereits gelernt, dass der erwartete (quadrierte) Fehler in einen reduzierbaren und in einen nicht-reduzierbaren Fehler aufgeteilt werden kann. In der Einführung haben wir angenommen, dass <span class="math inline">\(\hat{f}\)</span> fix ist. Nun lockern wir diese Annahme und nehmen an, dass <span class="math inline">\(\hat{f}\)</span> eine Zufallsvariable ist, welche je nach Trainingsdatensatz eine unterschiedliche Form annimmt. Nach einer relativ komplizierten Herleitung kann man zeigen, dass der <strong>erwartete quadrierte Fehler</strong> für eine gegebene Testbeobachtung <span class="math inline">\((y_i,\mathbf{x}_i)\)</span> wie folgt zerlegt werden kann:</p>
+<p><span class="math display">\[
+\text{E}\,\left[\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\right] = \text{Var}\left(\hat{f}(\mathbf{x}_i)\right) + \left[\text{Bias}\left(\hat{f}(\mathbf{x}_i)\right)\right]^2 + \text{Var}(\epsilon)
+\]</span></p>
+<p>Diese Formulierung beschreibt den erwarteten (quadrierten) Fehler, den wir erhalten würden, wenn wir mit einer grossen Anzahl Trainings-Datensätzen jeweils einzeln <span class="math inline">\(f\)</span> schätzen würden und dann mit Testbeobachtung <span class="math inline">\((y_i,\mathbf{x}_i)\)</span> evaluieren würden. D.h., es ist eine ziemlich theoretische Angelegenheit, denn in der Praxis haben wir ja immer nur einen Trainingsdatensatz zur Verfügung. Aber diese Überlegungen helfen uns, das richtige Modell zu wählen.</p>
+<p>Schauen wir uns kurz die einzelnen Komponenten auf der rechten Seite etwas genauer an:</p>
+<ul>
+<li>
+<span class="math inline">\(\text{Var}\left(\hat{f}(\mathbf{x}_i)\right)\)</span> misst, wie stark sich <span class="math inline">\(\hat{f}\)</span> ändert, wenn wir einen anderen Trainings-Datensatz verwenden. Ein Modell mit hoher Varianz passt sich jeweils sehr stark an die Trainingsdaten an. Je kleiner diese Varianz, desto tiefer der erwartete quadrierte Fehler.</li>
+<li>
+<span class="math inline">\(\left[\text{Bias}\left(\hat{f}(\mathbf{x}_i)\right)\right]^2\)</span> ist der quadrierte Bias und misst die systematische Abweichung vom wahren unbekannten <span class="math inline">\(f\)</span>. Wir wollen natürlich auch den Bias möglichst klein halten.</li>
+<li>Die dritte Komponente, <span class="math inline">\(\text{Var}(\epsilon)\)</span>, kennen Sie bereits. Es ist der nicht-redzierbare Fehler.</li>
+</ul>
+<p>Ein Modell mit <strong>viel Bias</strong> führt zu einer schlechten Vorhersagequalität (auf Trainings- und Testdaten), weil das Modell zu rigide ist, um den wahren Zusammenhang zwischen der Output-Variable und den Features zu modellieren. Beispiel: wir verwenden ein einfaches lineares Regressionsmodell, um einen stark nicht-linearen Zusammenhang zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> zu modellieren. Im Fall von Modellen mit viel Bias spricht man auch von <strong>Underfitting</strong>.</p>
+<p>Ein Modell mit <strong>viel Varianz</strong> führt zu einer hervorragenden Vorhersagequalität auf den Trainingsdaten, aber zu einer sehr schlechten Vorhersagequalität auf den Testdaten. Das Problem hier ist, dass das Model zu flexibel ist gemessen an der Grösse des Trainingsdatensatzes. Das Modell passt sich so zu stark an die Trainingsdaten an und modelliert auch sogenanntes <strong>Noise</strong> (und nicht nur das <strong>Signal</strong> in den Daten). Beispiel: wir modellieren ein neuronales Netzwerk, haben aber nur einen Trainingsdatensatz von einigen hundert Beobachtungen. Im Fall von Modellen mit viel Varianz spricht man auch von <strong>Overfitting</strong>.</p>
+<p>Warum spricht man von einem <strong>Tradeoff</strong>? Flexiblere Modelle haben oft kleinen Bias, aber hohe Varianz, während unflexible Modelle oft eine kleine Varianz, aber einen hohen Bias haben. Es existiert also ein Tradeoff zwischen Bias und Varianz und wir wollen beim Modellieren und vor allem beim Hyperparameter Tuning den optimalen Tradeoff finden. (Die Intuition des Bias-Varianz Tradeoffs ist übrigens auch auf das Klassifikationsproblem übertragbar.)</p>
+<p><strong>Bias-Variance Tradeoff bei Regularisierter Regression</strong></p>
+<p>In unserem Beispiel wenden wir ein regularisiertes Regressionsmodell an. Hier spielt der Hyperparameter <span class="math inline">\(\lambda\)</span> (in R: <code>penalty</code>) eine zentrale Rolle für den Tradeoff zwischen Bias und Variance. Ein zu tiefer Wert für <span class="math inline">\(\lambda\)</span> kann zu einem zu flexiblen Modell mit viel Varianz führen. Ein zu hoher Wert für <span class="math inline">\(\lambda\)</span> führt zu einem zu rigiden Modell mit viel Bias.</p>
+<p><strong>Wichtig:</strong></p>
+<ul>
+<li>Indem wir den Hyperparameter via Resampling optimieren, wählen wir automatisch ein Modell mit einem guten Tradeoff zwischen Bias und Varianz!</li>
+<li>Mit grossen Datensätzen ist das Problem des Overfittings weniger dramatisch. Wir haben genügend Trainingsdaten, dass selbst flexible Modelle nicht zu stark overfitten. Das ist bei unserem Beispiel der Fall (wir haben einen ziemlich grossen Trainingsdatensatz). Darum ist der optimale Hyperparameter in unserem Beispiel <code>penalty = 0.001</code>, also eher einer der kleineren Werte.</li>
+</ul>
+<p>Eine letzte Überlegung bezüglich Modellselektion geht folgendermassen: wenn wir mehrere Modelle haben, die ähnlich gut performen, dann wählen wir das einfachste (kleinste) oder <strong>am wenigsten komplexe Modell</strong>. Man nennt dies <strong>Occam’s Razor</strong>. William of Occam war ein Englischer Mönch und hat dieses Prinzip in einem anderen Kontext erstmals formuliert.</p>
+</div>
+<p><br></p>
+</div>
+<div id="polynomische-regression" class="section level2" number="5.8">
+<h2>
+<span class="header-section-number">5.8</span> Polynomische Regression<a class="anchor" aria-label="anchor" href="#polynomische-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir machen hier nun einen kurzen Abstecher in die <strong>polynomische Regression</strong>, denn diese eignet sich sehr gut, um den Bias-Variance Tradeoff zu illustrieren.</p>
+<p>Ein <strong>ganz wichtiger Punkt</strong>: das polynomische Regressionsmodell ist immer noch <strong>linear in den Parametern</strong>, es handelt sich also immer noch um ein lineares Modell. Sie sehen aber an obigen Modellkurven, dass dieses “lineare” Modell sehr wohl in der Lage ist, nicht-lineare Zusammenhänge zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> zu fitten!</p>
+</div>
+<div id="lineare-regression-in-r" class="section level2" number="5.9">
+<h2>
+<span class="header-section-number">5.9</span> Lineare Regression in R<a class="anchor" aria-label="anchor" href="#lineare-regression-in-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Base R vs. <code>tidymodels</code></p>
 
 </div>
+</div>
+
   <div class="chapter-nav">
-<div class="prev"><a href="intro-R.html"><span class="header-section-number">3</span> Einführung in das Programmieren mit R</a></div>
-<div class="next"><a href="lin-class.html"><span class="header-section-number">5</span> Lineare Klassifikation</a></div>
+<div class="empty"></div>
+<div class="empty"></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <img src="images/fhnw_10mm.jpg" alt="FHNW Logo" style="height: auto; width: 100%; object-fit: contain; Padding: 10px;"><nav id="toc" data-toggle="toc" aria-label="In diesem Kapitel"><h2>In diesem Kapitel</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#lin-reg"><span class="header-section-number">4</span> Lineare Regression</a></li></ul>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/martinSter/aml-book/blob/main/04-lin-reg.Rmd">Quellcode anschauen <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/martinSter/aml-book/edit/main/04-lin-reg.Rmd">Diese Seite bearbeiten <i class="fab fa-github"></i></a></li>
+          
         </ul>
 </div>
     </nav>
