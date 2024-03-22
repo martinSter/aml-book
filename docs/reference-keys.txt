@@ -31,12 +31,15 @@ lin-reg
 ml-modelle-im-allgemeinen
 das-modell-ausgeschrieben
 das-modell-kompakt
-modell-training
+modelltraining
+perspektive-1-funktionsoptimierung
+perspektive-2-wahrscheinlichkeitstheorie
 interpretierbarkeit
 regularisierte-regression
 bias-variance-tradeoff
 polynomische-regression
 lineare-regression-in-r
+weiterführende-themen
 lin-class
 ml-pipeline
 trees

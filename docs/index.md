@@ -1,7 +1,7 @@
 --- 
 title: "Machine Learning für das KMU"
 author: "Martin Sterchi"
-date: "2024-03-19"
+date: "2024-03-22"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

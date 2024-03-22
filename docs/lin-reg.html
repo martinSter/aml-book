@@ -7,7 +7,7 @@
 <title>4 Lineare Regression | Machine Learning für das KMU</title>
 <meta name="author" content="Martin Sterchi">
 <meta name="description" content="In diesem Kapitel werden wir uns eingehend mit dem einfachsten Modell für das Regressionsproblem auseinander setzen, nämlich dem linearen Regressionsmodell. Liegt ein Regressionsproblem vor, dann...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.38 with bs4_book()">
 <meta property="og:title" content="4 Lineare Regression | Machine Learning für das KMU">
 <meta property="og:type" content="book">
 <meta property="og:description" content="In diesem Kapitel werden wir uns eingehend mit dem einfachsten Modell für das Regressionsproblem auseinander setzen, nämlich dem linearen Regressionsmodell. Liegt ein Regressionsproblem vor, dann...">
@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="In diesem Kapitel werden wir uns eingehend mit dem einfachsten Modell für das Regressionsproblem auseinander setzen, nämlich dem linearen Regressionsmodell. Liegt ein Regressionsproblem vor, dann...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -38,10 +38,10 @@
 
     <div id="main-nav" class="collapse-lg">
       <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Suche" aria-label="Suche">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 </form>
 
-      <nav aria-label="Table of contents"><h2>Inhaltsverzeichnis</h2>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Über das Buch</a></li>
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Einführung</a></li>
@@ -61,7 +61,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/martinSter/aml-book">Zum Quellcode des Buchs <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/martinSter/aml-book">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -85,7 +85,7 @@ y_i = f(\mathbf{x}_i) + \epsilon
 <span class="math inline">\(\epsilon\)</span> ist ein Fehlerterm, der die Differenz zwischen <span class="math inline">\(y_i\)</span> und <span class="math inline">\(f(\mathbf{x}_i)\)</span> abbildet,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\epsilon = y_i - f(\mathbf{x}_i)\)&lt;/span&gt;&lt;/p&gt;'><sup>11</sup></a> also den <strong>nicht-lernbaren</strong> (unsystematischen) <strong>Teil</strong>. Der Fehlerterm beinhaltet einerseits den Effekt von Variablen, die uns nicht zur Verfügung stehen, aber einen Einfluss auf den Output <span class="math inline">\(y_i\)</span> haben und andererseits nicht-messbare Variation, oft auch einfach “Noise” genannt. Grob gesagt: alles nicht-messbare.</li>
 </ul>
 <p>Der Output <span class="math inline">\(y_i\)</span> ergibt sich also aus der Addition eines systematischen Teils <span class="math inline">\(f(\mathbf{x}_i)\)</span> sowie eines Fehlerterms <span class="math inline">\(\epsilon\)</span>.</p>
-<div class="rmdnote">
+<div style="background-color:#DEEBF7; padding:10px">
 <p><strong>Wichtig</strong>: Ziel des Machine Learnings ist es, eine Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> zu trainieren (schätzen), die der wahren aber unbekannten Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> so nahe wie möglich kommt. Im (unrealistischen) Idealfall ist unser trainiertes Modell gleich der wahren Funktion, also <span class="math inline">\(\hat{f}(\mathbf{x}_i) = f(\mathbf{x}_i)\)</span> und wir haben die systematische Information perfekt gelernt. Jedes ML-Modell, das wir uns in diesem Buch anschauen werden, kann als eine mathematische Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> der Input-Variablen <span class="math inline">\(\mathbf{x}_i\)</span> aufgeschrieben werden. Sobald wir <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> trainiert haben, können wir damit Vorhersagen machen, denn die Vorhersage für einen gegebenen Input-Vektor <span class="math inline">\(\mathbf{x}_0\)</span> ist nichts anderes als der Wert der trainierten Funktion an diesem Punkt, also <span class="math inline">\(\hat{y}_0 = \hat{f}(\mathbf{x}_0)\)</span>.</p>
 </div>
 </div>
@@ -93,7 +93,7 @@ y_i = f(\mathbf{x}_i) + \epsilon
 <h2>
 <span class="header-section-number">4.2</span> Das Modell (ausgeschrieben)<a class="anchor" aria-label="anchor" href="#das-modell-ausgeschrieben"><i class="fas fa-link"></i></a>
 </h2>
-<p>Nun wollen wir uns konkret mit dem linearen Regressionsmodell befassen. Das bedeutet nun nichts anderes, als dass wir die allgemein geschriebene Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> durch eine konkrete mathematische Funktion ersetzen. Das Modell kann wie folgt geschrieben werden:</p>
+<p>Nun wollen wir uns konkret mit dem linearen Regressionsmodell befassen. Das bedeutet nun nichts anderes, als dass wir die allgemein geschriebene Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> durch eine konkrete mathematische Funktion ersetzen. Im Machine Learning ist das der erste wichtige Schritt, nämlich die Modellwahl (engl. <em>Model Selection</em>). Das Modell kann wie folgt geschrieben werden:</p>
 <p><span class="math display">\[
 f(\mathbf{x}_i) = w_0 + w_1 \cdot x_{i1} + w_2 \cdot x_{i2} + \ldots + w_p \cdot x_{ip}
 \]</span>
@@ -142,67 +142,126 @@ w_0 \cdot 1 + w_1 \cdot x_{n1} + w_2 \cdot x_{n2} + \dots + w_p \cdot x_{np}\end
 <p>Überprüfen wir doch noch kurz die Dimensionen von obigem Matrix-Vektor Produkt. Die Matrix <span class="math inline">\(\mathbf{X}\)</span> hat <span class="math inline">\(n\)</span> Zeilen und <span class="math inline">\(p+1\)</span> Spalten und darum eine Dimensionalität von <span class="math inline">\(n \times (p+1)\)</span>. Der Spaltenvektor <span class="math inline">\(\mathbf{w}\)</span> hat Dimensionalität <span class="math inline">\((p+1) \times 1\)</span>. Das Matrix-Vektor Produkt hat dementsprechend eine Dimensionalität von <span class="math inline">\(n \times 1\)</span>, genau was wir erwarten würden, nämlich einen Vektor mit den Vorhersagen für alle <span class="math inline">\(n\)</span> Beobachtungen.</p>
 <p>Warum wir all das tun, werden wir weiter unten sehen. Es wird unser Leben viel einfacher machen! Versuchen Sie diesen Abschnitt hier gut zu verstehen, so dass Sie sobald wie möglich mit der Matrixschreibweise von Modellen vertraut sind.</p>
 </div>
-<div id="modell-training" class="section level2" number="4.4">
+<div id="modelltraining" class="section level2" number="4.4">
 <h2>
-<span class="header-section-number">4.4</span> Modell Training<a class="anchor" aria-label="anchor" href="#modell-training"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> Modelltraining<a class="anchor" aria-label="anchor" href="#modelltraining"><i class="fas fa-link"></i></a>
 </h2>
-<p>Grob gesagt rechnen wir ein ML-Modell in zwei Schritten. In einem <strong>ersten Schritt</strong> entscheiden wir uns für die funktionale Form unseres Modells <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span>. Man nennt dies in der Fachsprache <strong>Model Selection</strong>. Wir betrachten hier nur mal den vereinfachten Fall, in dem wir nur eine <span class="math inline">\(x_i\)</span>-Variable pro Beobachtung als Input haben. Folgende Funktionen bzw. Modelle sind mögliche Kandidaten:</p>
-<ul>
-<li>
-<span class="math inline">\(f(x_i) = b_0 + b_1 \cdot x_i\)</span> (einfache lineare Regression)</li>
-<li>
-<span class="math inline">\(f(x_i) = b_0 + b_1 \cdot x_i + b_2 \cdot x_i^2\)</span> (polynomische Regression)</li>
-<li><span class="math inline">\(f(x_i) = \begin{cases} \bar{y}_1, &amp; \text{falls}\; x_i &gt; x^*\\ \bar{y}_2, &amp; \text{sonst} \end{cases}\)</span></li>
-</ul>
-<p>Wir werden mit unserer Wahl der Funktion nie genau die wahre aber unbekannte Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> treffen, aber wir versuchen möglichst nahe daran zu kommen.</p>
-<div style="background-color:#DEEBF7; padding:10px">
-<p><strong>“No Free Lunch” Theorem</strong></p>
-<p>Das <em>No Free Lunch</em> Theorem besagt, dass es kein universal bestes Modell gibt. Das heisst, dass es je nach Problem und Datensatz andere Modelle bzw. Funktionen braucht, um gute Vorhersagen zu machen. Das ist der Hauptgrund, warum wir Ihnen möglichst viele verschiedene Tools mit auf den Weg geben wollen.</p>
-</div>
-<p><br></p>
-<p>In einem <strong>zweiten Schritt</strong> geht es darum, die Parameter des im ersten Schritt gewählten Modells zu schätzen. Man nennt dies in der Fachsprache <strong>Model Fitting / Training</strong>, weil wir versuchen, das Modell so gut wie möglich an die Daten zu fitten. Sie haben bereits eine Methode kennen gelernt, wie die Parameter eines Modells geschätzt werden können:</p>
-<ul>
-<li>Kleinstquadratemethode oder auf English “Least squares” (Modul EMBA)</li>
-</ul>
-<p>Die Grundidee beim <strong>Model Fitting</strong> ist, eine <strong>Kostenfunktion</strong> (engl. <em>Loss Function</em>) aufzustellen, die von den Parameterwerten der Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> abhängt. Und nun der Schlüsselschritt:</p>
-<p>Während des Trainings verändern wir die Parameterwerte so lange, bis die Kostenfunktion ein <strong>Minimum</strong> erreicht.</p>
-<p>Nun haben wir die optimalen Parameterwerte und darum auch das optimale Modell <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> gefunden. Für das Regressionsproblem haben Sie bereits eine mögliche Kostenfunktion (Stichwort <em>Summe der quadrierten Residuen</em>) kennen gelernt:</p>
+<p>Wir werden uns hier anschauen, dass für das Training (oft auch <em>Fitting</em> genannt) des linearen Regressionsmodells zwei verschiedene Perspektiven eingenommen werden können, welche am Schluss beide zum selben Schluss kommen.</p>
+<div id="perspektive-1-funktionsoptimierung" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Perspektive 1: Funktionsoptimierung<a class="anchor" aria-label="anchor" href="#perspektive-1-funktionsoptimierung"><i class="fas fa-link"></i></a>
+</h3>
+<p>In der ersten Perspektive behandeln wir das Modelltraining als Optimierungsproblem. Wir wollen nämlich eine sogenannte <strong>Kostenfunktion</strong> (engl. <em>Loss Function</em>) aufstellen, die es danach zu minimieren gilt. Sie werden gleich sehen, dass die Kostenfunktion für das lineare Regressionsmodell von den Modellparameter <span class="math inline">\(w_0,w_1,\dots,w_p\)</span> abhängen wird. Das Ziel wird also sein, die optimalen Werte für die Modellparameter zu finden, so dass die Kostenfunktion so klein wie möglich ist.</p>
+<p>Doch wie sieht denn nun diese Kostenfunktion für das lineare Regressionsmodell konkret aus? Wir werden uns hier der Einfachheit halber mal nur ein <strong>einfaches lineares Regressionsmodell</strong> mit nur einer Input-Variable <span class="math inline">\(x_i\)</span> anschauen. Die Kostenfunktion sieht in diesem Fall so aus:</p>
 <p><span class="math display">\[
-J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mathbf{x}_i) \right)^2
+J(\hat{w}_0,\hat{w}_1) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2
 \]</span></p>
-<p>Im Vergleich zur Summer der quadrierten Residuen haben wir hier noch den Faktor <span class="math inline">\(\frac{1}{2n}\)</span> drin. Dieser Faktor macht daraus eine Art Mittelwert und darum wird diese Kostenfunktion typischerweise <strong>Mean Squared Error</strong> (MSE) genannt.</p>
-<p>Sie wundern sich nun vielleicht, wie diese Kostenfunktion von den Modellparameter abhängt, da diese in obiger Formel ja gar nicht ersichtlich sind. Schreiben wir die Kostenfunktion doch mal etwas um (unter der Annahme, dass es nur eine Input-Variable <span class="math inline">\(x_i\)</span> gibt und wir ein einfaches lineares Regressionsmodell anwenden wollen):</p>
+<p>Sie sehen, dass die Kostenfunktion <span class="math inline">\(J(\hat{w}_0,\hat{w}_1)\)</span> eine Funktion der beiden (trainierten) Modellparameter ist. Vielleicht wundern Sie sich nun, wie diese Kostenfunktion von den Modellparameter abhängt, da diese in obiger Formel ja gar nicht direkt ersichtlich sind. Schreiben wir die Kostenfunktion doch mal etwas um:</p>
 <p><span class="math display">\[\begin{align}
-J(\hat{b}_0, \hat{b}_1) &amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2 \\
-&amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - (\hat{b}_0 + \hat{b}_1 \cdot x_i) \right)^2 \\
-&amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{b}_0 - \hat{b}_1 \cdot x_i \right)^2 \\
+J(\hat{w}_0, \hat{w}_1) &amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2 \\
+&amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - (\hat{w}_0 + \hat{w}_1 \cdot x_i) \right)^2 \\
+&amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right)^2 \\
 \end{align}\]</span></p>
-<p>Nun ist offensichtlich, wie die Kostenfunktion <span class="math inline">\(J\)</span> von den Modellparameter <span class="math inline">\(\hat{b}_0\)</span> und <span class="math inline">\(\hat{b}_1\)</span> abhängt. Im ML gibt es nun viele verschiedene Arten, wie man für die beiden Modellparameter die optimalen Werte findet. Hier ist die Lösung zum Glück einfach, denn es gibt eine sogenannte <strong>analytische Lösung</strong>, die man mit der oben erwähnten Kleinstquadratemethode findet. Wie Sie diese analytische Lösung finden, haben Sie bei Thomas Heimsch in Aufgabe 5 der Übungsserie 2 gelernt (zwar mit anderer Notation, aber vom Prinzip her gleich).</p>
-<p>Für andere Modelle gibt es oft leider keine analytische Lösung für die optimalen Parameterwerte. In diesem Fall werden wir <strong>iterative Optimierungsverfahren</strong> anwenden, mit denen wir uns langsam den optimalen Parameterwerten annähern (dazu später mehr).</p>
-<p>Grundsätzlich gilt: je besser die Modellparameter geschätzt werden können, desto kleiner sind die quadrierten Differenzen, <span class="math inline">\(\left(y_i - \hat{f}(x_i) \right)^2\)</span>, und desto kleiner der Wert der Kostenfunktion.</p>
+<p>Nun ist offensichtlich, wie die Kostenfunktion <span class="math inline">\(J\)</span> von den Modellparameter <span class="math inline">\(\hat{w}_0\)</span> und <span class="math inline">\(\hat{w}_1\)</span> abhängt. Im ML gibt es nun viele verschiedene Arten, wie man für die beiden Modellparameter die optimalen Werte findet. Hier ist die Lösung zum Glück einfach, denn es gibt eine sogenannte <strong>analytische Lösung</strong>, d.h. es ist möglich für <span class="math inline">\(\hat{w}_0\)</span> und <span class="math inline">\(\hat{w}_1\)</span> je eine Formel zu finden, die uns erlaubt die optimalen Parameterwerte auszurechnen. Die Herleitung dieser Formeln ist nicht besonders schwierig, denn wir wenden nämlich ein altbekanntes Prinzip aus der Differenzialrechnung an: Ableitung nach dem Modellparameter gleich Null setzen und nach dem Parameter auflösen.</p>
+<p>Machen wir dies in einem ersten Schritt für <span class="math inline">\(\hat{w}_0\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\frac{\partial J(\hat{w}_0, \hat{w}_1)}{\partial \hat{w}_0} &amp;= \frac{1}{2n} \sum_{i=1}^{n} 2 \cdot \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right) \cdot (-1) \\
+&amp;= -\frac{1}{n} \sum_{i=1}^{n} \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right) \\
+&amp;= -\frac{1}{n} \sum_{i=1}^{n} y_i +  \frac{1}{n} \sum_{i=1}^{n} \hat{w}_0 + \frac{1}{n} \sum_{i=1}^{n} \hat{w}_1 \cdot x_i \\
+&amp;= -\bar{y} + \frac{1}{n} \cdot n \cdot \hat{w}_0 + \hat{w}_1 \cdot \bar{x} \\
+&amp;= -\bar{y} + \hat{w}_0 + \hat{w}_1 \cdot \bar{x}
+\end{align}\]</span></p>
+<p>Nun setzten wir die Ableitung gleich Null und lösen nach <span class="math inline">\(\hat{w}_0\)</span> auf:</p>
+<p><span class="math display">\[\begin{align}
+-\bar{y} + \hat{w}_0 + \hat{w}_1 \cdot \bar{x} &amp;= 0 \\
+\hat{w}_0 &amp;= \bar{y} - \hat{w}_1 \cdot \bar{x}
+\end{align}\]</span></p>
+<p>Wir sehen, dass die Lösung für <span class="math inline">\(\hat{w}_0\)</span> von den beiden Mittelwerten <span class="math inline">\(\bar{y}\)</span> und <span class="math inline">\(\bar{x}\)</span> sowie von <span class="math inline">\(\hat{w}_1\)</span>. Suchen wir nun also die Lösung für <span class="math inline">\(\hat{w}_1\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\frac{\partial J(\hat{w}_0, \hat{w}_1)}{\partial \hat{w}_1} &amp;= \frac{1}{2n} \sum_{i=1}^{n} 2 \cdot \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right) \cdot (-x_i) \\
+&amp;= -\frac{1}{n} \sum_{i=1}^{n} \left(y_i \cdot x_i - \hat{w}_0 \cdot x_i - \hat{w}_1 \cdot x_i^2 \right) \\
+&amp;= -\frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i + \hat{w}_0 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 \\
+&amp;= -\frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i + \hat{w}_0 \cdot \bar{x} + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 \\
+\end{align}\]</span></p>
+<p>Nun können wir wiederum die Ableitung gleich Null setzen und für <span class="math inline">\(\hat{w}_0\)</span> setzen wir unsere Lösung von oben ein. Danach lösen wir nach <span class="math inline">\(\hat{w}_1\)</span> auf:</p>
+<p><span class="math display">\[\begin{align}
+-\frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i + \hat{w}_0 \cdot \bar{x} + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 &amp;= 0 \\
+(\bar{y} - \hat{w}_1 \cdot \bar{x}) \cdot \bar{x} + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 &amp;= \frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i \\
+\bar{y} \cdot \bar{x} - \hat{w}_1 \cdot \bar{x}^2 + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 &amp;= \frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i \\
+\hat{w}_1 \left(\frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2 \right) &amp;= \frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i - \bar{y} \cdot \bar{x} \\
+\hat{w}_1 &amp;= \frac{\frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i - \bar{y} \cdot \bar{x}}{\frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2}
+\end{align}\]</span></p>
+<p>Vielleicht erkennen Sie die Ausdrücke im Zählen und Nenner der Lösung für <span class="math inline">\(\hat{w}_1\)</span>: es sind dies die Kovarianz zwischen <span class="math inline">\(y_i\)</span> und <span class="math inline">\(x_i\)</span> im Zähler und die Varianz von <span class="math inline">\(x_i\)</span> im Nenner.</p>
+<p>Yay! Nun haben wir die Formeln für die Berechnung für die optimalen Parameterwerte des einfachen linearen Regressionsmodells gefunden. Diese Methode wird <strong>Kleinstquadratemethode</strong> (engl. <em>Least squares</em>) genannt, weil die optimalen Parameter die Summe über die <strong>quadrierten</strong> Differenzen zwischen <span class="math inline">\(y_i\)</span> und den Vorhersagen <span class="math inline">\(\hat{f}(x_i)\)</span> minimiert.</p>
 <div style="background-color:#fef9e7; padding:10px">
-<p><strong>Optional: Zerlegung des Vorhersagefehlers</strong></p>
-<p>Wir wollen hier kurz anschauen, wie der <strong>Erwartungswert</strong> des quadrierten Fehlers, <span class="math inline">\(\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\)</span>, in zwei Komponenten zerlegt werden kann.</p>
-<p>Dazu gilt folgendes:</p>
-<ul>
-<li>Von oben wissen wir, dass <span class="math inline">\(y_i = f(\mathbf{x}_i) + \epsilon\)</span> gilt.</li>
-<li>Wir nehmen an, dass der Erwartungswert des unsystematischen Teils <span class="math inline">\(\epsilon\)</span> Null ist, also <span class="math inline">\(\text{E}(\epsilon)=0\)</span>.</li>
-<li>Allgemeine Regel zur Varianz einer Zufallsvariable: <span class="math inline">\(\text{Var}(\epsilon) = \text{E}(\epsilon^2) - \text{E}(\epsilon)^2 = \text{E}(\epsilon^2) - 0^2 = \text{E}(\epsilon^2)\)</span>.</li>
-<li>
-<span class="math inline">\(\hat{f}\)</span> und <span class="math inline">\(\mathbf{x}_i\)</span> sind fix und gegeben (keine Zufallsvariablen) und darum gilt <span class="math inline">\(\text{E}\left(\hat{f}(\mathbf{x}_i)\right)=\hat{f}(\mathbf{x}_i)\)</span>.</li>
-</ul>
-<p>Nun können wir den <strong>Erwartungswert</strong> des quadrierten Fehlers rechnen:</p>
+<p><strong>Optional: Kleinstquadratemethode in Matrixform</strong></p>
+<p>Die obige Herleitung funktioniert nur für das einfache lineare Regressionsmodell mit einer Input-Variable <span class="math inline">\(x_i\)</span>. Wir schauen uns hier nun kurz die allgemeine Lösung in Matrixform an. Wir nehmen an, dass die Werte unseres Outputs alle in einem Spaltenvektor <span class="math inline">\(\mathbf{y}\)</span> organisiert sind und unsere Modellvorhersagen als <span class="math inline">\(\mathbf{X}\mathbf{\hat{w}}\)</span> geschrieben werden können.</p>
+<p>Dann können wir unsere Kostenfunktion von oben wie folgt in Matrixform schreiben:</p>
 <p><span class="math display">\[\begin{align}
-\text{E}\,\left[\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\right] &amp;= \text{E}\,\left[\left(f(\mathbf{x}_i) + \epsilon - \hat{f}(\mathbf{x}_i)\right)^2\right] \\
-&amp;= \text{E}\,\left[f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot \epsilon \cdot f(\mathbf{x}_i) - 2 \cdot \epsilon \cdot \hat{f}(\mathbf{x}_i) + \epsilon^2 \right] \\
-&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot \text{E}(\epsilon) \cdot f(\mathbf{x}_i) - 2 \cdot \text{E}(\epsilon) \cdot \hat{f}(\mathbf{x}_i) + \text{E}(\epsilon^2) \\
-&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot 0 \cdot f(\mathbf{x}_i) - 2 \cdot 0 \cdot \hat{f}(\mathbf{x}_i) + \text{Var}(\epsilon) \\
-&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + \text{Var}(\epsilon) \\
-&amp;= \left(f(\mathbf{x}_i) - \hat{f}(\mathbf{x}_i)\right)^2 + \text{Var}(\epsilon)
+J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y} - \mathbf{X}\mathbf{\hat{w}})' (\mathbf{y} - \mathbf{X}\mathbf{\hat{w}})
 \end{align}\]</span></p>
-<p>Der erste Teil auf der rechten Seite der Formel beschreibt den <strong>reduzierbaren Fehler</strong> und der zweite Teil den <strong>nicht-reduzierbaren Fehler</strong>. Wir sehen also auch hier: es ist sehr wichtig, dass wir eine Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> schätzen, welche dem wahren funktionalen Zusammenhang <span class="math inline">\(f(\mathbf{x}_i)\)</span> möglichst nahe kommt.</p>
+<p>Das sieht schlimmer aus als es ist, denn <span class="math inline">\((\mathbf{y} - \mathbf{X}\mathbf{\hat{w}})\)</span> ist lediglich ein Spaltenvektor mit den Differenzen zwischen den wahren <span class="math inline">\(y_i\)</span> und den Vorhersagen unseres Modells. Wenn wir diesen Spaltenvektor <span class="math inline">\(\mathbf{e}\)</span> nennen, dann kann obiger Ausdruck als <span class="math inline">\(\frac{1}{2n} \mathbf{e}'\mathbf{e}\)</span> geschrieben werden, wobei <span class="math inline">\(\mathbf{e}'\mathbf{e}\)</span> ein Skalarprodukt ist und dementsprechend einen Skalar bzw. eine einzige Zahl zurück gibt. Diese Zahl multipliziert mit <span class="math inline">\(\frac{1}{2n}\)</span> ist dann nichts anderes als der Wert unserer Kostenfunktion. Sie sehen also, dass wir mit dem Skalarprodukt <span class="math inline">\(\mathbf{e}'\mathbf{e}\)</span> die Summe ersetzen können.</p>
+<p>Nun wenden wir die bekannten Matrix-Rechenregeln an, um die Kostenfunktion umzuschreiben:</p>
+<p><span class="math display">\[\begin{align}
+J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y} - \mathbf{X}\mathbf{\hat{w}})' (\mathbf{y} - \mathbf{X}\mathbf{\hat{w}}) \\
+&amp;= \frac{1}{2n} (\mathbf{y}' - \mathbf{\hat{w}}' \mathbf{X}') (\mathbf{y} - \mathbf{X}\mathbf{\hat{w}}) \\
+&amp;= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - \mathbf{y}'\mathbf{X}\mathbf{\hat{w}} - \mathbf{\hat{w}}' \mathbf{X}'\mathbf{y} + \mathbf{\hat{w}}' \mathbf{X}'\mathbf{X}\mathbf{\hat{w}})
+\end{align}\]</span></p>
+<p>Wenn Sie sich kurz anhand der Dimensionalität der einzelnen Komponenten überlegen, was das Endprodukt des Ausdrucks <span class="math inline">\(\mathbf{y}'\mathbf{X}\mathbf{\hat{w}}\)</span> ist, dann werden Sie sehen, dass ein Skalar (Dimensionalität <span class="math inline">\(1 \times 1\)</span>) resultiert. Darum muss zwingend auch die transponierte Form davon, <span class="math inline">\((\mathbf{y}'\mathbf{X}\mathbf{\hat{w}})'=\mathbf{\hat{w}}' \mathbf{X}'\mathbf{y}\)</span> ein Skalar sein, was dazu führt, dass die beiden mittleren Terme in der letzten Zeile von obiger Kostenfunktion identisch sein müssen. Deshalb können wir die Kostenfunktion wie folgt umschreiben:</p>
+<p><span class="math display">\[\begin{align}
+J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\mathbf{X}\mathbf{\hat{w}} + \mathbf{\hat{w}}' \mathbf{X}'\mathbf{X}\mathbf{\hat{w}})
+\end{align}\]</span></p>
+<p>So, nun können wir die Kostenfunktion nach dem Spaltenvektor mit den Modellparameter <span class="math inline">\(\mathbf{\hat{w}}\)</span> ableiten. Man spricht in diesem Fall nun nicht von einer Ableitung, sondern von einem <strong>Gradienten</strong>. Auch die mathematische Schreibweise ist etwas anders:</p>
+<p><span class="math display">\[\begin{align}
+\nabla_{\mathbf{\hat{w}}} J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (- 2\mathbf{X}'\mathbf{y} + 2\mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) \\
+&amp;= \frac{1}{n} (-\mathbf{X}'\mathbf{y} + \mathbf{X}'\mathbf{X}\mathbf{\hat{w}})
+\end{align}\]</span></p>
+<p>Diesen Ausdruck können wir nun wie gewohnt gleich Null setzen (wobei wir hier rechts einen Nullvektor <span class="math inline">\(\mathbf{0}\)</span> setzen) und mit den Matrix-Rechenregeln nach <span class="math inline">\(\mathbf{\hat{w}}\)</span> auflösen:</p>
+<p><span class="math display">\[\begin{align}
+\frac{1}{n} (-\mathbf{X}'\mathbf{y} + \mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) &amp;= \mathbf{0} \\
+\mathbf{X}'\mathbf{X}\mathbf{\hat{w}} &amp;= \mathbf{X}'\mathbf{y} \\
+\mathbf{\hat{w}} &amp;= (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}
+\end{align}\]</span></p>
+<p><strong>Wichtig</strong>: Die Matrix <span class="math inline">\(\mathbf{X}'\mathbf{X}\)</span> hat eine Dimensionalität von <span class="math inline">\((p+1) \times (p+1)\)</span>, ist also quadratisch. Sie ist nur invertierbar, wenn die Design Matrix mehr Zeilen als Spalten hat, also wenn <span class="math inline">\(n &gt; (p+1)\)</span>.</p>
 </div>
-<p>Komplexität des Modelltrainings erwähnen.</p>
+</div>
+<div id="perspektive-2-wahrscheinlichkeitstheorie" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Perspektive 2: Wahrscheinlichkeitstheorie<a class="anchor" aria-label="anchor" href="#perspektive-2-wahrscheinlichkeitstheorie"><i class="fas fa-link"></i></a>
+</h3>
+<p>Nun werden wir sehen, dass wir die Lösung oben (aus Perspektive 1) auch mit einer probabilistischen Sicht auf die Dinge erhalten. Dazu schreiben wir nochmals kurz den allgemein angenommenen Zusammenhang zwischen dem wahren Output <span class="math inline">\(y_i\)</span> und den Input-Variablen auf und konkretisieren ihn dann gleich für das lineare Regressionsmodell:</p>
+<p><span class="math display">\[\begin{align}
+y_i &amp;= f(\mathbf{x}_i) + \epsilon \\
+&amp;= \mathbf{w}' \mathbf{x_i} + \epsilon \\
+\end{align}\]</span></p>
+<p>Nun nehmen wir an, dass der Fehlerterm <span class="math inline">\(\epsilon\)</span> normalverteilt ist mit Mittelwert 0 und Varianz <span class="math inline">\(\sigma^2\)</span>, also <span class="math inline">\(\epsilon \sim N(0,\sigma^2)\)</span>. Dies führt nun dazu, dass unser Output <span class="math inline">\(y_i\)</span> normalverteilt ist:</p>
+<p><span class="math display">\[
+y_i \sim N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
+\]</span></p>
+<p>Grafisch zeigen!</p>
+<p>Nun möchten wir wissen, was die <strong>gemeinsame Verteilung</strong> aller Output-Werte in unserem Datensatz ist. D.h. wie sieht die Wahrscheinlichkeit <span class="math inline">\(p(y_1,y_2,\dots,y_n)\)</span> aus? Weil wir annehmen, dass alle Beobachtungen <span class="math inline">\(i\)</span> in unserem Datensatz unabhängig sind, sieht die Antwort auf die Frage folgendermassen aus:</p>
+<p><span class="math display">\[
+p(y_1,y_2,\dots,y_n) = \prod_{i=1}^n N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
+\]</span></p>
+<div style="background-color:#DEEBF7; padding:10px">
+<p><strong>Maximum Likelihood</strong></p>
+<p>Die gemeinsame Wahrscheinlichkeit <span class="math inline">\(p(y_1,y_2,\dots,y_n)\)</span> wird in der Fachsprache <strong>Likelihood</strong> genannt. Die zentrale Idee hier ist, dass wir die Modellparameter <span class="math inline">\(\mathbf{w}\)</span> so wählen, dass die <em>Likelihood</em> maximal wird. Der daraus folgende Ausdruck für <span class="math inline">\(\mathbf{w}\)</span> wird <strong>Maximum Likelihood</strong> Schätzer genannt und oft als ML abgekürzt, was sehr verwirrlich sein kann, da wir ja auch Machine Learning so abkürzen.</p>
+</div>
+<p>Wir können nun in der Likelihood oben anstelle von <span class="math inline">\(N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)\)</span> jeweils die Dichtefunktion der Normalverteilung einsetzen:</p>
+<p><span class="math display">\[\begin{align}
+p(y_1,y_2,\dots,y_n) &amp;= \prod_{i=1}^n N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right) \\
+&amp;= \prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)
+\end{align}\]</span></p>
+<p>Nun vollziehen wir einen kleinen mathematischen Trick, der vielfach angewendet wird: anstelle der <em>Likelihood</em> verwenden wir nun den natürlichen Logarithmus der <em>Likelihood</em>. Das ist möglich, weil sich so das Optimierungsproblem nicht verändert. Das Logarithmieren vereinfacht das Problem ungemein, denn der Logarithmus eines Produkts wird zu einer Summe der logarithmierten Elemente:</p>
+<p><span class="math display">\[\begin{align}
+\text{ln}\; p(y_1,y_2,\dots,y_n) &amp;= \text{ln}\left(\prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)\right) \\
+&amp;= \sum_{i=1}^n \text{ln}\left(\frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right) \right) \\
+&amp;= \sum_{i=1}^n \text{ln}\left(1\right) - \text{ln}\left(\sigma\sqrt{2\pi}\right) - \frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2} \\
+&amp;= \sum_{i=1}^n \text{ln}\left(1\right) - \sum_{i=1}^n \text{ln}\left(\sigma\sqrt{2\pi}\right) - \sum_{i=1}^n \frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2} \\
+&amp;= n \cdot \text{ln}\left(1\right) - n \cdot \text{ln}\left(\sigma\sqrt{2\pi}\right) - \frac{1}{2\sigma^2} \sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2}
+\end{align}\]</span></p>
+<p>Wow, nun haben wir ein tolles Resultat gefunden: je kleiner der Term <span class="math inline">\(\sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2}\)</span> in obiger Gleichung, desto grösser ist der natürliche Logarithmus der <em>Likelihood</em>. Das heisst nichts anderes, als dass die Kleinstquadratemethode auch der <em>Maximum Likelihood</em> Schätzer ist.</p>
+</div>
 </div>
 <div id="interpretierbarkeit" class="section level2" number="4.5">
 <h2>
@@ -294,6 +353,49 @@ J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mat
 <span class="header-section-number">4.9</span> Lineare Regression in R<a class="anchor" aria-label="anchor" href="#lineare-regression-in-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>Base R vs. <code>tidymodels</code></p>
+</div>
+<div id="weiterführende-themen" class="section level2" number="4.10">
+<h2>
+<span class="header-section-number">4.10</span> Weiterführende Themen<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-themen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Bayesianische Regression</p>
+<p>Grob gesagt rechnen wir ein ML-Modell in zwei Schritten. In einem <strong>ersten Schritt</strong> entscheiden wir uns für die funktionale Form unseres Modells <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span>. Man nennt dies in der Fachsprache <strong>Model Selection</strong>. Wir betrachten hier nur mal den vereinfachten Fall, in dem wir nur eine <span class="math inline">\(x_i\)</span>-Variable pro Beobachtung als Input haben. Folgende Funktionen bzw. Modelle sind mögliche Kandidaten:</p>
+<ul>
+<li>
+<span class="math inline">\(f(x_i) = b_0 + b_1 \cdot x_i\)</span> (einfache lineare Regression)</li>
+<li>
+<span class="math inline">\(f(x_i) = b_0 + b_1 \cdot x_i + b_2 \cdot x_i^2\)</span> (polynomische Regression)</li>
+<li><span class="math inline">\(f(x_i) = \begin{cases} \bar{y}_1, &amp; \text{falls}\; x_i &gt; x^*\\ \bar{y}_2, &amp; \text{sonst} \end{cases}\)</span></li>
+</ul>
+<p>Wir werden mit unserer Wahl der Funktion nie genau die wahre aber unbekannte Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> treffen, aber wir versuchen möglichst nahe daran zu kommen.</p>
+<div style="background-color:#DEEBF7; padding:10px">
+<p><strong>“No Free Lunch” Theorem</strong></p>
+<p>Das <em>No Free Lunch</em> Theorem besagt, dass es kein universal bestes Modell gibt. Das heisst, dass es je nach Problem und Datensatz andere Modelle bzw. Funktionen braucht, um gute Vorhersagen zu machen. Das ist der Hauptgrund, warum wir Ihnen möglichst viele verschiedene Tools mit auf den Weg geben wollen.</p>
+</div>
+<p><br></p>
+<p>Im Vergleich zur Summe der quadrierten Residuen haben wir hier noch den Faktor <span class="math inline">\(\frac{1}{2n}\)</span> drin. Dieser Faktor macht daraus eine Art Mittelwert und darum wird diese Kostenfunktion typischerweise <strong>Mean Squared Error</strong> (MSE) genannt.</p>
+<div style="background-color:#fef9e7; padding:10px">
+<p><strong>Optional: Zerlegung des Vorhersagefehlers</strong></p>
+<p>Wir wollen hier kurz anschauen, wie der <strong>Erwartungswert</strong> des quadrierten Fehlers, <span class="math inline">\(\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\)</span>, in zwei Komponenten zerlegt werden kann.</p>
+<p>Dazu gilt folgendes:</p>
+<ul>
+<li>Von oben wissen wir, dass <span class="math inline">\(y_i = f(\mathbf{x}_i) + \epsilon\)</span> gilt.</li>
+<li>Wir nehmen an, dass der Erwartungswert des unsystematischen Teils <span class="math inline">\(\epsilon\)</span> Null ist, also <span class="math inline">\(\text{E}(\epsilon)=0\)</span>.</li>
+<li>Allgemeine Regel zur Varianz einer Zufallsvariable: <span class="math inline">\(\text{Var}(\epsilon) = \text{E}(\epsilon^2) - \text{E}(\epsilon)^2 = \text{E}(\epsilon^2) - 0^2 = \text{E}(\epsilon^2)\)</span>.</li>
+<li>
+<span class="math inline">\(\hat{f}\)</span> und <span class="math inline">\(\mathbf{x}_i\)</span> sind fix und gegeben (keine Zufallsvariablen) und darum gilt <span class="math inline">\(\text{E}\left(\hat{f}(\mathbf{x}_i)\right)=\hat{f}(\mathbf{x}_i)\)</span>.</li>
+</ul>
+<p>Nun können wir den <strong>Erwartungswert</strong> des quadrierten Fehlers rechnen:</p>
+<p><span class="math display">\[\begin{align}
+\text{E}\,\left[\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\right] &amp;= \text{E}\,\left[\left(f(\mathbf{x}_i) + \epsilon - \hat{f}(\mathbf{x}_i)\right)^2\right] \\
+&amp;= \text{E}\,\left[f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot \epsilon \cdot f(\mathbf{x}_i) - 2 \cdot \epsilon \cdot \hat{f}(\mathbf{x}_i) + \epsilon^2 \right] \\
+&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot \text{E}(\epsilon) \cdot f(\mathbf{x}_i) - 2 \cdot \text{E}(\epsilon) \cdot \hat{f}(\mathbf{x}_i) + \text{E}(\epsilon^2) \\
+&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + 2 \cdot 0 \cdot f(\mathbf{x}_i) - 2 \cdot 0 \cdot \hat{f}(\mathbf{x}_i) + \text{Var}(\epsilon) \\
+&amp;= f(\mathbf{x}_i)^2 - 2 \cdot f(\mathbf{x}_i) \cdot \hat{f}(\mathbf{x}_i) + \hat{f}(\mathbf{x}_i)^2 + \text{Var}(\epsilon) \\
+&amp;= \left(f(\mathbf{x}_i) - \hat{f}(\mathbf{x}_i)\right)^2 + \text{Var}(\epsilon)
+\end{align}\]</span></p>
+<p>Der erste Teil auf der rechten Seite der Formel beschreibt den <strong>reduzierbaren Fehler</strong> und der zweite Teil den <strong>nicht-reduzierbaren Fehler</strong>. Wir sehen also auch hier: es ist sehr wichtig, dass wir eine Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> schätzen, welche dem wahren funktionalen Zusammenhang <span class="math inline">\(f(\mathbf{x}_i)\)</span> möglichst nahe kommt.</p>
+</div>
 
 </div>
 </div>
@@ -302,24 +404,30 @@ J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mat
 <div class="prev"><a href="intro-R.html"><span class="header-section-number">3</span> Einführung in das Programmieren mit R</a></div>
 <div class="next"><a href="lin-class.html"><span class="header-section-number">5</span> Lineare Klassifikation</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <img src="images/fhnw_10mm.jpg" alt="FHNW Logo" style="height: auto; width: 100%; object-fit: contain; Padding: 10px;"><nav id="toc" data-toggle="toc" aria-label="In diesem Kapitel"><h2>In diesem Kapitel</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#lin-reg"><span class="header-section-number">4</span> Lineare Regression</a></li>
 <li><a class="nav-link" href="#ml-modelle-im-allgemeinen"><span class="header-section-number">4.1</span> ML-Modelle im Allgemeinen</a></li>
 <li><a class="nav-link" href="#das-modell-ausgeschrieben"><span class="header-section-number">4.2</span> Das Modell (ausgeschrieben)</a></li>
 <li><a class="nav-link" href="#das-modell-kompakt"><span class="header-section-number">4.3</span> Das Modell (kompakt)</a></li>
-<li><a class="nav-link" href="#modell-training"><span class="header-section-number">4.4</span> Modell Training</a></li>
+<li>
+<a class="nav-link" href="#modelltraining"><span class="header-section-number">4.4</span> Modelltraining</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#perspektive-1-funktionsoptimierung"><span class="header-section-number">4.4.1</span> Perspektive 1: Funktionsoptimierung</a></li>
+<li><a class="nav-link" href="#perspektive-2-wahrscheinlichkeitstheorie"><span class="header-section-number">4.4.2</span> Perspektive 2: Wahrscheinlichkeitstheorie</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#interpretierbarkeit"><span class="header-section-number">4.5</span> Interpretierbarkeit</a></li>
 <li><a class="nav-link" href="#regularisierte-regression"><span class="header-section-number">4.6</span> Regularisierte Regression</a></li>
 <li><a class="nav-link" href="#bias-variance-tradeoff"><span class="header-section-number">4.7</span> Bias-Variance Tradeoff</a></li>
 <li><a class="nav-link" href="#polynomische-regression"><span class="header-section-number">4.8</span> Polynomische Regression</a></li>
 <li><a class="nav-link" href="#lineare-regression-in-r"><span class="header-section-number">4.9</span> Lineare Regression in R</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-themen"><span class="header-section-number">4.10</span> Weiterführende Themen</a></li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/martinSter/aml-book/blob/main/04-lin-reg.Rmd">Quellcode anschauen <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/martinSter/aml-book/edit/main/04-lin-reg.Rmd">Diese Seite bearbeiten <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/martinSter/aml-book/blob/main/04-lin-reg.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/martinSter/aml-book/edit/main/04-lin-reg.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -331,11 +439,11 @@ J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mat
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Machine Learning für das KMU</strong>" wurde durch Martin Sterchi geschrieben. Letztes Erstellungsdatum: 2024-03-19.</p>
+    <p>"<strong>Machine Learning für das KMU</strong>" was written by Martin Sterchi. It was last built on 2024-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
-    <p>Dieses Buch wurde mit dem <a class="text-light" href="https://bookdown.org">bookdown</a> R-Package erstellt.</p>
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>
 
 </div></div>
