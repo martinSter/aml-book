@@ -82,7 +82,7 @@ y_i = f(\mathbf{x}_i) + \epsilon
 <ul>
 <li>Die Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> bezeichnet die <strong>systematische Information</strong>, die wir aus <span class="math inline">\(\mathbf{x}_i\)</span> im Hinblick auf <span class="math inline">\(y_i\)</span> lernen können.</li>
 <li>
-<span class="math inline">\(\epsilon\)</span> ist ein Fehlerterm, der die Differenz zwischen <span class="math inline">\(y_i\)</span> und <span class="math inline">\(f(\mathbf{x}_i)\)</span> abbildet,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\epsilon = y_i - f(\mathbf{x}_i)\)&lt;/span&gt;&lt;/p&gt;'><sup>11</sup></a> also den <strong>nicht-lernbaren</strong> (unsystematischen) <strong>Teil</strong>. Der Fehlerterm beinhaltet einerseits den Effekt von Variablen, die uns nicht zur Verfügung stehen, aber einen Einfluss auf den Output <span class="math inline">\(y_i\)</span> haben und andererseits nicht-messbare Variation, oft auch einfach “Noise” genannt. Grob gesagt: alles nicht-messbare.</li>
+<span class="math inline">\(\epsilon\)</span> ist ein Fehlerterm, der die Differenz zwischen <span class="math inline">\(y_i\)</span> und <span class="math inline">\(f(\mathbf{x}_i)\)</span> abbildet,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\epsilon = y_i - f(\mathbf{x}_i)\)&lt;/span&gt;&lt;/p&gt;'><sup>11</sup></a> also den <strong>nicht-lernbaren</strong> (unsystematischen) <strong>Teil</strong>. Der Fehlerterm beinhaltet einerseits den Effekt von Variablen, die uns nicht zur Verfügung stehen, aber einen Einfluss auf den Output <span class="math inline">\(y_i\)</span> haben und andererseits nicht-messbare Variation, oft auch einfach <em>Noise</em> genannt. Grob gesagt: alles nicht-messbare. Auch wichtig zu sehen: der Fehler ist <strong>additiv</strong>, wir addieren ihn zum lernbaren Teil hinzu.</li>
 </ul>
 <p>Der Output <span class="math inline">\(y_i\)</span> ergibt sich also aus der Addition eines systematischen Teils <span class="math inline">\(f(\mathbf{x}_i)\)</span> sowie eines Fehlerterms <span class="math inline">\(\epsilon\)</span>.</p>
 <div style="background-color:#DEEBF7; padding:10px">
@@ -99,6 +99,13 @@ f(\mathbf{x}_i) = w_0 + w_1 \cdot x_{i1} + w_2 \cdot x_{i2} + \ldots + w_p \cdot
 \]</span>
 Wir verzichten hier bewusst darauf, den Hut für <span class="math inline">\(f\)</span> zu schreiben, da es sich lediglich um eine allgemein gültige Funktion handelt und noch nichts geschätzt bzw. trainiert wurde. Dieses Modell bzw. diese Funktion hat sogenannte <strong>Parameter</strong>, die es zu schätzen gilt. Hier sind dies die Parameter <span class="math inline">\(w_0,\; w_1,\; \ldots,\; w_p\)</span>. Wegen der Konstante <span class="math inline">\(w_0\)</span> haben wir immer einen Parameter mehr als es Input-Variablen hat, also <span class="math inline">\(p+1\)</span> Parameter.</p>
 <p>Diese Parameter sind die Schlüsselzutat in einem ML-Modell. Wir wollen sie optimieren, so dass die trainierte Funktion <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> der wahren Funktion <span class="math inline">\(f(\mathbf{x}_i)\)</span> möglichst nahe kommt.</p>
+<p>Wir schauen uns in diesem Kapitel ein ganz einfaches Beispiel an mit nur einer Input-Variable <span class="math inline">\(x_i\)</span>, so dass der Zusammenhang zwischen dem Output <span class="math inline">\(y_i\)</span> und dem Input <span class="math inline">\(x_i\)</span> in 2D dargestellt werden kann. In diesem Zusammenhang spricht man vom <strong>einfachen linearen Regressionsmodell</strong>. Ausserdem haben wir nur vier Beobachtungen, welche wie folgt in einem Streudiagramm dargestellt werden können:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:simple-reg"></span>
+<img src="04-lin-reg_files/figure-html/simple-reg-1.png" alt="Einfaches Regressionsbeispiel." width="70%"><p class="caption">
+Abbildung 4.1: Einfaches Regressionsbeispiel.
+</p>
+</div>
 </div>
 <div id="das-modell-kompakt" class="section level2" number="4.3">
 <h2>
@@ -140,6 +147,21 @@ w_0 \cdot 1 + w_1 \cdot x_{21} + w_2 \cdot x_{22} + \dots + w_p \cdot x_{2p} \\
 w_0 \cdot 1 + w_1 \cdot x_{n1} + w_2 \cdot x_{n2} + \dots + w_p \cdot x_{np}\end{pmatrix}
 \end{align}\]</span></p>
 <p>Überprüfen wir doch noch kurz die Dimensionen von obigem Matrix-Vektor Produkt. Die Matrix <span class="math inline">\(\mathbf{X}\)</span> hat <span class="math inline">\(n\)</span> Zeilen und <span class="math inline">\(p+1\)</span> Spalten und darum eine Dimensionalität von <span class="math inline">\(n \times (p+1)\)</span>. Der Spaltenvektor <span class="math inline">\(\mathbf{w}\)</span> hat Dimensionalität <span class="math inline">\((p+1) \times 1\)</span>. Das Matrix-Vektor Produkt hat dementsprechend eine Dimensionalität von <span class="math inline">\(n \times 1\)</span>, genau was wir erwarten würden, nämlich einen Vektor mit den Vorhersagen für alle <span class="math inline">\(n\)</span> Beobachtungen.</p>
+<p>Für unser einfaches Beispiel kann das Modell wie folgt in Matrixform geschrieben werden:</p>
+<p><span class="math display">\[\begin{align}
+f(\mathbf{X}) &amp;= \mathbf{X}\mathbf{w}\\
+&amp;= \begin{pmatrix}
+1 &amp; -4.1 \\
+1 &amp; -0.5 \\
+1 &amp; 1.4 \\
+1 &amp; 4.4 \\
+\end{pmatrix}\begin{pmatrix} w_0 \\ w_1 \end{pmatrix}\\
+&amp;= \begin{pmatrix}
+w_0 \cdot 1 - w_1 \cdot 4.1 \\
+w_0 \cdot 1 - w_1 \cdot 0.5 \\
+w_0 \cdot 1 + w_1 \cdot 1.4 \\
+w_0 \cdot 1 + w_1 \cdot 4.4 \end{pmatrix}
+\end{align}\]</span></p>
 <p>Warum wir all das tun, werden wir weiter unten sehen. Es wird unser Leben viel einfacher machen! Versuchen Sie diesen Abschnitt hier gut zu verstehen, so dass Sie sobald wie möglich mit der Matrixschreibweise von Modellen vertraut sind.</p>
 </div>
 <div id="modelltraining" class="section level2" number="4.4">
@@ -152,7 +174,7 @@ w_0 \cdot 1 + w_1 \cdot x_{n1} + w_2 \cdot x_{n2} + \dots + w_p \cdot x_{np}\end
 <span class="header-section-number">4.4.1</span> Perspektive 1: Funktionsoptimierung<a class="anchor" aria-label="anchor" href="#perspektive-1-funktionsoptimierung"><i class="fas fa-link"></i></a>
 </h3>
 <p>In der ersten Perspektive behandeln wir das Modelltraining als Optimierungsproblem. Wir wollen nämlich eine sogenannte <strong>Kostenfunktion</strong> (engl. <em>Loss Function</em>) aufstellen, die es danach zu minimieren gilt. Sie werden gleich sehen, dass die Kostenfunktion für das lineare Regressionsmodell von den Modellparameter <span class="math inline">\(w_0,w_1,\dots,w_p\)</span> abhängen wird. Das Ziel wird also sein, die optimalen Werte für die Modellparameter zu finden, so dass die Kostenfunktion so klein wie möglich ist.</p>
-<p>Doch wie sieht denn nun diese Kostenfunktion für das lineare Regressionsmodell konkret aus? Wir werden uns hier der Einfachheit halber mal nur ein <strong>einfaches lineares Regressionsmodell</strong> mit nur einer Input-Variable <span class="math inline">\(x_i\)</span> anschauen. Die Kostenfunktion sieht in diesem Fall so aus:</p>
+<p>Doch wie sieht denn nun diese Kostenfunktion für das lineare Regressionsmodell konkret aus? Wir werden uns hier der Einfachheit halber mal nur ein <strong>einfaches lineares Regressionsmodell</strong> mit nur einer Input-Variable <span class="math inline">\(x_i\)</span> anschauen (wie in unserem einfachen Beispiel). Die Kostenfunktion sieht in diesem Fall so aus:</p>
 <p><span class="math display">\[
 J(\hat{w}_0,\hat{w}_1) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2
 \]</span></p>
@@ -192,7 +214,13 @@ J(\hat{w}_0, \hat{w}_1) &amp;= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x
 \hat{w}_1 &amp;= \frac{\frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i - \bar{y} \cdot \bar{x}}{\frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2}
 \end{align}\]</span></p>
 <p>Vielleicht erkennen Sie die Ausdrücke im Zählen und Nenner der Lösung für <span class="math inline">\(\hat{w}_1\)</span>: es sind dies die Kovarianz zwischen <span class="math inline">\(y_i\)</span> und <span class="math inline">\(x_i\)</span> im Zähler und die Varianz von <span class="math inline">\(x_i\)</span> im Nenner.</p>
-<p>Yay! Nun haben wir die Formeln für die Berechnung für die optimalen Parameterwerte des einfachen linearen Regressionsmodells gefunden. Diese Methode wird <strong>Kleinstquadratemethode</strong> (engl. <em>Least squares</em>) genannt, weil die optimalen Parameter die Summe über die <strong>quadrierten</strong> Differenzen zwischen <span class="math inline">\(y_i\)</span> und den Vorhersagen <span class="math inline">\(\hat{f}(x_i)\)</span> minimiert.</p>
+<p>Yay! Nun haben wir die Formeln für die Berechnung für die optimalen Parameterwerte des einfachen linearen Regressionsmodells gefunden. Diese Methode wird <strong>Kleinstquadratemethode</strong> (engl. <em>Least Squares</em>) genannt, weil die optimalen Parameter die Summe über die <strong>quadrierten</strong> Differenzen zwischen <span class="math inline">\(y_i\)</span> und den Vorhersagen <span class="math inline">\(\hat{f}(x_i)\)</span> minimiert.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:simple-reg-cost"></span>
+<img src="04-lin-reg_files/figure-html/simple-reg-cost-1.png" alt="Einfaches Regressionsbeispiel." width="50%"><img src="04-lin-reg_files/figure-html/simple-reg-cost-2.png" alt="Einfaches Regressionsbeispiel." width="50%"><p class="caption">
+Abbildung 4.2: Einfaches Regressionsbeispiel. Das geschätzte Modell ist als blaue Gerade eingezeichnet. Die vertikalen roten Linien stellen die Abweichungen der wahren Outputs von den Vorhersagen dar.
+</p>
+</div>
 <div style="background-color:#fef9e7; padding:10px">
 <p><strong>Optional: Kleinstquadratemethode in Matrixform</strong></p>
 <p>Die obige Herleitung funktioniert nur für das einfache lineare Regressionsmodell mit einer Input-Variable <span class="math inline">\(x_i\)</span>. Wir schauen uns hier nun kurz die allgemeine Lösung in Matrixform an. Wir nehmen an, dass die Werte unseres Outputs alle in einem Spaltenvektor <span class="math inline">\(\mathbf{y}\)</span> organisiert sind und unsere Modellvorhersagen als <span class="math inline">\(\mathbf{X}\mathbf{\hat{w}}\)</span> geschrieben werden können.</p>
@@ -234,83 +262,124 @@ J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\ma
 y_i &amp;= f(\mathbf{x}_i) + \epsilon \\
 &amp;= \mathbf{w}' \mathbf{x_i} + \epsilon \\
 \end{align}\]</span></p>
-<p>Nun nehmen wir an, dass der Fehlerterm <span class="math inline">\(\epsilon\)</span> normalverteilt ist mit Mittelwert 0 und Varianz <span class="math inline">\(\sigma^2\)</span>, also <span class="math inline">\(\epsilon \sim N(0,\sigma^2)\)</span>. Dies führt nun dazu, dass unser Output <span class="math inline">\(y_i\)</span> normalverteilt ist:</p>
+<p>Nun nehmen wir an, dass der Fehlerterm <span class="math inline">\(\epsilon\)</span> normalverteilt ist mit Mittelwert 0 und Varianz <span class="math inline">\(\sigma^2\)</span>, also <span class="math inline">\(\epsilon \sim N(0,\sigma^2)\)</span>. Weil wir annehmen, dass <span class="math inline">\(\mathbf{w}' \mathbf{x_i}\)</span> fix ist (also keine Zufallsvariable), ist unser Output <span class="math inline">\(y_i\)</span> normalverteilt mit Mittelwert <span class="math inline">\(\mathbf{w}' \mathbf{x_i}\)</span> und Varianz <span class="math inline">\(\sigma^2\)</span>:</p>
 <p><span class="math display">\[
-y_i \sim N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
+y_i \sim \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
 \]</span></p>
 <p>Grafisch zeigen!</p>
-<p>Nun möchten wir wissen, was die <strong>gemeinsame Verteilung</strong> aller Output-Werte in unserem Datensatz ist. D.h. wie sieht die Wahrscheinlichkeit <span class="math inline">\(p(y_1,y_2,\dots,y_n)\)</span> aus? Weil wir annehmen, dass alle Beobachtungen <span class="math inline">\(i\)</span> in unserem Datensatz unabhängig sind, sieht die Antwort auf die Frage folgendermassen aus:</p>
+<p>Nun möchten wir wissen, was die <strong>gemeinsame Verteilung</strong> aller Output-Werte in unserem Datensatz ist. D.h. wie sieht die Wahrscheinlichkeit <span class="math inline">\(p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2)\)</span> aus? Weil wir annehmen, dass alle Beobachtungen <span class="math inline">\(i\)</span> in unserem Datensatz unabhängig sind, sieht die Antwort auf die Frage folgendermassen aus:</p>
 <p><span class="math display">\[
-p(y_1,y_2,\dots,y_n) = \prod_{i=1}^n N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
+p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2) = \prod_{i=1}^n \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
 \]</span></p>
 <div style="background-color:#DEEBF7; padding:10px">
 <p><strong>Maximum Likelihood</strong></p>
 <p>Die gemeinsame Wahrscheinlichkeit <span class="math inline">\(p(y_1,y_2,\dots,y_n)\)</span> wird in der Fachsprache <strong>Likelihood</strong> genannt. Die zentrale Idee hier ist, dass wir die Modellparameter <span class="math inline">\(\mathbf{w}\)</span> so wählen, dass die <em>Likelihood</em> maximal wird. Der daraus folgende Ausdruck für <span class="math inline">\(\mathbf{w}\)</span> wird <strong>Maximum Likelihood</strong> Schätzer genannt und oft als ML abgekürzt, was sehr verwirrlich sein kann, da wir ja auch Machine Learning so abkürzen.</p>
 </div>
-<p>Wir können nun in der Likelihood oben anstelle von <span class="math inline">\(N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)\)</span> jeweils die Dichtefunktion der Normalverteilung einsetzen:</p>
+<p><br></p>
+<p>Wir können nun in der Likelihood oben anstelle von <span class="math inline">\(\mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)\)</span> jeweils die Dichtefunktion der Normalverteilung einsetzen:</p>
 <p><span class="math display">\[\begin{align}
-p(y_1,y_2,\dots,y_n) &amp;= \prod_{i=1}^n N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right) \\
+p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2) &amp;= \prod_{i=1}^n \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right) \\
 &amp;= \prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)
 \end{align}\]</span></p>
-<p>Nun vollziehen wir einen kleinen mathematischen Trick, der vielfach angewendet wird: anstelle der <em>Likelihood</em> verwenden wir nun den natürlichen Logarithmus der <em>Likelihood</em>. Das ist möglich, weil sich so das Optimierungsproblem nicht verändert. Das Logarithmieren vereinfacht das Problem ungemein, denn der Logarithmus eines Produkts wird zu einer Summe der logarithmierten Elemente:</p>
+<p>Nun vollziehen wir einen kleinen mathematischen Trick, der vielfach angewendet wird: anstelle der <em>Likelihood</em> verwenden wir nun den natürlichen Logarithmus der <em>Likelihood</em> (<em>Log-Likelihood</em>). Das ist möglich, weil sich so das Optimierungsproblem nicht verändert. Das Logarithmieren vereinfacht das Problem ungemein, denn der Logarithmus eines Produkts wird zu einer Summe der logarithmierten Elemente:</p>
 <p><span class="math display">\[\begin{align}
-\text{ln}\; p(y_1,y_2,\dots,y_n) &amp;= \text{ln}\left(\prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)\right) \\
+\text{ln}\; p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2) &amp;= \text{ln}\left(\prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)\right) \\
 &amp;= \sum_{i=1}^n \text{ln}\left(\frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right) \right) \\
 &amp;= \sum_{i=1}^n \text{ln}\left(1\right) - \text{ln}\left(\sigma\sqrt{2\pi}\right) - \frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2} \\
 &amp;= \sum_{i=1}^n \text{ln}\left(1\right) - \sum_{i=1}^n \text{ln}\left(\sigma\sqrt{2\pi}\right) - \sum_{i=1}^n \frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2} \\
 &amp;= n \cdot \text{ln}\left(1\right) - n \cdot \text{ln}\left(\sigma\sqrt{2\pi}\right) - \frac{1}{2\sigma^2} \sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2}
 \end{align}\]</span></p>
 <p>Wow, nun haben wir ein tolles Resultat gefunden: je kleiner der Term <span class="math inline">\(\sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2}\)</span> in obiger Gleichung, desto grösser ist der natürliche Logarithmus der <em>Likelihood</em>. Das heisst nichts anderes, als dass die Kleinstquadratemethode auch der <em>Maximum Likelihood</em> Schätzer ist.</p>
+<p>Wir haben diesen Abschnitt damit begonnen anzunehmen, dass unser Output <span class="math inline">\(y_i\)</span> normalverteilt ist, d.h. <span class="math inline">\(y_i \sim \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)\)</span>. Wir haben nun herausgefunden, dass wir den Spaltenvektor mit den Parameter mit der Kleinstquadratemethode berechnen können. Um die Normalverteilung vollkommen zu spezifizieren, benötigen wir nun noch eine Formel, um die Varianz <span class="math inline">\(\sigma^2\)</span> zu rechnen. Dazu leiten wir den obigen Ausdruck der <em>Log-Likelihood</em> nach <span class="math inline">\(\sigma\)</span> ab:</p>
+<p><span class="math display">\[\begin{align}
+\frac{\partial \text{ln}\; p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2)}{\partial \sigma} &amp;= -n\cdot \frac{\sqrt{2\pi}}{\sigma\sqrt{2\pi}} - (-\frac{2}{\sigma^3}) \cdot \frac{1}{2} \sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2} \\
+&amp;= -\frac{n}{\sigma} + \frac{1}{\sigma^3} \sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2}
+\end{align}\]</span></p>
+<p>Nun können wir wie gewohnt die Ableitung gleich Null setzen und nach <span class="math inline">\(\sigma\)</span> auflösen:</p>
+<p><span class="math display">\[\begin{align}
+-\frac{n}{\hat{\sigma}} + \frac{1}{\hat{\sigma}^3} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} &amp;= 0 \\
+\frac{n}{\hat{\sigma}} &amp;= \frac{1}{\hat{\sigma}^3} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} \\
+\frac{\hat{\sigma}^3}{\hat{\sigma}} &amp;= \frac{1}{n} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} \\
+\hat{\sigma}^2 &amp;= \frac{1}{n} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} \\
+\end{align}\]</span></p>
+<p>Sehr schön, dieses Resultat macht ebenfalls viel Sinn. Die geschätzte Varianz <span class="math inline">\(\hat{\sigma}^2\)</span> ist nichts anderes als der durchschnittliche quadrierte Fehler (engl. <em>Mean Squared Error</em>).</p>
+<div class="rmdtip">
+<p><strong>Aufgabe</strong></p>
+<p>Berechnen Sie …</p>
 </div>
 </div>
-<div id="interpretierbarkeit" class="section level2" number="4.5">
+</div>
+<div id="regularisierte-regression" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">4.5</span> Interpretierbarkeit<a class="anchor" aria-label="anchor" href="#interpretierbarkeit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Regularisierte Regression<a class="anchor" aria-label="anchor" href="#regularisierte-regression"><i class="fas fa-link"></i></a>
 </h2>
-<p>Wir werden in diesem Modul sehr einfache, aber auch sehr komplexe Funktionen kennen lernen. Je komplexer die Funktionen sind, desto mehr haben wir es mit einer <strong>Blackbox</strong> zu tun und desto schwieriger wird es, das Modell zu interpretieren. Relativ unflexible Modelle wie z.B. die lineare Regression sind einfach interpretierbar. Die geschätzten Koeffizienten <span class="math inline">\(\hat{b}_1,\; \hat{b}_2,\; \ldots\)</span> erlauben uns direkt zu quantifizieren, was der Effekt der verschiedenen Input-Variablen ist. Im Gegensatz dazu führen komplexe Modelle (mit vielen zu optimierenden Parameter) oft zu einer sehr guten Vorhersagegüte, weil komplexe Modelle flexibel sind und darum komplexe Zusammenhänge zwischen <span class="math inline">\(\mathbf{x}_i\)</span> und <span class="math inline">\(y_i\)</span> modellieren können.</p>
-<p>Kurz Variable Importance erwähnen</p>
-</div>
-<div id="regularisierte-regression" class="section level2" number="4.6">
-<h2>
-<span class="header-section-number">4.6</span> Regularisierte Regression<a class="anchor" aria-label="anchor" href="#regularisierte-regression"><i class="fas fa-link"></i></a>
-</h2>
-<p>Kurz auf Variable Selection (siehe ISLR) eingehen.</p>
-<p>Hier ist nun der richtige Moment, um mal kurz auf die Theorie zum linearen Regressionsmodell <strong>mit Regularisierung</strong> einzugehen.</p>
-<p>Wir haben in der Einführung gelernt, dass wir für das lineare Regressionsproblem folgende Kostenfunktion minimieren (den Mean Squared Error oder kurz MSE):</p>
+<!-- Kurz auf Variable Selection (siehe ISLR) eingehen. -->
+<p>Das zentrale Problem der oben kennen gelernten Kleinstquadratemethode ist, dass sie extrem anfällig auf <strong>Overfitting</strong> ist. Beim linearen Regressionsmodell ist Overfitting vor allem dann ein Problem, wenn die Anzahl Input-Variablen <span class="math inline">\(p\)</span> relativ gross ist im Vergleich zur Anzahl Beobachtungen <span class="math inline">\(n\)</span>. Im Extremfall haben wir mehr Input-Variablen als Beobachtungen (<span class="math inline">\((p+1)&gt;n\)</span>), was dazu führt, dass der Kleinstquadrateschätzer mathematisch nicht rechenbar ist, weil <span class="math inline">\(\mathbf{X}'\mathbf{X}\)</span> nicht invertierbar ist. Das sollte auch intuitiv Sinn machen, denn wie soll eine Schätzung funktionieren, wenn wir im Schnitt weniger als eine Beobachtung pro zu schätzenden Parameter haben.</p>
+<p>Wir können das Problem des Overfittings weitgehend lösen, indem wir ein <strong>regularisiertes</strong> Regressionsmodell rechnen. Regularisierung bedeutet eigentlich nichts anderes, als dass wir die ursprüngliche Kostenfunktion für das lineare Regressionsmodell modifizieren. Dabei gibt es zwei bekannte Regularisierungsarten, nämlich <strong>Ridge</strong> oder <strong>LASSO</strong>. Wir fokussieren in einem ersten Schritt auf die Ridge Regularisierung, weil wir in diesem Fall nach wie vor eine analytische Lösung finden.</p>
+<div id="ridge-regressionsmodell" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Ridge Regressionsmodell<a class="anchor" aria-label="anchor" href="#ridge-regressionsmodell"><i class="fas fa-link"></i></a>
+</h3>
+<p>Die Kostenfunktion für das Ridge Regressionsmodell sieht wie folgt aus:</p>
 <p><span class="math display">\[
-J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mathbf{x}_i) \right)^2
+J(\mathbf{w}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mathbf{x}_i) \right)^2 + \frac{\lambda}{2} \cdot \sum_{j=1}^p w_j^2
 \]</span></p>
-<p>Normalerweise gibt es hier sogar eine analytische Lösung, d.h. es gibt Formeln wie die optimalen Parameter des Modells aus den Trainingsdaten berechnet werden können. Das ist mathematisch aber nur dann möglich, wenn die Anzahl Beobachtungen im Trainingsdatensatz grösser ist als die Anzahl Input-Variablen. Oder mathematisch ausgedrückt, nur wenn <span class="math inline">\(n&gt;p\)</span>.</p>
-<p>Wenn <span class="math inline">\(n&lt;p\)</span> gibt es keine analytische Lösung für das Problem. Wir haben zu wenig Datenpunkte, um die vielen Parameter des Modells schätzen zu können. Selbst wenn <span class="math inline">\(n&gt;p\)</span>, aber <span class="math inline">\(p\)</span> (Anzahl Input-Variablen) sehr gross ist, sind die Schätzungen oft nicht sehr gut, weil es dann zu Overfitting kommt. Die Lösung für dieses Problem ist <strong>Regularisierung</strong>.</p>
-<p>Regularisierung bedeutet eigentlich nichts anderes, als dass wir die obige Kostenfunktion modifizieren. Dabei gibt es zwei mögliche Varianten, <strong>Ridge</strong> Regularisierung oder <strong>LASSO</strong>:</p>
+<p>Diese modifizierte Kostenfunktion hat etwas Erklärungsbedarf:</p>
 <ul>
-<li>Kostenfunktion für Ridge Regularisierung: <span class="math inline">\(J(b_0,b_1,\dots,b_p) = \text{MSE} + \lambda \cdot \sum_{j=1}^p b_j^2\)</span>
-</li>
-<li>Kostenfunktion für LASSO Regularisierung: <span class="math inline">\(J(b_0,b_1,\dots,b_p) = \text{MSE} + \lambda \cdot \sum_{j=1}^p |b_j|\)</span>
-</li>
+<li>Wir versuchen hier Modellparameter <span class="math inline">\(\mathbf{w}\)</span> zu finden, welche <strong>gleichzeitig</strong> den durchschnittlichen quadrierten Fehler sowie eine Summe über die quadrierten Modellparameter so klein wie möglich machen. Das sind zwei <strong>konkurrenzierende Ziele</strong> und während des Modelltrainings muss der beste Tradeoff gefunden werden.</li>
+<li>Der Regularisierungsterm ist eine Summe über die quadrierten Modellparameter. Das Quadrieren stellt sicher, dass sich positive und negative Parameterwerte nicht gegenseitig kompensieren.</li>
+<li>Der <strong>Hyperparameter</strong> <span class="math inline">\(\lambda\)</span> legt fest, wie viel (relatives) Gewicht der Regularisierungsterm im Verhältnis zum durchschnittlichen quadrierten Fehler bekommt. Je grösser <span class="math inline">\(\lambda\)</span>, desto stärker “bestrafen” wir komplexe Modelle. Wir werden später sehen, wir wir den optimalen Wert für <span class="math inline">\(\lambda\)</span> via <strong>Cross-Validation</strong> finden können.</li>
+<li>Der Regularisierungsterm enthält die Konstante <span class="math inline">\(w_0\)</span> <strong>nicht</strong> (Summe startet bei <span class="math inline">\(j=1\)</span> und nicht bei <span class="math inline">\(j=0\)</span>).</li>
 </ul>
-<p>Diese beiden modifizierten Kostenfunktionen haben ein bisschen Erklärungsbedarf:</p>
-<ul>
-<li>In beiden Varianten wollen wir <strong>gleichzeitig</strong> den MSE so klein wie möglich und eine spezielle Summe über die Modellparameter (d.h. den Regularisierungsterm) so klein wie möglich machen. Das sind zwei konkurrenzierende Ziele und während des Trainings muss der beste Tradeoff gefunden werden.</li>
-<li>Bei Ridge ist der Regularisierungsterm eine Summe über die quadrierten Modellparameter. Das Quadrieren stellt sicher, dass sich positive und negative Parameterwerte nicht gegenseitig kompensieren.</li>
-<li>Bei LASSO ist der Regularisierungsterm eine Summe über die absoluten Werte der Modellparameter.</li>
-<li>Der Regularisierungsterm enthält die Konstante <span class="math inline">\(b_0\)</span> <strong>nicht</strong> (Summe startet bei <span class="math inline">\(j=1\)</span> und nicht bei <span class="math inline">\(j=0\)</span>).</li>
-<li>Der Hyperparameter <span class="math inline">\(\lambda\)</span> legt fest, wie viel Gewicht der Regularisierungsterm bekommt. Je grösser <span class="math inline">\(\lambda\)</span>, desto stärker “bestrafen” wir komplexe Modelle.</li>
-<li>Die Optimierung der LASSO Kostenfunktion hat einen gewichtigen Vorteil gegenüber Ridge: unwichtige Parameter werden bei LASSO automatisch auf 0 gesetzt. Das Modell nimmt also selbständig eine Selektion der wichtigen Variablen vor.</li>
-</ul>
-<div style="background-color:#fef9e7; padding:10px">
-<p><strong>Fragen</strong>:</p>
+<div class="rmdtip">
+<p><strong>Aufgabe</strong></p>
 <ul>
 <li>Was passiert wenn <span class="math inline">\(\lambda=0\)</span>?</li>
 <li>Was passiert wenn <span class="math inline">\(\lambda \rightarrow \infty\)</span>?</li>
 </ul>
 </div>
-<p><br></p>
-<p>Die grosse Frage ist nun, wie wir den Wert für den Hyperparameter <span class="math inline">\(\lambda\)</span> wählen. Das schauen wir uns im nächsten Abschnitt an.</p>
+<div style="background-color:#fef9e7; padding:10px">
+<p><strong>Optional: Ridge Regression in Matrixform</strong></p>
+<p>Der Einfachheit halber nehmen wir hier an, dass die Outputwerte <span class="math inline">\(y_i\)</span> hier standardisiert<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Formel für die Standardisierung: &lt;span class="math inline"&gt;\(\frac{y_i-\bar{y}}{s_y}\)&lt;/span&gt;&lt;/p&gt;'><sup>13</sup></a> wurden, so dass der Mittelwert über die standardisierten Outputwerte Null ist. So entfällt die Konstante <span class="math inline">\(w_0\)</span> aus dem Modell, was uns die Matrixform für das Ridge Modell erleichtert, denn der Regularisierungsterm soll ja die Konstante nicht enthalten und wenn es diese nicht gibt, dann gibt es keine Probleme.</p>
+<p>Wie weiter oben gesehen, können wir die Kostenfunktion für das nicht-regularisierte Modell wie folgt schreiben:</p>
+<p><span class="math display">\[\begin{align}
+J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\mathbf{X}\mathbf{\hat{w}} + \mathbf{\hat{w}}' \mathbf{X}'\mathbf{X}\mathbf{\hat{w}})
+\end{align}\]</span></p>
+<p>Der Regularisierungsterm kann sehr einfach in Matrixform geschrieben werden, nämlich als Skalarprodukt <span class="math inline">\(\frac{\lambda}{2}\mathbf{\hat{w}}'\mathbf{\hat{w}}\)</span>. Damit kriegen wir folgende Kostenfunktion:</p>
+<p><span class="math display">\[\begin{align}
+J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\mathbf{X}\mathbf{\hat{w}} + \mathbf{\hat{w}}' \mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \frac{\lambda}{2}\mathbf{\hat{w}}'\mathbf{\hat{w}}
+\end{align}\]</span></p>
+<p>Um den Gradienten dieser Kostenfunktion zu finden, gehen wir nun sehr ähnlich wie oben vor:</p>
+<p><span class="math display">\[\begin{align}
+\nabla_{\mathbf{\hat{w}}} J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (- 2\mathbf{X}'\mathbf{y} + 2\mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \frac{2\lambda}{2}\mathbf{\hat{w}} \\
+&amp;= \frac{1}{n} (-\mathbf{X}'\mathbf{y} + \mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \lambda \mathbf{\hat{w}}
+\end{align}\]</span></p>
+<p>Diesen Ausdruck können wir nun wie gewohnt gleich Null setzen und mit den Matrix-Rechenregeln nach <span class="math inline">\(\mathbf{\hat{w}}\)</span> auflösen:</p>
+<p><span class="math display">\[\begin{align}
+\frac{1}{n} (-\mathbf{X}'\mathbf{y} + \mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \lambda \mathbf{\hat{w}} &amp;= \mathbf{0} \\
+\mathbf{X}'\mathbf{X}\mathbf{\hat{w}} + \lambda \mathbf{\hat{w}} &amp;= \mathbf{X}'\mathbf{y} \\
+(\mathbf{X}'\mathbf{X} + \lambda \mathbf{I}) \mathbf{\hat{w}} &amp;= \mathbf{X}'\mathbf{y} \\
+\mathbf{\hat{w}} &amp;= (\mathbf{X}'\mathbf{X} + \lambda \mathbf{I})^{-1}\mathbf{X}'\mathbf{y} \\
+\end{align}\]</span></p>
+<p><strong>Wichtig</strong>: <span class="math inline">\((\mathbf{X}'\mathbf{X} + \lambda \mathbf{I})\)</span> ist immer invertierbar, auch wenn <span class="math inline">\(p&gt;n\)</span>. Wir haben nun also ein analytisch lösbares Regressionsmodell gefunden, dass gut gegen Overfitting schützt.</p>
 </div>
-<div id="bias-variance-tradeoff" class="section level2" number="4.7">
+<p><br></p>
+<div style="background-color:#DEEBF7; padding:10px">
+<p><strong>Standardisierung der Input-Variablen</strong></p>
+<p>Es ist eminent wichtig, dass Sie alle numerischen Input-Variablen vor der Anwendung eines regularisierten Modells standardisieren, so dass alle Variablen auf der selben Skala “leben”. Warum ist das so wichtig? Sie haben gesehen, dass wir beim Ridge Modell die Grösse der Parameter mit dem Regularisierungsterm beschränken. Wenn jedoch die Input-Variablen alle auf unterschiedlichen Skalen “leben”, dann sind die Parameter nur schon deshalb unterschiedlich. Durch die Standardisierung der Input-Variablen erreichen wir, dass die Parametergrössen vergleichbar werden und die Regularisierung so auch korrekt funktioniert.</p>
+</div>
+<p><br></p>
+</div>
+<div id="lasso-regressionsmodell" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> LASSO Regressionsmodell<a class="anchor" aria-label="anchor" href="#lasso-regressionsmodell"><i class="fas fa-link"></i></a>
+</h3>
+<p>Blabla…</p>
+</div>
+</div>
+<div id="bias-variance-tradeoff" class="section level2" number="4.6">
 <h2>
-<span class="header-section-number">4.7</span> Bias-Variance Tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> Bias-Variance Tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
 </h2>
 <div style="background-color:#DEEBF7; padding:10px">
 <p><strong>Was gibt es bei der Wahl des optimalen Modells zu berücksichtigen?</strong></p>
@@ -341,22 +410,22 @@ J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mat
 </div>
 <p><br></p>
 </div>
-<div id="polynomische-regression" class="section level2" number="4.8">
+<div id="polynomische-regression" class="section level2" number="4.7">
 <h2>
-<span class="header-section-number">4.8</span> Polynomische Regression<a class="anchor" aria-label="anchor" href="#polynomische-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Polynomische Regression<a class="anchor" aria-label="anchor" href="#polynomische-regression"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wir machen hier nun einen kurzen Abstecher in die <strong>polynomische Regression</strong>, denn diese eignet sich sehr gut, um den Bias-Variance Tradeoff zu illustrieren.</p>
 <p>Ein <strong>ganz wichtiger Punkt</strong>: das polynomische Regressionsmodell ist immer noch <strong>linear in den Parametern</strong>, es handelt sich also immer noch um ein lineares Modell. Sie sehen aber an obigen Modellkurven, dass dieses “lineare” Modell sehr wohl in der Lage ist, nicht-lineare Zusammenhänge zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> zu fitten!</p>
 </div>
-<div id="lineare-regression-in-r" class="section level2" number="4.9">
+<div id="lineare-regression-in-r" class="section level2" number="4.8">
 <h2>
-<span class="header-section-number">4.9</span> Lineare Regression in R<a class="anchor" aria-label="anchor" href="#lineare-regression-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> Lineare Regression in R<a class="anchor" aria-label="anchor" href="#lineare-regression-in-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>Base R vs. <code>tidymodels</code></p>
 </div>
-<div id="weiterführende-themen" class="section level2" number="4.10">
+<div id="weiterführende-themen" class="section level2" number="4.9">
 <h2>
-<span class="header-section-number">4.10</span> Weiterführende Themen<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-themen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9</span> Weiterführende Themen<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-themen"><i class="fas fa-link"></i></a>
 </h2>
 <p>Bayesianische Regression</p>
 <p>Grob gesagt rechnen wir ein ML-Modell in zwei Schritten. In einem <strong>ersten Schritt</strong> entscheiden wir uns für die funktionale Form unseres Modells <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span>. Man nennt dies in der Fachsprache <strong>Model Selection</strong>. Wir betrachten hier nur mal den vereinfachten Fall, in dem wir nur eine <span class="math inline">\(x_i\)</span>-Variable pro Beobachtung als Input haben. Folgende Funktionen bzw. Modelle sind mögliche Kandidaten:</p>
@@ -416,12 +485,16 @@ J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mat
 <li><a class="nav-link" href="#perspektive-2-wahrscheinlichkeitstheorie"><span class="header-section-number">4.4.2</span> Perspektive 2: Wahrscheinlichkeitstheorie</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#interpretierbarkeit"><span class="header-section-number">4.5</span> Interpretierbarkeit</a></li>
-<li><a class="nav-link" href="#regularisierte-regression"><span class="header-section-number">4.6</span> Regularisierte Regression</a></li>
-<li><a class="nav-link" href="#bias-variance-tradeoff"><span class="header-section-number">4.7</span> Bias-Variance Tradeoff</a></li>
-<li><a class="nav-link" href="#polynomische-regression"><span class="header-section-number">4.8</span> Polynomische Regression</a></li>
-<li><a class="nav-link" href="#lineare-regression-in-r"><span class="header-section-number">4.9</span> Lineare Regression in R</a></li>
-<li><a class="nav-link" href="#weiterf%C3%BChrende-themen"><span class="header-section-number">4.10</span> Weiterführende Themen</a></li>
+<li>
+<a class="nav-link" href="#regularisierte-regression"><span class="header-section-number">4.5</span> Regularisierte Regression</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ridge-regressionsmodell"><span class="header-section-number">4.5.1</span> Ridge Regressionsmodell</a></li>
+<li><a class="nav-link" href="#lasso-regressionsmodell"><span class="header-section-number">4.5.2</span> LASSO Regressionsmodell</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#bias-variance-tradeoff"><span class="header-section-number">4.6</span> Bias-Variance Tradeoff</a></li>
+<li><a class="nav-link" href="#polynomische-regression"><span class="header-section-number">4.7</span> Polynomische Regression</a></li>
+<li><a class="nav-link" href="#lineare-regression-in-r"><span class="header-section-number">4.8</span> Lineare Regression in R</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-themen"><span class="header-section-number">4.9</span> Weiterführende Themen</a></li>
 </ul>
 
       <div class="book-extra">
@@ -439,7 +512,7 @@ J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mat
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Machine Learning für das KMU</strong>" was written by Martin Sterchi. It was last built on 2024-03-22.</p>
+    <p>"<strong>Machine Learning für das KMU</strong>" was written by Martin Sterchi. It was last built on 2024-03-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

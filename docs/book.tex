@@ -121,7 +121,7 @@
 
 \title{Machine Learning für das KMU}
 \author{Martin Sterchi}
-\date{2024-03-22}
+\date{2024-03-26}
 
 \begin{document}
 \maketitle
@@ -263,7 +263,7 @@ In diesem Kapitel geht es darum zu verstehen, was ML überhaupt ist, warum es n�
 
 Im Prinzip geht die Geschichte des MLs weit zurück, nämlich zu den Anfängen der Statistik. Viele Modelle, die heutzutage im ML angewendet werden sind nämlich eigentlich von Statistiker*innen erfundene Modelle. Die Geschichte des MLs und der Statistik sind darum eng verknüpft. Einen eigentlichen Startpunkt des MLs könnte man vielleicht in den 1960er Jahren ausmachen, mit den Arbeiten von Frank Rosenblatt\footnote{\url{https://en.wikipedia.org/wiki/Frank_Rosenblatt}}, welcher das sogenannte \textbf{Perceptron} und einen dazugehörigen Lernalgorithmus prägte (dazu später mehr). Danach blieb es aber rund 20 Jahre relativ ruhig bis die Forschung im Bereich Machine Learning so richtig Fahrt aufnahm. Ein grosser Schub für die Entwicklung von ML ging vom Aufkommen von extrem grossen Datenmengen (\textbf{Big Data}) und dem Internet aus. Das führte nämlich dazu, dass sich immer mehr Leute aus den Fachbereichen Informatik und Computer Science mit dem Thema ML befassten und effiziente Hard- und Software sowie algorithmische Kniffs und Tricks beisteuerten. Ausserdem ermöglichte das Internet den Zugang zu gewaltigen Datenmengen an Bildern, Videos, Klicks, etc. - denken Sie beispielsweise nur schon an die Informationen, die jede*r von uns tagtäglich im Internet hinterlässt. Ein weiterer Schub für das Machine Learning war (und ist) zudem die immer besser werdende Rechenleistung von Computern. Diese Entwicklungen haben sich im November 2022 kulminiert in der erstmaligen breiten öffentlichen Wahrnehmung von sogenannten \textbf{Large Language Models} wie ChatGPT.
 
-Wie der Name sagt, geht es im ML darum, dass eine Maschine (oder präziser, ein Computer) aus einem gegebenen Datensatz automatisch Muster lernt, ohne dass ein Mensch dem Computer (explizit) sagen muss, was er lernen soll. Der Mensch gibt jedoch dem Computer die Rahmenbedingungen für das selbständige Lernen vor. Die erlernten Muster sind selbstverständlich nur nützlich, wenn sie \textbf{genereller Natur} sind und auch für neue bzw. zukünftige Beobachtungen gelten. Beispiel: ein Spital hat während der Corona Pandemie ein Modell trainiert, um den täglichen Pflegebedarf je nach Wochentag, Saison, und weiteren Indikatoren vorherzusagen. Das Modell funktioniert nun nach der Pandemie aber nicht wunschgemäss und prognostiziert in der Tendenz einen zu hohen Pflegebedarf. Das Problem ist, dass die erlernten Muster nicht gut auf eine Zeit nach der Pandemie generalisierbar sind. Mit anderen Worten: die Trainingsdaten waren nicht repräsentativ genug.
+Wie der Name sagt, geht es im ML darum, dass eine Maschine (oder präziser, ein Computer) aus einem gegebenen Datensatz automatisch Muster lernt, ohne dass ein Mensch dem Computer (explizit) sagen muss, was er lernen soll. Der Mensch gibt jedoch dem Computer die Rahmenbedingungen für das selbständige Lernen vor. Die erlernten Muster sind selbstverständlich nur nützlich, wenn sie \textbf{genereller Natur} sind und auch für neue bzw. zukünftige Beobachtungen gelten. Beispiel: ein Spital hat während der Corona Pandemie ein Modell trainiert, um den täglichen Pflegebedarf je nach Wochentag, Saison, und weiteren Indikatoren vorherzusagen. Das Modell funktioniert nun nach der Pandemie aber nicht wunschgemäss und prognostiziert in der Tendenz einen zu hohen Pflegebedarf. Das Problem ist, dass die erlernten Muster nicht gut auf eine Zeit nach der Pandemie generalisierbar sind. Mit anderen Worten: die Trainingsdaten waren nicht repräsentativ genug. ML-Modelle sollen also generell gültige Muster in den Daten erlernen.
 
 Bevor wir etwas konkreter anschauen, wie genau ein Computer selbständig aus Daten lernen kann, schauen wir uns die Definitionen von zwei Experten im Gebiet ML an:
 
@@ -731,7 +731,7 @@ y_i = f(\mathbf{x}_i) + \epsilon
 \item
   Die Funktion \(f(\mathbf{x}_i)\) bezeichnet die \textbf{systematische Information}, die wir aus \(\mathbf{x}_i\) im Hinblick auf \(y_i\) lernen können.
 \item
-  \(\epsilon\) ist ein Fehlerterm, der die Differenz zwischen \(y_i\) und \(f(\mathbf{x}_i)\) abbildet,\footnote{\(\epsilon = y_i - f(\mathbf{x}_i)\)} also den \textbf{nicht-lernbaren} (unsystematischen) \textbf{Teil}. Der Fehlerterm beinhaltet einerseits den Effekt von Variablen, die uns nicht zur Verfügung stehen, aber einen Einfluss auf den Output \(y_i\) haben und andererseits nicht-messbare Variation, oft auch einfach ``Noise'' genannt. Grob gesagt: alles nicht-messbare.
+  \(\epsilon\) ist ein Fehlerterm, der die Differenz zwischen \(y_i\) und \(f(\mathbf{x}_i)\) abbildet,\footnote{\(\epsilon = y_i - f(\mathbf{x}_i)\)} also den \textbf{nicht-lernbaren} (unsystematischen) \textbf{Teil}. Der Fehlerterm beinhaltet einerseits den Effekt von Variablen, die uns nicht zur Verfügung stehen, aber einen Einfluss auf den Output \(y_i\) haben und andererseits nicht-messbare Variation, oft auch einfach \emph{Noise} genannt. Grob gesagt: alles nicht-messbare. Auch wichtig zu sehen: der Fehler ist \textbf{additiv}, wir addieren ihn zum lernbaren Teil hinzu.
 \end{itemize}
 
 Der Output \(y_i\) ergibt sich also aus der Addition eines systematischen Teils \(f(\mathbf{x}_i)\) sowie eines Fehlerterms \(\epsilon\).
@@ -749,6 +749,17 @@ f(\mathbf{x}_i) = w_0 + w_1 \cdot x_{i1} + w_2 \cdot x_{i2} + \ldots + w_p \cdot
 Wir verzichten hier bewusst darauf, den Hut für \(f\) zu schreiben, da es sich lediglich um eine allgemein gültige Funktion handelt und noch nichts geschätzt bzw. trainiert wurde. Dieses Modell bzw. diese Funktion hat sogenannte \textbf{Parameter}, die es zu schätzen gilt. Hier sind dies die Parameter \(w_0,\; w_1,\; \ldots,\; w_p\). Wegen der Konstante \(w_0\) haben wir immer einen Parameter mehr als es Input-Variablen hat, also \(p+1\) Parameter.
 
 Diese Parameter sind die Schlüsselzutat in einem ML-Modell. Wir wollen sie optimieren, so dass die trainierte Funktion \(\hat{f}(\mathbf{x}_i)\) der wahren Funktion \(f(\mathbf{x}_i)\) möglichst nahe kommt.
+
+Wir schauen uns in diesem Kapitel ein ganz einfaches Beispiel an mit nur einer Input-Variable \(x_i\), so dass der Zusammenhang zwischen dem Output \(y_i\) und dem Input \(x_i\) in 2D dargestellt werden kann. In diesem Zusammenhang spricht man vom \textbf{einfachen linearen Regressionsmodell}. Ausserdem haben wir nur vier Beobachtungen, welche wie folgt in einem Streudiagramm dargestellt werden können:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{04-lin-reg_files/figure-latex/simple-reg-1} 
+
+}
+
+\caption{Einfaches Regressionsbeispiel.}\label{fig:simple-reg}
+\end{figure}
 
 \hypertarget{das-modell-kompakt}{%
 \section{Das Modell (kompakt)}\label{das-modell-kompakt}}
@@ -801,6 +812,23 @@ w_0 \cdot 1 + w_1 \cdot x_{n1} + w_2 \cdot x_{n2} + \dots + w_p \cdot x_{np}\end
 
 Überprüfen wir doch noch kurz die Dimensionen von obigem Matrix-Vektor Produkt. Die Matrix \(\mathbf{X}\) hat \(n\) Zeilen und \(p+1\) Spalten und darum eine Dimensionalität von \(n \times (p+1)\). Der Spaltenvektor \(\mathbf{w}\) hat Dimensionalität \((p+1) \times 1\). Das Matrix-Vektor Produkt hat dementsprechend eine Dimensionalität von \(n \times 1\), genau was wir erwarten würden, nämlich einen Vektor mit den Vorhersagen für alle \(n\) Beobachtungen.
 
+Für unser einfaches Beispiel kann das Modell wie folgt in Matrixform geschrieben werden:
+
+\begin{align}
+f(\mathbf{X}) &= \mathbf{X}\mathbf{w}\\
+&= \begin{pmatrix}
+1 & -4.1 \\ 
+1 & -0.5 \\
+1 & 1.4 \\
+1 & 4.4 \\
+\end{pmatrix}\begin{pmatrix} w_0 \\ w_1 \end{pmatrix}\\
+&= \begin{pmatrix} 
+w_0 \cdot 1 - w_1 \cdot 4.1 \\
+w_0 \cdot 1 - w_1 \cdot 0.5 \\ 
+w_0 \cdot 1 + w_1 \cdot 1.4 \\ 
+w_0 \cdot 1 + w_1 \cdot 4.4 \end{pmatrix}
+\end{align}
+
 Warum wir all das tun, werden wir weiter unten sehen. Es wird unser Leben viel einfacher machen! Versuchen Sie diesen Abschnitt hier gut zu verstehen, so dass Sie sobald wie möglich mit der Matrixschreibweise von Modellen vertraut sind.
 
 \hypertarget{modelltraining}{%
@@ -813,7 +841,7 @@ Wir werden uns hier anschauen, dass für das Training (oft auch \emph{Fitting} g
 
 In der ersten Perspektive behandeln wir das Modelltraining als Optimierungsproblem. Wir wollen nämlich eine sogenannte \textbf{Kostenfunktion} (engl. \emph{Loss Function}) aufstellen, die es danach zu minimieren gilt. Sie werden gleich sehen, dass die Kostenfunktion für das lineare Regressionsmodell von den Modellparameter \(w_0,w_1,\dots,w_p\) abhängen wird. Das Ziel wird also sein, die optimalen Werte für die Modellparameter zu finden, so dass die Kostenfunktion so klein wie möglich ist.
 
-Doch wie sieht denn nun diese Kostenfunktion für das lineare Regressionsmodell konkret aus? Wir werden uns hier der Einfachheit halber mal nur ein \textbf{einfaches lineares Regressionsmodell} mit nur einer Input-Variable \(x_i\) anschauen. Die Kostenfunktion sieht in diesem Fall so aus:
+Doch wie sieht denn nun diese Kostenfunktion für das lineare Regressionsmodell konkret aus? Wir werden uns hier der Einfachheit halber mal nur ein \textbf{einfaches lineares Regressionsmodell} mit nur einer Input-Variable \(x_i\) anschauen (wie in unserem einfachen Beispiel). Die Kostenfunktion sieht in diesem Fall so aus:
 
 \[
 J(\hat{w}_0,\hat{w}_1) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2
@@ -867,7 +895,16 @@ Nun können wir wiederum die Ableitung gleich Null setzen und für \(\hat{w}_0\)
 
 Vielleicht erkennen Sie die Ausdrücke im Zählen und Nenner der Lösung für \(\hat{w}_1\): es sind dies die Kovarianz zwischen \(y_i\) und \(x_i\) im Zähler und die Varianz von \(x_i\) im Nenner.
 
-Yay! Nun haben wir die Formeln für die Berechnung für die optimalen Parameterwerte des einfachen linearen Regressionsmodells gefunden. Diese Methode wird \textbf{Kleinstquadratemethode} (engl. \emph{Least squares}) genannt, weil die optimalen Parameter die Summe über die \textbf{quadrierten} Differenzen zwischen \(y_i\) und den Vorhersagen \(\hat{f}(x_i)\) minimiert.
+Yay! Nun haben wir die Formeln für die Berechnung für die optimalen Parameterwerte des einfachen linearen Regressionsmodells gefunden. Diese Methode wird \textbf{Kleinstquadratemethode} (engl. \emph{Least Squares}) genannt, weil die optimalen Parameter die Summe über die \textbf{quadrierten} Differenzen zwischen \(y_i\) und den Vorhersagen \(\hat{f}(x_i)\) minimiert.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{04-lin-reg_files/figure-latex/simple-reg-cost-1} \includegraphics[width=0.5\linewidth]{04-lin-reg_files/figure-latex/simple-reg-cost-2} 
+
+}
+
+\caption{Einfaches Regressionsbeispiel. Das geschätzte Modell ist als blaue Gerade eingezeichnet. Die vertikalen roten Linien stellen die Abweichungen der wahren Outputs von den Vorhersagen dar.}\label{fig:simple-reg-cost}
+\end{figure}
 
 \textbf{Optional: Kleinstquadratemethode in Matrixform}
 
@@ -922,35 +959,35 @@ y_i &= f(\mathbf{x}_i) + \epsilon \\
 &= \mathbf{w}' \mathbf{x_i} + \epsilon \\
 \end{align}
 
-Nun nehmen wir an, dass der Fehlerterm \(\epsilon\) normalverteilt ist mit Mittelwert 0 und Varianz \(\sigma^2\), also \(\epsilon \sim N(0,\sigma^2)\). Dies führt nun dazu, dass unser Output \(y_i\) normalverteilt ist:
+Nun nehmen wir an, dass der Fehlerterm \(\epsilon\) normalverteilt ist mit Mittelwert 0 und Varianz \(\sigma^2\), also \(\epsilon \sim N(0,\sigma^2)\). Weil wir annehmen, dass \(\mathbf{w}' \mathbf{x_i}\) fix ist (also keine Zufallsvariable), ist unser Output \(y_i\) normalverteilt mit Mittelwert \(\mathbf{w}' \mathbf{x_i}\) und Varianz \(\sigma^2\):
 
 \[
-y_i \sim N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
+y_i \sim \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
 \]
 
 Grafisch zeigen!
 
-Nun möchten wir wissen, was die \textbf{gemeinsame Verteilung} aller Output-Werte in unserem Datensatz ist. D.h. wie sieht die Wahrscheinlichkeit \(p(y_1,y_2,\dots,y_n)\) aus? Weil wir annehmen, dass alle Beobachtungen \(i\) in unserem Datensatz unabhängig sind, sieht die Antwort auf die Frage folgendermassen aus:
+Nun möchten wir wissen, was die \textbf{gemeinsame Verteilung} aller Output-Werte in unserem Datensatz ist. D.h. wie sieht die Wahrscheinlichkeit \(p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2)\) aus? Weil wir annehmen, dass alle Beobachtungen \(i\) in unserem Datensatz unabhängig sind, sieht die Antwort auf die Frage folgendermassen aus:
 
 \[
-p(y_1,y_2,\dots,y_n) = \prod_{i=1}^n N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
+p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2) = \prod_{i=1}^n \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)
 \]
 
 \textbf{Maximum Likelihood}
 
 Die gemeinsame Wahrscheinlichkeit \(p(y_1,y_2,\dots,y_n)\) wird in der Fachsprache \textbf{Likelihood} genannt. Die zentrale Idee hier ist, dass wir die Modellparameter \(\mathbf{w}\) so wählen, dass die \emph{Likelihood} maximal wird. Der daraus folgende Ausdruck für \(\mathbf{w}\) wird \textbf{Maximum Likelihood} Schätzer genannt und oft als ML abgekürzt, was sehr verwirrlich sein kann, da wir ja auch Machine Learning so abkürzen.
 
-Wir können nun in der Likelihood oben anstelle von \(N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)\) jeweils die Dichtefunktion der Normalverteilung einsetzen:
+Wir können nun in der Likelihood oben anstelle von \(\mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)\) jeweils die Dichtefunktion der Normalverteilung einsetzen:
 
 \begin{align}
-p(y_1,y_2,\dots,y_n) &= \prod_{i=1}^n N\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right) \\
+p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2) &= \prod_{i=1}^n \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right) \\
 &= \prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)
 \end{align}
 
-Nun vollziehen wir einen kleinen mathematischen Trick, der vielfach angewendet wird: anstelle der \emph{Likelihood} verwenden wir nun den natürlichen Logarithmus der \emph{Likelihood}. Das ist möglich, weil sich so das Optimierungsproblem nicht verändert. Das Logarithmieren vereinfacht das Problem ungemein, denn der Logarithmus eines Produkts wird zu einer Summe der logarithmierten Elemente:
+Nun vollziehen wir einen kleinen mathematischen Trick, der vielfach angewendet wird: anstelle der \emph{Likelihood} verwenden wir nun den natürlichen Logarithmus der \emph{Likelihood} (\emph{Log-Likelihood}). Das ist möglich, weil sich so das Optimierungsproblem nicht verändert. Das Logarithmieren vereinfacht das Problem ungemein, denn der Logarithmus eines Produkts wird zu einer Summe der logarithmierten Elemente:
 
 \begin{align}
-\text{ln}\; p(y_1,y_2,\dots,y_n) &= \text{ln}\left(\prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)\right) \\
+\text{ln}\; p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2) &= \text{ln}\left(\prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right)\right) \\
 &= \sum_{i=1}^n \text{ln}\left(\frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2}\,\right) \right) \\
 &= \sum_{i=1}^n \text{ln}\left(1\right) - \text{ln}\left(\sigma\sqrt{2\pi}\right) - \frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2} \\
 &= \sum_{i=1}^n \text{ln}\left(1\right) - \sum_{i=1}^n \text{ln}\left(\sigma\sqrt{2\pi}\right) - \sum_{i=1}^n \frac{1}{2}\left(\frac{y_i - \mathbf{w}' \mathbf{x_i}}{\sigma}\right)^{\!2} \\
@@ -959,59 +996,59 @@ Nun vollziehen wir einen kleinen mathematischen Trick, der vielfach angewendet w
 
 Wow, nun haben wir ein tolles Resultat gefunden: je kleiner der Term \(\sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2}\) in obiger Gleichung, desto grösser ist der natürliche Logarithmus der \emph{Likelihood}. Das heisst nichts anderes, als dass die Kleinstquadratemethode auch der \emph{Maximum Likelihood} Schätzer ist.
 
-\hypertarget{interpretierbarkeit}{%
-\section{Interpretierbarkeit}\label{interpretierbarkeit}}
+Wir haben diesen Abschnitt damit begonnen anzunehmen, dass unser Output \(y_i\) normalverteilt ist, d.h. \(y_i \sim \mathcal{N}\left(\mathbf{w}' \mathbf{x_i}, \sigma^2\right)\). Wir haben nun herausgefunden, dass wir den Spaltenvektor mit den Parameter mit der Kleinstquadratemethode berechnen können. Um die Normalverteilung vollkommen zu spezifizieren, benötigen wir nun noch eine Formel, um die Varianz \(\sigma^2\) zu rechnen. Dazu leiten wir den obigen Ausdruck der \emph{Log-Likelihood} nach \(\sigma\) ab:
 
-Wir werden in diesem Modul sehr einfache, aber auch sehr komplexe Funktionen kennen lernen. Je komplexer die Funktionen sind, desto mehr haben wir es mit einer \textbf{Blackbox} zu tun und desto schwieriger wird es, das Modell zu interpretieren. Relativ unflexible Modelle wie z.B. die lineare Regression sind einfach interpretierbar. Die geschätzten Koeffizienten \(\hat{b}_1,\; \hat{b}_2,\; \ldots\) erlauben uns direkt zu quantifizieren, was der Effekt der verschiedenen Input-Variablen ist. Im Gegensatz dazu führen komplexe Modelle (mit vielen zu optimierenden Parameter) oft zu einer sehr guten Vorhersagegüte, weil komplexe Modelle flexibel sind und darum komplexe Zusammenhänge zwischen \(\mathbf{x}_i\) und \(y_i\) modellieren können.
+\begin{align}
+\frac{\partial \text{ln}\; p(y_1,y_2,\dots,y_n|\mathbf{w},\mathbf{X},\sigma^2)}{\partial \sigma} &= -n\cdot \frac{\sqrt{2\pi}}{\sigma\sqrt{2\pi}} - (-\frac{2}{\sigma^3}) \cdot \frac{1}{2} \sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2} \\
+&= -\frac{n}{\sigma} + \frac{1}{\sigma^3} \sum_{i=1}^n \left(y_i - \mathbf{w}' \mathbf{x_i}\right)^{\!2}
+\end{align}
 
-Kurz Variable Importance erwähnen
+Nun können wir wie gewohnt die Ableitung gleich Null setzen und nach \(\sigma\) auflösen:
+
+\begin{align}
+-\frac{n}{\hat{\sigma}} + \frac{1}{\hat{\sigma}^3} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} &= 0 \\
+\frac{n}{\hat{\sigma}} &= \frac{1}{\hat{\sigma}^3} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} \\
+\frac{\hat{\sigma}^3}{\hat{\sigma}} &= \frac{1}{n} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} \\
+\hat{\sigma}^2 &= \frac{1}{n} \sum_{i=1}^n \left(y_i - \mathbf{\hat{w}}' \mathbf{x_i}\right)^{\!2} \\
+\end{align}
+
+Sehr schön, dieses Resultat macht ebenfalls viel Sinn. Die geschätzte Varianz \(\hat{\sigma}^2\) ist nichts anderes als der durchschnittliche quadrierte Fehler (engl. \emph{Mean Squared Error}).
+
+\textbf{Aufgabe}
+
+Berechnen Sie \ldots{}
 
 \hypertarget{regularisierte-regression}{%
 \section{Regularisierte Regression}\label{regularisierte-regression}}
 
-Kurz auf Variable Selection (siehe ISLR) eingehen.
+Das zentrale Problem der oben kennen gelernten Kleinstquadratemethode ist, dass sie extrem anfällig auf \textbf{Overfitting} ist. Beim linearen Regressionsmodell ist Overfitting vor allem dann ein Problem, wenn die Anzahl Input-Variablen \(p\) relativ gross ist im Vergleich zur Anzahl Beobachtungen \(n\). Im Extremfall haben wir mehr Input-Variablen als Beobachtungen (\((p+1)>n\)), was dazu führt, dass der Kleinstquadrateschätzer mathematisch nicht rechenbar ist, weil \(\mathbf{X}'\mathbf{X}\) nicht invertierbar ist. Das sollte auch intuitiv Sinn machen, denn wie soll eine Schätzung funktionieren, wenn wir im Schnitt weniger als eine Beobachtung pro zu schätzenden Parameter haben.
 
-Hier ist nun der richtige Moment, um mal kurz auf die Theorie zum linearen Regressionsmodell \textbf{mit Regularisierung} einzugehen.
+Wir können das Problem des Overfittings weitgehend lösen, indem wir ein \textbf{regularisiertes} Regressionsmodell rechnen. Regularisierung bedeutet eigentlich nichts anderes, als dass wir die ursprüngliche Kostenfunktion für das lineare Regressionsmodell modifizieren. Dabei gibt es zwei bekannte Regularisierungsarten, nämlich \textbf{Ridge} oder \textbf{LASSO}. Wir fokussieren in einem ersten Schritt auf die Ridge Regularisierung, weil wir in diesem Fall nach wie vor eine analytische Lösung finden.
 
-Wir haben in der Einführung gelernt, dass wir für das lineare Regressionsproblem folgende Kostenfunktion minimieren (den Mean Squared Error oder kurz MSE):
+\hypertarget{ridge-regressionsmodell}{%
+\subsection{Ridge Regressionsmodell}\label{ridge-regressionsmodell}}
+
+Die Kostenfunktion für das Ridge Regressionsmodell sieht wie folgt aus:
 
 \[
-J(\text{Modellparameter}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mathbf{x}_i) \right)^2
+J(\mathbf{w}) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(\mathbf{x}_i) \right)^2 + \frac{\lambda}{2} \cdot \sum_{j=1}^p w_j^2
 \]
 
-Normalerweise gibt es hier sogar eine analytische Lösung, d.h. es gibt Formeln wie die optimalen Parameter des Modells aus den Trainingsdaten berechnet werden können. Das ist mathematisch aber nur dann möglich, wenn die Anzahl Beobachtungen im Trainingsdatensatz grösser ist als die Anzahl Input-Variablen. Oder mathematisch ausgedrückt, nur wenn \(n>p\).
-
-Wenn \(n<p\) gibt es keine analytische Lösung für das Problem. Wir haben zu wenig Datenpunkte, um die vielen Parameter des Modells schätzen zu können. Selbst wenn \(n>p\), aber \(p\) (Anzahl Input-Variablen) sehr gross ist, sind die Schätzungen oft nicht sehr gut, weil es dann zu Overfitting kommt. Die Lösung für dieses Problem ist \textbf{Regularisierung}.
-
-Regularisierung bedeutet eigentlich nichts anderes, als dass wir die obige Kostenfunktion modifizieren. Dabei gibt es zwei mögliche Varianten, \textbf{Ridge} Regularisierung oder \textbf{LASSO}:
+Diese modifizierte Kostenfunktion hat etwas Erklärungsbedarf:
 
 \begin{itemize}
 \tightlist
 \item
-  Kostenfunktion für Ridge Regularisierung: \(J(b_0,b_1,\dots,b_p) = \text{MSE} + \lambda \cdot \sum_{j=1}^p b_j^2\)
+  Wir versuchen hier Modellparameter \(\mathbf{w}\) zu finden, welche \textbf{gleichzeitig} den durchschnittlichen quadrierten Fehler sowie eine Summe über die quadrierten Modellparameter so klein wie möglich machen. Das sind zwei \textbf{konkurrenzierende Ziele} und während des Modelltrainings muss der beste Tradeoff gefunden werden.
 \item
-  Kostenfunktion für LASSO Regularisierung: \(J(b_0,b_1,\dots,b_p) = \text{MSE} + \lambda \cdot \sum_{j=1}^p |b_j|\)
+  Der Regularisierungsterm ist eine Summe über die quadrierten Modellparameter. Das Quadrieren stellt sicher, dass sich positive und negative Parameterwerte nicht gegenseitig kompensieren.
+\item
+  Der \textbf{Hyperparameter} \(\lambda\) legt fest, wie viel (relatives) Gewicht der Regularisierungsterm im Verhältnis zum durchschnittlichen quadrierten Fehler bekommt. Je grösser \(\lambda\), desto stärker ``bestrafen'' wir komplexe Modelle. Wir werden später sehen, wir wir den optimalen Wert für \(\lambda\) via \textbf{Cross-Validation} finden können.
+\item
+  Der Regularisierungsterm enthält die Konstante \(w_0\) \textbf{nicht} (Summe startet bei \(j=1\) und nicht bei \(j=0\)).
 \end{itemize}
 
-Diese beiden modifizierten Kostenfunktionen haben ein bisschen Erklärungsbedarf:
-
-\begin{itemize}
-\tightlist
-\item
-  In beiden Varianten wollen wir \textbf{gleichzeitig} den MSE so klein wie möglich und eine spezielle Summe über die Modellparameter (d.h. den Regularisierungsterm) so klein wie möglich machen. Das sind zwei konkurrenzierende Ziele und während des Trainings muss der beste Tradeoff gefunden werden.
-\item
-  Bei Ridge ist der Regularisierungsterm eine Summe über die quadrierten Modellparameter. Das Quadrieren stellt sicher, dass sich positive und negative Parameterwerte nicht gegenseitig kompensieren.
-\item
-  Bei LASSO ist der Regularisierungsterm eine Summe über die absoluten Werte der Modellparameter.
-\item
-  Der Regularisierungsterm enthält die Konstante \(b_0\) \textbf{nicht} (Summe startet bei \(j=1\) und nicht bei \(j=0\)).
-\item
-  Der Hyperparameter \(\lambda\) legt fest, wie viel Gewicht der Regularisierungsterm bekommt. Je grösser \(\lambda\), desto stärker ``bestrafen'' wir komplexe Modelle.
-\item
-  Die Optimierung der LASSO Kostenfunktion hat einen gewichtigen Vorteil gegenüber Ridge: unwichtige Parameter werden bei LASSO automatisch auf 0 gesetzt. Das Modell nimmt also selbständig eine Selektion der wichtigen Variablen vor.
-\end{itemize}
-
-\textbf{Fragen}:
+\textbf{Aufgabe}
 
 \begin{itemize}
 \tightlist
@@ -1021,7 +1058,48 @@ Diese beiden modifizierten Kostenfunktionen haben ein bisschen Erklärungsbedarf
   Was passiert wenn \(\lambda \rightarrow \infty\)?
 \end{itemize}
 
-Die grosse Frage ist nun, wie wir den Wert für den Hyperparameter \(\lambda\) wählen. Das schauen wir uns im nächsten Abschnitt an.
+\textbf{Optional: Ridge Regression in Matrixform}
+
+Der Einfachheit halber nehmen wir hier an, dass die Outputwerte \(y_i\) hier standardisiert\footnote{Formel für die Standardisierung: \(\frac{y_i-\bar{y}}{s_y}\)} wurden, so dass der Mittelwert über die standardisierten Outputwerte Null ist. So entfällt die Konstante \(w_0\) aus dem Modell, was uns die Matrixform für das Ridge Modell erleichtert, denn der Regularisierungsterm soll ja die Konstante nicht enthalten und wenn es diese nicht gibt, dann gibt es keine Probleme.
+
+Wie weiter oben gesehen, können wir die Kostenfunktion für das nicht-regularisierte Modell wie folgt schreiben:
+
+\begin{align}
+J(\mathbf{\hat{w}}) &= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\mathbf{X}\mathbf{\hat{w}} + \mathbf{\hat{w}}' \mathbf{X}'\mathbf{X}\mathbf{\hat{w}})
+\end{align}
+
+Der Regularisierungsterm kann sehr einfach in Matrixform geschrieben werden, nämlich als Skalarprodukt \(\frac{\lambda}{2}\mathbf{\hat{w}}'\mathbf{\hat{w}}\). Damit kriegen wir folgende Kostenfunktion:
+
+\begin{align}
+J(\mathbf{\hat{w}}) &= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\mathbf{X}\mathbf{\hat{w}} + \mathbf{\hat{w}}' \mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \frac{\lambda}{2}\mathbf{\hat{w}}'\mathbf{\hat{w}}
+\end{align}
+
+Um den Gradienten dieser Kostenfunktion zu finden, gehen wir nun sehr ähnlich wie oben vor:
+
+\begin{align}
+\nabla_{\mathbf{\hat{w}}} J(\mathbf{\hat{w}}) &= \frac{1}{2n} (- 2\mathbf{X}'\mathbf{y} + 2\mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \frac{2\lambda}{2}\mathbf{\hat{w}} \\
+&= \frac{1}{n} (-\mathbf{X}'\mathbf{y} + \mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \lambda \mathbf{\hat{w}}
+\end{align}
+
+Diesen Ausdruck können wir nun wie gewohnt gleich Null setzen und mit den Matrix-Rechenregeln nach \(\mathbf{\hat{w}}\) auflösen:
+
+\begin{align}
+\frac{1}{n} (-\mathbf{X}'\mathbf{y} + \mathbf{X}'\mathbf{X}\mathbf{\hat{w}}) + \lambda \mathbf{\hat{w}} &= \mathbf{0} \\
+\mathbf{X}'\mathbf{X}\mathbf{\hat{w}} + \lambda \mathbf{\hat{w}} &= \mathbf{X}'\mathbf{y} \\
+(\mathbf{X}'\mathbf{X} + \lambda \mathbf{I}) \mathbf{\hat{w}} &= \mathbf{X}'\mathbf{y} \\
+\mathbf{\hat{w}} &= (\mathbf{X}'\mathbf{X} + \lambda \mathbf{I})^{-1}\mathbf{X}'\mathbf{y} \\
+\end{align}
+
+\textbf{Wichtig}: \((\mathbf{X}'\mathbf{X} + \lambda \mathbf{I})\) ist immer invertierbar, auch wenn \(p>n\). Wir haben nun also ein analytisch lösbares Regressionsmodell gefunden, dass gut gegen Overfitting schützt.
+
+\textbf{Standardisierung der Input-Variablen}
+
+Es ist eminent wichtig, dass Sie alle numerischen Input-Variablen vor der Anwendung eines regularisierten Modells standardisieren, so dass alle Variablen auf der selben Skala ``leben''. Warum ist das so wichtig? Sie haben gesehen, dass wir beim Ridge Modell die Grösse der Parameter mit dem Regularisierungsterm beschränken. Wenn jedoch die Input-Variablen alle auf unterschiedlichen Skalen ``leben'', dann sind die Parameter nur schon deshalb unterschiedlich. Durch die Standardisierung der Input-Variablen erreichen wir, dass die Parametergrössen vergleichbar werden und die Regularisierung so auch korrekt funktioniert.
+
+\hypertarget{lasso-regressionsmodell}{%
+\subsection{LASSO Regressionsmodell}\label{lasso-regressionsmodell}}
+
+Blabla\ldots{}
 
 \hypertarget{bias-variance-tradeoff}{%
 \section{Bias-Variance Tradeoff}\label{bias-variance-tradeoff}}
