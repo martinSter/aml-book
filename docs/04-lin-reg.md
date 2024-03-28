@@ -23,27 +23,27 @@ Der Output $y_i$ ergibt sich also aus der Addition eines systematischen Teils $f
 
 ## Das Modell (ausgeschrieben)
 
-Nun wollen wir uns konkret mit dem linearen Regressionsmodell befassen. Das bedeutet nun nichts anderes, als dass wir die allgemein geschriebene Funktion $f(\mathbf{x}_i)$ durch eine konkrete mathematische Funktion ersetzen. Im Machine Learning ist das der erste wichtige Schritt, nämlich die Modellwahl (engl. *Model Selection*). Das Modell kann wie folgt geschrieben werden:
+Nun wollen wir uns konkret mit dem **linearen Regressionsmodell** befassen. Das bedeutet nun nichts anderes, als dass wir die allgemein geschriebene Funktion $f(\mathbf{x}_i)$ durch eine konkrete mathematische Funktion ersetzen. Im Machine Learning ist das der erste wichtige Schritt, nämlich die Modellwahl (engl. *Model Selection*). Das Modell kann wie folgt geschrieben werden:
 
 $$
 f(\mathbf{x}_i) = w_0 + w_1 \cdot x_{i1} + w_2 \cdot x_{i2} + \ldots + w_p \cdot x_{ip}
 $$
 Wir verzichten hier bewusst darauf, den Hut für $f$ zu schreiben, da es sich lediglich um eine allgemein gültige Funktion handelt und noch nichts geschätzt bzw. trainiert wurde. Dieses Modell bzw. diese Funktion hat sogenannte **Parameter**, die es zu schätzen gilt. Hier sind dies die Parameter $w_0,\; w_1,\; \ldots,\; w_p$. Wegen der Konstante $w_0$ haben wir immer einen Parameter mehr als es Input-Variablen hat, also $p+1$ Parameter.
 
-Diese Parameter sind die Schlüsselzutat in einem ML-Modell. Wir wollen sie optimieren, so dass die trainierte Funktion $\hat{f}(\mathbf{x}_i)$ der wahren Funktion $f(\mathbf{x}_i)$ möglichst nahe kommt.
+Diese Parameter sind die Schlüsselzutat in einem ML-Modell. Wir wollen sie **optimieren**, so dass die trainierte Funktion $\hat{f}(\mathbf{x}_i)$ der wahren Funktion $f(\mathbf{x}_i)$ möglichst nahe kommt.
 
-Wir schauen uns in diesem Kapitel ein ganz einfaches Beispiel an mit nur einer Input-Variable $x_i$, so dass der Zusammenhang zwischen dem Output $y_i$ und dem Input $x_i$ in 2D dargestellt werden kann. In diesem Zusammenhang spricht man vom **einfachen linearen Regressionsmodell**. Ausserdem haben wir nur vier Beobachtungen, welche wie folgt in einem Streudiagramm dargestellt werden können:
+Wir schauen uns in diesem Kapitel ein ganz einfaches Beispiel an mit nur einer Input-Variable $x_i$, so dass der Zusammenhang zwischen dem Output $y_i$ und dem Input $x_i$ in 2D dargestellt werden kann. In diesem Zusammenhang spricht man vom **einfachen linearen Regressionsmodell**. Ausserdem haben wir nur vier Beobachtungen, welche in Abbildung \@ref(fig:simple-reg) in einem Streudiagramm dargestellt werden:
 
 <div class="figure" style="text-align: center">
 <img src="04-lin-reg_files/figure-epub3/simple-reg-1.png" alt="Einfaches Regressionsbeispiel." width="70%" />
-<p class="caption">(\#fig:simple-reg)Einfaches Regressionsbeispiel.</p>
+<p class="caption">(\#fig:simple-reg)Einfaches Regressionsbeispiel. Die vier Beobachtungen werden in einem Streudiagramm dargestellt. Auf der x-Achse ist der Wert der Input-Variable und auf der y-Achse der Wert der Output-Variable ablesbar.</p>
 </div>
 
 ## Das Modell (kompakt)
 
 Sie sehen oben, dass es ziemlich umständlich sein kann, das lineare Regressionsmodell aufzuschreiben, insbesondere wenn wir viele Input-Variablen haben. Mithilfe von **Vektoren und Matrizen** können wir das Modell viel kompakter aufschreiben.
 
-Wir haben in Kapitel \@ref(intro) bereits gesehen, dass die Input-Variablen für eine Beobachtung $i$ als Spaltenvektor geschrieben werden können. Wir modifizieren diesen Spaltenvektor in einem ersten Schritt, indem wir an erster Stelle eine 1 einfügen, also:^[So müssen wir die Konstante $w_0$ nicht separat aufschreiben.]
+Wir haben in Kapitel \@ref(intro) bereits gesehen, dass die Input-Variablen für eine Beobachtung $i$ als Spaltenvektor geschrieben werden können. Wir modifizieren diesen Spaltenvektor in einem ersten Schritt, indem wir an erster Stelle eine 1 einfügen,^[So müssen wir die Konstante $w_0$ nicht separat aufschreiben.] also:
 
 $$\mathbf{x}_i=\begin{pmatrix} 1\\ x_{i1} \\ x_{i2} \\ \vdots \\ x_{ip} \end{pmatrix}$$
 
@@ -110,13 +110,13 @@ Warum wir all das tun, werden wir weiter unten sehen. Es wird unser Leben viel e
 
 ## Modelltraining
 
-Wir werden uns hier anschauen, dass für das Training (oft auch *Fitting* genannt) des linearen Regressionsmodells zwei verschiedene Perspektiven eingenommen werden können, welche am Schluss beide zum selben Schluss kommen.
+Wir werden uns hier anschauen, dass für das Training (oft auch *Fitting* genannt) des linearen Regressionsmodells **zwei verschiedene Perspektiven** eingenommen werden können, welche am Schluss beide zum selben Schluss kommen.
 
 ### Perspektive 1: Funktionsoptimierung
 
-In der ersten Perspektive behandeln wir das Modelltraining als Optimierungsproblem. Wir wollen nämlich eine sogenannte **Kostenfunktion** (engl. *Loss Function*) aufstellen, die es danach zu minimieren gilt. Sie werden gleich sehen, dass die Kostenfunktion für das lineare Regressionsmodell von den Modellparameter $w_0,w_1,\dots,w_p$ abhängen wird. Das Ziel wird also sein, die optimalen Werte für die Modellparameter zu finden, so dass die Kostenfunktion so klein wie möglich ist.
+In der ersten Perspektive behandeln wir das Modelltraining als Optimierungsproblem. Wir wollen nämlich eine sogenannte **Kostenfunktion** (engl. *Loss Function*) aufstellen, die es danach zu minimieren gilt. Sie werden gleich sehen, dass die Kostenfunktion für das lineare Regressionsmodell von den Modellparameter $w_0,w_1,\dots,w_p$ abhängt. Das Ziel wird also sein, die optimalen Werte für die Modellparameter zu finden, so dass die Kostenfunktion so klein wie möglich ist.
 
-Doch wie sieht denn nun diese Kostenfunktion für das lineare Regressionsmodell konkret aus? Wir werden uns hier der Einfachheit halber mal nur ein **einfaches lineares Regressionsmodell** mit nur einer Input-Variable $x_i$ anschauen (wie in unserem einfachen Beispiel). Die Kostenfunktion sieht in diesem Fall so aus:
+Doch wie sieht denn nun diese Kostenfunktion für das lineare Regressionsmodell konkret aus? Wir werden uns hier der Einfachheit halber nur ein **einfaches lineares Regressionsmodell** mit nur einer Input-Variable $x_i$ anschauen (wie in unserem einfachen Beispiel). Die Kostenfunktion sieht in diesem Fall so aus:
 
 $$
 J(\hat{w}_0,\hat{w}_1) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) \right)^2
@@ -130,7 +130,7 @@ J(\hat{w}_0, \hat{w}_1) &= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{f}(x_i) 
 &= \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right)^2 \\
 \end{align}
 
-Nun ist offensichtlich, wie die Kostenfunktion $J$ von den Modellparameter $\hat{w}_0$ und $\hat{w}_1$ abhängt. Im ML gibt es nun viele verschiedene Arten, wie man für die beiden Modellparameter die optimalen Werte findet. Hier ist die Lösung zum Glück einfach, denn es gibt eine sogenannte **analytische Lösung**, d.h. es ist möglich für $\hat{w}_0$ und $\hat{w}_1$ je eine Formel zu finden, die uns erlaubt die optimalen Parameterwerte auszurechnen. Die Herleitung dieser Formeln ist nicht besonders schwierig, denn wir wenden nämlich ein altbekanntes Prinzip aus der Differenzialrechnung an: Ableitung nach dem Modellparameter gleich Null setzen und nach dem Parameter auflösen.
+Nun ist offensichtlich, wie die Kostenfunktion $J$ von den Modellparameter $\hat{w}_0$ und $\hat{w}_1$ abhängt. Im ML gibt es nun viele verschiedene Arten, wie man für die beiden Modellparameter die optimalen Werte findet. Hier ist die Lösung zum Glück einfach, denn es gibt eine sogenannte **analytische Lösung**, d.h. es ist möglich für $\hat{w}_0$ und $\hat{w}_1$ je eine Formel zu finden, die uns erlaubt die optimalen Parameterwerte direkt auszurechnen. Die Herleitung dieser Formeln ist nicht besonders schwierig, denn wir wenden nämlich ein altbekanntes Prinzip aus der Differenzialrechnung an: wir berechnen die erste Ableitung der Funktion nach den Modellparameter, setzen sie gleich Null und lösen nach dem Parameter auf.
 
 Machen wir dies in einem ersten Schritt für $\hat{w}_0$:
 
@@ -149,7 +149,7 @@ Nun setzten wir die Ableitung gleich Null und lösen nach $\hat{w}_0$ auf:
 \hat{w}_0 &= \bar{y} - \hat{w}_1 \cdot \bar{x}
 \end{align}
 
-Wir sehen, dass die Lösung für $\hat{w}_0$ von den beiden Mittelwerten $\bar{y}$ und $\bar{x}$ sowie von $\hat{w}_1$. Suchen wir nun also die Lösung für $\hat{w}_1$:
+Wir sehen, dass die Lösung für $\hat{w}_0$ von den beiden Mittelwerten $\bar{y}$ und $\bar{x}$ sowie von $\hat{w}_1$ abhängt. Suchen wir nun also in einem zweiten Schritt die Lösung für $\hat{w}_1$:
 
 \begin{align}
 \frac{\partial J(\hat{w}_0, \hat{w}_1)}{\partial \hat{w}_1} &= \frac{1}{2n} \sum_{i=1}^{n} 2 \cdot \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right) \cdot (-x_i) \\
@@ -168,20 +168,100 @@ Nun können wir wiederum die Ableitung gleich Null setzen und für $\hat{w}_0$ s
 \hat{w}_1 &= \frac{\frac{1}{n} \sum_{i=1}^{n} y_i \cdot x_i - \bar{y} \cdot \bar{x}}{\frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2}
 \end{align}
 
-Vielleicht erkennen Sie die Ausdrücke im Zählen und Nenner der Lösung für $\hat{w}_1$: es sind dies die Kovarianz zwischen $y_i$ und $x_i$ im Zähler und die Varianz von $x_i$ im Nenner.
+Vielleicht erkennen Sie die Ausdrücke im Zähler und Nenner der Lösung für $\hat{w}_1$: es sind dies die **Kovarianz** zwischen $y_i$ und $x_i$ im Zähler und die **Varianz** von $x_i$ im Nenner.
 
-Yay! Nun haben wir die Formeln für die Berechnung für die optimalen Parameterwerte des einfachen linearen Regressionsmodells gefunden. Diese Methode wird **Kleinstquadratemethode** (engl. *Least Squares*) genannt, weil die optimalen Parameter die Summe über die **quadrierten** Differenzen zwischen $y_i$ und den Vorhersagen $\hat{f}(x_i)$ minimiert.
+Yay! Nun haben wir die Formeln für die Berechnung der optimalen Parameterwerte des einfachen linearen Regressionsmodells gefunden. Diese Methode wird **Kleinstquadratemethode** (engl. *Least Squares*) genannt, weil die optimalen Parameter die Summe über die **quadrierten** Differenzen zwischen $y_i$ und den Vorhersagen $\hat{f}(x_i)$ minimieren.
+
+::: {.rmdtip}
+**Aufgabe**
+
+```
+#> Warning: `includeHTML()` was provided a `path` that appears to be a complete HTML document.
+#> ✖ Path: exercises/simplelinreg.html
+#> ℹ Use `tags$iframe()` to include an HTML document. You can either ensure `path` is accessible in your app or document (see e.g. `shiny::addResourcePath()`) and pass the relative path to the `src` argument. Or you can read the contents of `path` and pass the contents to `srcdoc`.
+```
 
 
+```{=html}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+
+.collapsible {
+  background-color: #065535;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<p>Rechnen Sie nun die optimalen Parameterwerte für unser einfaches lineares Regressionsmodell aus. Sie können die verschiedenen statistischen Grössen entweder mithilfe von R rechnen oder von Hand bzw. mit dem Taschenrechner.</p>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<p>Wir rechnen als erstes die Mittelwerte für die beiden Variablen:</p>
+<p><span class="math display">\[
+\bar{x} = \frac{-4.1 + (-0.5) + 1.4 + 4.4}{4} = 0.3
+\]</span></p>
+<p><span class="math display">\[
+\bar{y} = \frac{3.50 + 1.95 + (-2.50) + (-2.05)}{4} = 0.225
+\]</span></p>
+<p>Danach rechnen wir die mittlere Summe über die Produkte der jeweiligen Variablenwerte (erster Teil des Zählers der Formel für <span class="math inline">\(\hat{w}_1\)</span>):</p>
+<p><span class="math display">\[
+\frac{3.50 \cdot (-4.1) + 1.95 \cdot (-0.5) + (-2.50) \cdot 1.4 + (-2.05) \cdot 4.4}{4} = -6.96125
+\]</span></p>
+<p>Nun rechnen wir die mittlere Summe über die quadrierten x-Werte (erster Teil des Nenners der Formel für <span class="math inline">\(\hat{w}_1\)</span>):</p>
+<p><span class="math display">\[
+\frac{(-4.1)^2 + (-0.5)^2 + 1.4^2 + 4.4^2}{4} = 9.595
+\]</span></p>
+<p>Nun können wir den optimalen Parameterwert für <span class="math inline">\(\hat{w}_1\)</span> berechnen:</p>
+<p><span class="math display">\[
+\hat{w}_1 = \frac{-6.96125 - 0.225 \cdot 0.3}{9.595 - 0.3^2} = -0.7395
+\]</span></p>
+<p>Und nun haben wir auch gleich alle Zutaten, um den optimalen Parameterwert für <span class="math inline">\(\hat{w}_0\)</span> zu berechnen:</p>
+<p><span class="math display">\[
+\hat{w}_0 = 0.225 - (-0.7395) \cdot 0.3 = 0.4469
+\]</span></p>
+<p>Unser trainiertes optimale Modell sieht also wie folgt aus:</p>
+<p><span class="math display">\[
+\hat{f}(x_i) = 0.4469 - 0.7395 \cdot x_i
+\]</span></p>
+</div>
+<br/>
+
+</body>
+</html>
+```
+
+:::
+
+Das in der obigen Aufgabe berechnete Modell ist in Abbildung \@ref(fig:simple-reg-cost) (links) grafisch als blaue Gerade dargestellt. Der Parameter $\hat{w}_0$ ist der Ort, an dem die Gerade die y-Achse durchkreuzt, während der Parameter $\hat{w}_1$ der Steigung der Geraden entspricht. Unser optimales Modell minimiert die Summe über die quadrierten Differenzen zwischen den tatsächlichen $y_i$ Werten und den Vorhersagen gemäss unserem Modell $\hat{f}(x_i)$ (als rot gestrichelte Linien dargestellt).
 
 <div class="figure" style="text-align: center">
 <img src="04-lin-reg_files/figure-epub3/simple-reg-cost-1.png" alt="Einfaches Regressionsbeispiel." width="50%" /><img src="04-lin-reg_files/figure-epub3/simple-reg-cost-2.png" alt="Einfaches Regressionsbeispiel." width="50%" />
-<p class="caption">(\#fig:simple-reg-cost)Einfaches Regressionsbeispiel. Das geschätzte Modell ist als blaue Gerade eingezeichnet. Die vertikalen roten Linien stellen die Abweichungen der wahren Outputs von den Vorhersagen dar.</p>
+<p class="caption">(\#fig:simple-reg-cost)Einfaches Regressionsbeispiel. Das geschätzte Modell ist als blaue Gerade eingezeichnet. Die vertikalen roten Linien stellen die Abweichungen der wahren Outputs von den Vorhersagen dar. Rechts ist ein Konturplot der Kostenfunktion mit der optimalen Parameterwert-Kombination dargestellt.</p>
 </div>
 
-
-
-
+Die Abbildung \@ref(fig:simple-reg-cost) (rechts) zeigt sogennante **Konturlinien** unserer Kostenfunktion. Die optimale Parameterwert-Kombination ist als roter Punkt eingezeichnet. Jede Konturlinie zeigt alle Parameterwert-Kombination, welche jeweils zum gleichen Kostenwert führen. Die fünf eingezeichneten Linien zeigen beispielsweise die Parameterwert-Kombination für die Kostenwerte 1 bis 5 (von innen nach aussen). Man kann sich unsere Kostenfunktion also wie eine Schüssel vorstellen mit dem roten Punkt als Boden der Schüssel. Es handelt sich bei unserer Kostenfunktion um eine Funktion, die **quadratisch** in den Parameterwerten $\hat{w}_0$ und $\hat{w}_1$ ist. In diesem Fall finden wir immer **genau eine Parameterwert-Kombination**, welche dem absoluten Minimum der Kostenfunktion entspricht. Manchmal spricht man auch von einer **konvexen** Kostenfunktion.
 
 <div style = "background-color:#fef9e7; padding:10px">
 **Optional: Kleinstquadratemethode in Matrixform**
@@ -329,6 +409,106 @@ Diese modifizierte Kostenfunktion hat etwas Erklärungsbedarf:
 
 * Was passiert wenn $\lambda=0$?
 * Was passiert wenn $\lambda \rightarrow \infty$?
+:::
+
+::: {.rmdtip}
+**Aufgabe**
+
+```
+#> Warning: `includeHTML()` was provided a `path` that appears to be a complete HTML document.
+#> ✖ Path: exercises/ridgederiv.html
+#> ℹ Use `tags$iframe()` to include an HTML document. You can either ensure `path` is accessible in your app or document (see e.g. `shiny::addResourcePath()`) and pass the relative path to the `src` argument. Or you can read the contents of `path` and pass the contents to `srcdoc`.
+```
+
+
+```{=html}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+
+.collapsible {
+  background-color: #065535;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<p>Berechnen Sie hier nun den optimalen Parameter <span class="math inline">\(\hat{w}_1\)</span> für ein einfaches regularisiertes Regressionsmodell mit nur einer <span class="math inline">\(x_i\)</span> Variable.</p>
+<p>Leiten Sie dazu die obige Kostenfunktion nach <span class="math inline">\(\hat{w}_1\)</span> ab, setzen Sie sie gleich Null und lösen Sie nach <span class="math inline">\(\hat{w}_1\)</span> auf.</p>
+<p>Für <span class="math inline">\(\hat{w}_0\)</span> können Sie die Lösung aus dem unregularisierten Fall einsetzen, also <span class="math inline">\(\hat{w}_0 = \bar{y} - \hat{w}_1 \cdot \bar{x}\)</span>.</p>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<p>Die Kostenfunktion für das einfache regularisierte Modell sieht konkret wie folgt aus:</p>
+<p><span class="math display">\[
+\begin{align}
+J(\hat{w}_0, \hat{w}_1) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right)^2 + \frac{\lambda}{2} \hat{w}_1^2 \\
+\end{align}
+\]</span></p>
+<p>Nun leiten wir diese Kostenfunktion nach <span class="math inline">\(\hat{w}_1\)</span> ab und gehen durch sehr ähnliche Schritte wie im unregularisierten Fall:</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\partial J(\hat{w}_0, \hat{w}_1)}{\partial \hat{w}_1} &= \frac{1}{2n} \sum_{i=1}^{n} 2 \cdot \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right) \cdot (-x_i) + \frac{2\lambda}{2} \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} \left(y_i x_i - \hat{w}_0 x_i - \hat{w}_1 x_i^2 \right) + \lambda \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} y_i x_i + \hat{w}_0 \bar{x} + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} y_i x_i + (\bar{y} - \hat{w}_1 \bar{x}) \cdot \bar{x} + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} y_i x_i + \bar{y}\bar{x} - \hat{w}_1 \bar{x}^2 + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1
+\end{align}
+\]</span></p>
+<p>Nun setzen wir die Ableitung gleich Null und lösen nach <span class="math inline">\(\hat{w}_1\)</span> auf:</p>
+<p><span class="math display">\[
+\begin{align}
+-\frac{1}{n} \sum_{i=1}^{n} y_i x_i + \bar{y}\bar{x} - \hat{w}_1 \bar{x}^2 + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 &= 0 \\
+- \hat{w}_1 \bar{x}^2 + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 &= \frac{1}{n} \sum_{i=1}^{n} y_i x_i - \bar{y}\bar{x} \\
+\hat{w}_1 \left(\frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2 + \lambda \right) &= \frac{1}{n} \sum_{i=1}^{n} y_i x_i - \bar{y}\bar{x} \\
+\hat{w}_1 &= \frac{\text{Cov}(y,x)}{\text{Var}(x) + \lambda}
+\end{align}
+\]</span></p>
+<p>Ha, das macht ja irgendwie Sinn. Je grösser der Wert für <span class="math inline">\(\lambda\)</span> desto grösser der Nenner und desto stärker wird der trainierte Wert für <span class="math inline">\(\hat{w}_1\)</span> beschränkt.</p>
+</div>
+<br/>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>
+```
+
 :::
 
 <div style = "background-color:#fef9e7; padding:10px">

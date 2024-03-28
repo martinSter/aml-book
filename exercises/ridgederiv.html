@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+
+.collapsible {
+  background-color: #065535;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<p>Berechnen Sie hier nun den optimalen Parameter <span class="math inline">\(\hat{w}_1\)</span> für ein einfaches regularisiertes Regressionsmodell mit nur einer <span class="math inline">\(x_i\)</span> Variable.</p>
+<p>Leiten Sie dazu die obige Kostenfunktion nach <span class="math inline">\(\hat{w}_1\)</span> ab, setzen Sie sie gleich Null und lösen Sie nach <span class="math inline">\(\hat{w}_1\)</span> auf.</p>
+<p>Für <span class="math inline">\(\hat{w}_0\)</span> können Sie die Lösung aus dem unregularisierten Fall einsetzen, also <span class="math inline">\(\hat{w}_0 = \bar{y} - \hat{w}_1 \cdot \bar{x}\)</span>.</p>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<p>Die Kostenfunktion für das einfache regularisierte Modell sieht konkret wie folgt aus:</p>
+<p><span class="math display">\[
+\begin{align}
+J(\hat{w}_0, \hat{w}_1) = \frac{1}{2n} \sum_{i=1}^{n} \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right)^2 + \frac{\lambda}{2} \hat{w}_1^2 \\
+\end{align}
+\]</span></p>
+<p>Nun leiten wir diese Kostenfunktion nach <span class="math inline">\(\hat{w}_1\)</span> ab und gehen durch sehr ähnliche Schritte wie im unregularisierten Fall:</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\partial J(\hat{w}_0, \hat{w}_1)}{\partial \hat{w}_1} &= \frac{1}{2n} \sum_{i=1}^{n} 2 \cdot \left(y_i - \hat{w}_0 - \hat{w}_1 \cdot x_i \right) \cdot (-x_i) + \frac{2\lambda}{2} \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} \left(y_i x_i - \hat{w}_0 x_i - \hat{w}_1 x_i^2 \right) + \lambda \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} y_i x_i + \hat{w}_0 \bar{x} + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} y_i x_i + (\bar{y} - \hat{w}_1 \bar{x}) \cdot \bar{x} + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 \\
+&= -\frac{1}{n} \sum_{i=1}^{n} y_i x_i + \bar{y}\bar{x} - \hat{w}_1 \bar{x}^2 + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1
+\end{align}
+\]</span></p>
+<p>Nun setzen wir die Ableitung gleich Null und lösen nach <span class="math inline">\(\hat{w}_1\)</span> auf:</p>
+<p><span class="math display">\[
+\begin{align}
+-\frac{1}{n} \sum_{i=1}^{n} y_i x_i + \bar{y}\bar{x} - \hat{w}_1 \bar{x}^2 + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 &= 0 \\
+- \hat{w}_1 \bar{x}^2 + \hat{w}_1 \cdot \frac{1}{n} \sum_{i=1}^{n} x_i^2 + \lambda \hat{w}_1 &= \frac{1}{n} \sum_{i=1}^{n} y_i x_i - \bar{y}\bar{x} \\
+\hat{w}_1 \left(\frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2 + \lambda \right) &= \frac{1}{n} \sum_{i=1}^{n} y_i x_i - \bar{y}\bar{x} \\
+\hat{w}_1 &= \frac{\text{Cov}(y,x)}{\text{Var}(x) + \lambda}
+\end{align}
+\]</span></p>
+<p>Ha, das macht ja irgendwie Sinn. Je grösser der Wert für <span class="math inline">\(\lambda\)</span> desto grösser der Nenner und desto stärker wird der trainierte Wert für <span class="math inline">\(\hat{w}_1\)</span> beschränkt.</p>
+</div>
+<br/>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

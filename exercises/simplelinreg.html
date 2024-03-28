@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<style type="text/css">
+
+.collapsible {
+  background-color: #065535;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+<meta charset="utf-8" />
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<p>Rechnen Sie nun die optimalen Parameterwerte für unser einfaches lineares Regressionsmodell aus. Sie können die verschiedenen statistischen Grössen entweder mithilfe von R rechnen oder von Hand bzw. mit dem Taschenrechner.</p>
+
+<button type="button" class="collapsible">Lösung</button>
+<div class="content">
+<br/>
+<p>Wir rechnen als erstes die Mittelwerte für die beiden Variablen:</p>
+<p><span class="math display">\[
+\bar{x} = \frac{-4.1 + (-0.5) + 1.4 + 4.4}{4} = 0.3
+\]</span></p>
+<p><span class="math display">\[
+\bar{y} = \frac{3.50 + 1.95 + (-2.50) + (-2.05)}{4} = 0.225
+\]</span></p>
+<p>Danach rechnen wir die mittlere Summe über die Produkte der jeweiligen Variablenwerte (erster Teil des Zählers der Formel für <span class="math inline">\(\hat{w}_1\)</span>):</p>
+<p><span class="math display">\[
+\frac{3.50 \cdot (-4.1) + 1.95 \cdot (-0.5) + (-2.50) \cdot 1.4 + (-2.05) \cdot 4.4}{4} = -6.96125
+\]</span></p>
+<p>Nun rechnen wir die mittlere Summe über die quadrierten x-Werte (erster Teil des Nenners der Formel für <span class="math inline">\(\hat{w}_1\)</span>):</p>
+<p><span class="math display">\[
+\frac{(-4.1)^2 + (-0.5)^2 + 1.4^2 + 4.4^2}{4} = 9.595
+\]</span></p>
+<p>Nun können wir den optimalen Parameterwert für <span class="math inline">\(\hat{w}_1\)</span> berechnen:</p>
+<p><span class="math display">\[
+\hat{w}_1 = \frac{-6.96125 - 0.225 \cdot 0.3}{9.595 - 0.3^2} = -0.7395
+\]</span></p>
+<p>Und nun haben wir auch gleich alle Zutaten, um den optimalen Parameterwert für <span class="math inline">\(\hat{w}_0\)</span> zu berechnen:</p>
+<p><span class="math display">\[
+\hat{w}_0 = 0.225 - (-0.7395) \cdot 0.3 = 0.4469
+\]</span></p>
+<p>Unser trainiertes optimale Modell sieht also wie folgt aus:</p>
+<p><span class="math display">\[
+\hat{f}(x_i) = 0.4469 - 0.7395 \cdot x_i
+\]</span></p>
+</div>
+<br/>
+
+</body>
+</html>
