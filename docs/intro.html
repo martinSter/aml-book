@@ -467,7 +467,22 @@ Falsch
 </li>
 </ol>
 </div>
-<br>
+<br><script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
 </div>
 </div>
 <div id="machine-learning-pipeline" class="section level2" number="1.7">
@@ -523,7 +538,7 @@ Abbildung 1.2: Eine typische ML-Pipeline.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Machine Learning für das KMU</strong>" was written by Martin Sterchi. It was last built on 2024-03-28.</p>
+    <p>"<strong>Machine Learning für das KMU</strong>" was written by Martin Sterchi. It was last built on 2024-04-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

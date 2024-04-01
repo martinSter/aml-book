@@ -529,34 +529,67 @@ J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\ma
 <h2>
 <span class="header-section-number">4.6</span> Bias-Variance Tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
 </h2>
-<div style="background-color:#DEEBF7; padding:10px">
-<p><strong>Was gibt es bei der Wahl des optimalen Modells zu berücksichtigen?</strong></p>
-<p>Das zentrale Thema bei der Wahl des Modells ist der <strong>Bias-Variance Tradeoff</strong>. Wir wollen ein Modell wählen, das weder zu viel Bias noch zu viel Varianz hat. In der Einführung zum Machine Learning haben wir bereits gelernt, dass der erwartete (quadrierte) Fehler in einen reduzierbaren und in einen nicht-reduzierbaren Fehler aufgeteilt werden kann. In der Einführung haben wir angenommen, dass <span class="math inline">\(\hat{f}\)</span> fix ist. Nun lockern wir diese Annahme und nehmen an, dass <span class="math inline">\(\hat{f}\)</span> eine Zufallsvariable ist, welche je nach Trainingsdatensatz eine unterschiedliche Form annimmt. Nach einer relativ komplizierten Herleitung kann man zeigen, dass der <strong>erwartete quadrierte Fehler</strong> für eine gegebene Testbeobachtung <span class="math inline">\((y_i,\mathbf{x}_i)\)</span> wie folgt zerlegt werden kann:</p>
+<p>Wir haben oben bereits gesehen, dass der Hyperparameter <span class="math inline">\(\lambda\)</span> die Komplexität des regularisierten Regressionsmodells bestimmt. Um noch besser zu verstehen, warum diese Komplexität überhaupt wichtig ist, wollen wir uns nun mit einem ganz wichtigen Konzept beschäftigen, nämlich dem <strong>Bias-Variance Tradeoff</strong>. Dieses Konzept kann <em>intuitiv</em> für alle Bereiche des Supervised Learnings angewendet werden. Für das Regressionsproblem können wir diesen Tradeoff jedoch auch <em>mathematisch</em> herleiten und genau das tun wir jetzt hier.</p>
+<p>Stellen Sie sich vor, dass wir eine grosse Anzahl Datensätze zur Verfügung haben und mit jedem dieser Datensätze versuchen wir den wahren funktionalen Zusammenhang <span class="math inline">\(f(\mathbf{x}_i)\)</span> möglichst gut mit <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> zu schätzen. Für jeden Datensatz sieht das geschätzte Modell <span class="math inline">\(\hat{f}(\mathbf{x}_i)\)</span> etwas anders aus. Das geschätzte Modell <span class="math inline">\(\hat{f}\)</span> variiert also je nach Datensatz und ist dementsprechend eine <strong>Zufallsvariable</strong>.</p>
+<p>Ausserdem treffen wir folgende Annahmen:</p>
+<ul>
+<li>Von oben wissen wir, dass <span class="math inline">\(y_i = f(\mathbf{x}_i) + \epsilon\)</span> gilt.</li>
+<li>Wir nehmen an, dass der Erwartungswert des nicht-lernbaren Teils <span class="math inline">\(\epsilon\)</span> Null ist, also <span class="math inline">\(\mathbb{E}[\epsilon]=0\)</span>.</li>
+<li>Allgemeine Regel zur Varianz einer Zufallsvariable: <span class="math inline">\(\text{Var}(\epsilon) = \mathbb{E}[\epsilon^2] - \mathbb{E}[\epsilon]^2 = \mathbb{E}[\epsilon^2] - 0^2 = \mathbb{E}[\epsilon^2]\)</span>.</li>
+</ul>
+<p>Um den Bias-Variance Tradeoff zu zeigen, leiten wir nun den <strong>Erwartungswert des quadrierten Fehlers</strong> für eine gegebene Testbeobachtung her, die wir als <span class="math inline">\((y_0,\mathbf{x}_0)\)</span> bezeichnen. Dies wäre der durchschnittliche quadrierte Fehler, den wir für diese Beobachtung kriegen würden, wenn wir mit jedem geschätzten Modell (jedes auf einem unterschiedlichen Datensatz trainiert) die Vorhersage für diese Testbeobachtung rechnen würden.</p>
+<p>In einem ersten Schritt erweitern wir den quadrierten Fehler, indem wir einmal den wahren Funktionswert an der Stelle <span class="math inline">\(\mathbf{x}_0\)</span> einmal abziehen und einmal hinzuzählen. Zusammen gibt das Null und verändert darum die rechte Seite der Gleichung nicht:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{E}\left[\left(y_0 - \hat{f}(\mathbf{x}_0)\right)^2\right] &amp;= \mathbb{E}\left[\left(y_0 - f(\mathbf{x}_0) + f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0)\right)^2\right]
+\end{align}\]</span></p>
+<p>Nun verwenden wir die bekannte polynomische Expansion <span class="math inline">\((a+b)^2=a^2+2ab+b^2\)</span>, aber hier behandeln wir <span class="math inline">\(y_0 - f(\mathbf{x}_0)\)</span> als <span class="math inline">\(a\)</span> und <span class="math inline">\(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0)\)</span> als <span class="math inline">\(b\)</span>. Dadurch kriegen wir folgende Gleichung:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{E}\left[\left(y_0 - \hat{f}(\mathbf{x}_0)\right)^2\right] &amp;= \mathbb{E}\biggl[\left(y_0 - f(\mathbf{x}_0)\right)^2 \\
+&amp;+ 2\left(y_0 - f(\mathbf{x}_0)\right)(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0)) \\
+&amp;+ (f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\biggr]
+\end{align}\]</span></p>
+<p>Nun wissen wir aus obigen Annahmen, dass der Erwartungswert von <span class="math inline">\(y_0\)</span> folgender ist: <span class="math inline">\(\mathbb{E}[y_0]=\mathbb{E}[f(\mathbf{x}_0) + \epsilon]=f(\mathbf{x}_0)\)</span>. Dadurch entfällt der erste Teil des zweiten Terms, weil <span class="math inline">\(\mathbb{E}[\left(y_0 - f(\mathbf{x}_0)\right)]=f(\mathbf{x}_0) - f(\mathbf{x}_0)=0\)</span>. Dadurch lässt sich das Ganze massiv vereinfachen zu:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{E}\left[\left(y_0 - \hat{f}(\mathbf{x}_0)\right)^2\right] &amp;= \mathbb{E}\left[\left(y_0 - f(\mathbf{x}_0)\right)^2\right] + \mathbb{E}\left[(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\right]
+\end{align}\]</span></p>
+<p>Nun setzen wir im ersten Erwartungswert auf der rechten Seite anstelle von <span class="math inline">\(y_0\)</span> den Term <span class="math inline">\(f(\mathbf{x}_0) + \epsilon\)</span> ein und kriegen folgendes:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{E}\left[\left(y_0 - \hat{f}(\mathbf{x}_0)\right)^2\right] &amp;= \mathbb{E}\left[\left(f(\mathbf{x}_0) + \epsilon - f(\mathbf{x}_0)\right)^2\right] + \mathbb{E}\left[(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\right] \\
+&amp;= \mathbb{E}\left[\epsilon^2\right] + \mathbb{E}\left[(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\right] \\
+&amp;= \text{Var}(\epsilon) + \mathbb{E}\left[(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\right]
+\end{align}\]</span></p>
+<p>Das ist schon mal ein erstes wichtiges Zwischenresultat. Der Erwartungswert des quadrierten Fehlers wird eine untere Grenze haben, die genau der Varianz des Noises <span class="math inline">\(\text{Var}(\epsilon)\)</span> entspricht. Diese untere Grenze des erwarteten Fehlers wird dann erreicht, wenn unser geschätztes Modell genau dem wahren entspricht und darum der zweite Term oben entfällt.</p>
+<p>Nun wollen wir diesen zweiten Term oben noch etwas weiter aufspalten. Dazu brauchen wir wiederum den Trick, den wir oben bereits angewendet haben. Wir ziehen den Erwartungswert des geschätzten Modells <span class="math inline">\(\mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\)</span> einmal ab und fügen ihn einmal hinzu:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{E}\left[(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\right] &amp;= \mathbb{E}\left[\left(f(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right] + \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right] - \hat{f}(\mathbf{x}_0)\right)^2\right] \\
+&amp;= \mathbb{E}\left[\left(f(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right] - \left(\hat{f}(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)\right)^2\right]
+\end{align}\]</span></p>
+<p>Ähnlich wie weiter oben können wir diese Gleichung mit einer polynomischen Expansion wie folgt umschreiben:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{E}\left[(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\right] &amp;= \mathbb{E}\biggl[\left(f(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2 \\
+&amp;- 2\left(f(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)\left(\hat{f}(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right) \\
+&amp;+ \left(\hat{f}(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2\biggr]
+\end{align}\]</span></p>
+<p>Auch hier entfällt der mittlere Term, wenn wir den Erwartungswert in die Klammern reinnehmen, weil der zweite Teil <span class="math inline">\(\left(\mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right] - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)=0\)</span> ist. Was übrig bleibt ist folgendes:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{E}\left[(f(\mathbf{x}_0) - \hat{f}(\mathbf{x}_0))^2\right] &amp;= \mathbb{E}\left[\left(f(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2\right] + \mathbb{E}\left[\left(\hat{f}(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2\right] \\
+&amp;= \left(f(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2 + \mathbb{E}\left[\left(\hat{f}(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2\right]
+\end{align}\]</span></p>
+<p>Schauen wir uns kurz die beiden Komponenten auf der rechten Seite etwas genauer an:</p>
+<ul>
+<li>
+<span class="math inline">\(\left(f(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2\)</span> ist der <strong>quadrierte Bias</strong> und misst die systematische Abweichung unseres geschätzten Modells <span class="math inline">\(\hat{f}\)</span> vom wahren unbekannten Modell <span class="math inline">\(f\)</span>. Je kleiner der Bias, desto tiefer der erwartete quadrierte Fehler. Wir können diesen Term der Einfachheit halber mit <span class="math inline">\(\left[\text{Bias}\left(\hat{f}(\mathbf{x}_0)\right)\right]^2\)</span> bezeichnen.</li>
+<li>
+<span class="math inline">\(\mathbb{E}\left[\left(\hat{f}(\mathbf{x}_0) - \mathbb{E}\left[\hat{f}(\mathbf{x}_0)\right]\right)^2\right]\)</span> ist nichts anderes als die Varianz unseres geschätzten Modells <span class="math inline">\(\hat{f}\)</span>. Sie misst, wie stark sich <span class="math inline">\(\hat{f}\)</span> im Schnitt verändert, wenn wir einen anderen Datensatz für das Training verwenden. Ein Modell mit hoher Varianz passt sich jeweils sehr stark an die Daten an. Je kleiner diese Varianz, desto tiefer der erwartete quadrierte Fehler. Wir bezeichnen diesen Term der Einfachheit halber als <span class="math inline">\(\text{Var}\left(\hat{f}(\mathbf{x}_0)\right)\)</span>.</li>
+</ul>
+<p>Nun sind wir endlich am Ziel angelangt und können den erwarteten quadrierten Fehler für die Beobachtung <span class="math inline">\((y_0,\mathbf{x}_0)\)</span> wie folgt aufschreiben:</p>
 <p><span class="math display">\[
-\text{E}\,\left[\left(y_i - \hat{f}(\mathbf{x}_i)\right)^2\right] = \text{Var}\left(\hat{f}(\mathbf{x}_i)\right) + \left[\text{Bias}\left(\hat{f}(\mathbf{x}_i)\right)\right]^2 + \text{Var}(\epsilon)
+\mathbb{E}\left[\left(y_0 - \hat{f}(\mathbf{x}_0)\right)^2\right] = \text{Var}(\epsilon) + \left[\text{Bias}\left(\hat{f}(\mathbf{x}_0)\right)\right]^2 + \text{Var}\left(\hat{f}(\mathbf{x}_0)\right)
 \]</span></p>
-<p>Diese Formulierung beschreibt den erwarteten (quadrierten) Fehler, den wir erhalten würden, wenn wir mit einer grossen Anzahl Trainings-Datensätzen jeweils einzeln <span class="math inline">\(f\)</span> schätzen würden und dann mit Testbeobachtung <span class="math inline">\((y_i,\mathbf{x}_i)\)</span> evaluieren würden. D.h., es ist eine ziemlich theoretische Angelegenheit, denn in der Praxis haben wir ja immer nur einen Trainingsdatensatz zur Verfügung. Aber diese Überlegungen helfen uns, das richtige Modell zu wählen.</p>
-<p>Schauen wir uns kurz die einzelnen Komponenten auf der rechten Seite etwas genauer an:</p>
-<ul>
-<li>
-<span class="math inline">\(\text{Var}\left(\hat{f}(\mathbf{x}_i)\right)\)</span> misst, wie stark sich <span class="math inline">\(\hat{f}\)</span> ändert, wenn wir einen anderen Trainings-Datensatz verwenden. Ein Modell mit hoher Varianz passt sich jeweils sehr stark an die Trainingsdaten an. Je kleiner diese Varianz, desto tiefer der erwartete quadrierte Fehler.</li>
-<li>
-<span class="math inline">\(\left[\text{Bias}\left(\hat{f}(\mathbf{x}_i)\right)\right]^2\)</span> ist der quadrierte Bias und misst die systematische Abweichung vom wahren unbekannten <span class="math inline">\(f\)</span>. Wir wollen natürlich auch den Bias möglichst klein halten.</li>
-<li>Die dritte Komponente, <span class="math inline">\(\text{Var}(\epsilon)\)</span>, kennen Sie bereits. Es ist der nicht-redzierbare Fehler.</li>
-</ul>
-<p>Ein Modell mit <strong>viel Bias</strong> führt zu einer schlechten Vorhersagequalität (auf Trainings- und Testdaten), weil das Modell zu rigide ist, um den wahren Zusammenhang zwischen der Output-Variable und den Features zu modellieren. Beispiel: wir verwenden ein einfaches lineares Regressionsmodell, um einen stark nicht-linearen Zusammenhang zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> zu modellieren. Im Fall von Modellen mit viel Bias spricht man auch von <strong>Underfitting</strong>.</p>
+<p>Ein Modell mit <strong>viel Bias</strong> führt zu einer schlechten Vorhersagequalität (auf Trainings- und Testdaten), weil das Modell zu rigide ist, um den wahren Zusammenhang zwischen der Output-Variable und den Input-Variablen zu modellieren. Beispiel: wir verwenden ein einfaches lineares Regressionsmodell, um einen stark nicht-linearen Zusammenhang zwischen <span class="math inline">\(y_i\)</span> und <span class="math inline">\(\mathbf{x}_i\)</span> zu modellieren. Im Fall von Modellen mit viel Bias spricht man auch von <strong>Underfitting</strong>.</p>
 <p>Ein Modell mit <strong>viel Varianz</strong> führt zu einer hervorragenden Vorhersagequalität auf den Trainingsdaten, aber zu einer sehr schlechten Vorhersagequalität auf den Testdaten. Das Problem hier ist, dass das Model zu flexibel ist gemessen an der Grösse des Trainingsdatensatzes. Das Modell passt sich so zu stark an die Trainingsdaten an und modelliert auch sogenanntes <strong>Noise</strong> (und nicht nur das <strong>Signal</strong> in den Daten). Beispiel: wir modellieren ein neuronales Netzwerk, haben aber nur einen Trainingsdatensatz von einigen hundert Beobachtungen. Im Fall von Modellen mit viel Varianz spricht man auch von <strong>Overfitting</strong>.</p>
-<p>Warum spricht man von einem <strong>Tradeoff</strong>? Flexiblere Modelle haben oft kleinen Bias, aber hohe Varianz, während unflexible Modelle oft eine kleine Varianz, aber einen hohen Bias haben. Es existiert also ein Tradeoff zwischen Bias und Varianz und wir wollen beim Modellieren und vor allem beim Hyperparameter Tuning den optimalen Tradeoff finden. (Die Intuition des Bias-Varianz Tradeoffs ist übrigens auch auf das Klassifikationsproblem übertragbar.)</p>
-<p><strong>Bias-Variance Tradeoff bei Regularisierter Regression</strong></p>
-<p>In unserem Beispiel wenden wir ein regularisiertes Regressionsmodell an. Hier spielt der Hyperparameter <span class="math inline">\(\lambda\)</span> (in R: <code>penalty</code>) eine zentrale Rolle für den Tradeoff zwischen Bias und Variance. Ein zu tiefer Wert für <span class="math inline">\(\lambda\)</span> kann zu einem zu flexiblen Modell mit viel Varianz führen. Ein zu hoher Wert für <span class="math inline">\(\lambda\)</span> führt zu einem zu rigiden Modell mit viel Bias.</p>
-<p><strong>Wichtig:</strong></p>
-<ul>
-<li>Indem wir den Hyperparameter via Resampling optimieren, wählen wir automatisch ein Modell mit einem guten Tradeoff zwischen Bias und Varianz!</li>
-<li>Mit grossen Datensätzen ist das Problem des Overfittings weniger dramatisch. Wir haben genügend Trainingsdaten, dass selbst flexible Modelle nicht zu stark overfitten. Das ist bei unserem Beispiel der Fall (wir haben einen ziemlich grossen Trainingsdatensatz). Darum ist der optimale Hyperparameter in unserem Beispiel <code>penalty = 0.001</code>, also eher einer der kleineren Werte.</li>
-</ul>
-<p>Eine letzte Überlegung bezüglich Modellselektion geht folgendermassen: wenn wir mehrere Modelle haben, die ähnlich gut performen, dann wählen wir das einfachste (kleinste) oder <strong>am wenigsten komplexe Modell</strong>. Man nennt dies <strong>Occam’s Razor</strong>. William of Occam war ein Englischer Mönch und hat dieses Prinzip in einem anderen Kontext erstmals formuliert.</p>
-</div>
-<p><br></p>
+<p>Warum spricht man von einem <strong>Tradeoff</strong>? Flexiblere Modelle haben oft einen kleinen Bias, aber hohe Varianz, während unflexible Modelle oft eine kleine Varianz, aber einen hohen Bias haben. Es existiert also ein Tradeoff zwischen Bias und Varianz und wir wollen beim Modellieren und vor allem beim Hyperparameter Tuning den optimalen Tradeoff finden.</p>
+<p>In unserem Beispiel wenden wir ein regularisiertes Regressionsmodell an. Hier spielt der Hyperparameter <span class="math inline">\(\lambda\)</span> eine zentrale Rolle für den Tradeoff zwischen Bias und Variance. Ein zu tiefer Wert für <span class="math inline">\(\lambda\)</span> kann zu einem zu flexiblen Modell mit viel Varianz führen. Ein zu hoher Wert für <span class="math inline">\(\lambda\)</span> führt zu einem zu rigiden Modell mit viel Bias.</p>
 </div>
 <div id="polynomische-regression" class="section level2" number="4.7">
 <h2>
@@ -660,7 +693,7 @@ J(\mathbf{\hat{w}}) &amp;= \frac{1}{2n} (\mathbf{y}'\mathbf{y} - 2\mathbf{y}'\ma
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Machine Learning für das KMU</strong>" was written by Martin Sterchi. It was last built on 2024-03-28.</p>
+    <p>"<strong>Machine Learning für das KMU</strong>" was written by Martin Sterchi. It was last built on 2024-04-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
